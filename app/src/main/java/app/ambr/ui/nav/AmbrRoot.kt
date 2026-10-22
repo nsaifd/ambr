@@ -95,8 +95,11 @@ private fun NavHostController.goTab(route: String) = navigate(route) {
 }
 
 @Composable
-fun AmbrRoot() {
+fun AmbrRoot(openItem: Long? = null, onOpened: () -> Unit = {}) {
     val nav = rememberNavController()
+    LaunchedEffect(openItem) {
+        openItem?.let { nav.navigate(Routes.item(it)) { launchSingleTop = true }; onOpened() }
+    }
     val entry by nav.currentBackStackEntryAsState()
     val route = entry?.destination?.route
     val currentTab = Tab.entries.firstOrNull { it.route == route }
@@ -176,6 +179,7 @@ fun AmbrRoot() {
                 }
             }
             composable(Routes.Confirm) { EditorRoute(nav, 0L, container.pendingDraft.also { container.pendingDraft = null }) }
+            composable("reminders") { app.ambr.ui.you.RemindersScreen(container.settings, onBack = { nav.popBackStack() }) }
             composable(Routes.Scan) {
                 BarcodeScanScreen { code ->
                     code?.let { nav.previousBackStackEntry?.savedStateHandle?.set("serial", it) }
@@ -223,7 +227,7 @@ fun AmbrRoot() {
             }
             composable(Routes.Search) { SearchScreen(ambrViewModel { ItemsViewModel(it.items) }, onBack = { nav.popBackStack() }, onOpen = { nav.navigate(Routes.item(it)) }) }
             composable(Routes.Archive) { ArchiveScreen(ambrViewModel { ItemsViewModel(it.items) }, onBack = { nav.popBackStack() }, onOpen = { nav.navigate(Routes.item(it)) }) }
-            listOf(Routes.Pro, Routes.Limit, "backup", "reminders", "applock", "export", "privacy", "help", "rate", "about").forEach { r ->
+            listOf(Routes.Pro, Routes.Limit, "backup", "applock", "export", "privacy", "help", "rate", "about").forEach { r ->
                 composable(r) { Placeholder(r.replaceFirstChar { it.uppercase() }) { nav.popBackStack() } }
             }
         }

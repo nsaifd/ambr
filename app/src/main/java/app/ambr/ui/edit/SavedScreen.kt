@@ -53,6 +53,11 @@ fun SavedScreen(vm: ItemViewModel, firstReminderDays: Int, onAddAnother: () -> U
     val ui by vm.item.collectAsStateWithLifecycle()
     val haptics = LocalHapticFeedback.current
     val pop = remember { Animatable(0.6f) }
+    // Ask for notifications right after the first save, when the reason is obvious.
+    val notify = androidx.activity.compose.rememberLauncherForActivityResult(androidx.activity.result.contract.ActivityResultContracts.RequestPermission()) {}
+    LaunchedEffect(Unit) {
+        if (android.os.Build.VERSION.SDK_INT >= 33) notify.launch(android.Manifest.permission.POST_NOTIFICATIONS)
+    }
     LaunchedEffect(Unit) {
         haptics.performHapticFeedback(HapticFeedbackType.LongPress)
         pop.animateTo(1f, spring(dampingRatio = 0.45f))

@@ -132,6 +132,7 @@ fun ItemDetailScreen(
         item { StatusCard(current, onClaim, Modifier.padding(horizontal = 16.dp).offset(y = (-32).dp)) }
         item {
             Column(Modifier.padding(horizontal = 16.dp).offset(y = (-18).dp), verticalArrangement = Arrangement.spacedBy(18.dp)) {
+                CheckUpBanner(current, onAllGood = { vm.dismissReminder() })
                 QuickActions(current, onLogRepair)
                 ProofSection(current.details.proofs, onAddProof, onOpenProof)
                 CoverageSection(current.status.coverages)
@@ -237,6 +238,31 @@ private fun StatusCard(ui: ItemUi, onClaim: () -> Unit, modifier: Modifier) {
             }
         }
         AmbrButton("Something broke", onClaim, icon = R.drawable.ic_wrench_simple)
+    }
+}
+
+/** The last free check-up window: shown while a warranty ends within 30 days, until "All good". */
+@Composable
+private fun CheckUpBanner(ui: ItemUi, onAllGood: () -> Unit) {
+    if (ui.status.kind != StatusKind.EndsSoon || ui.details.coverages.any { it.reminderDismissed }) return
+    val context = LocalContext.current
+    Column(
+        Modifier.fillMaxWidth().clip(CardShape).background(AmbrColors.Navy).padding(16.dp),
+        verticalArrangement = Arrangement.spacedBy(12.dp),
+    ) {
+        Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
+            Icon(painterResource(R.drawable.ic_bulb), null, tint = AmbrColors.HoneyOnNavy, modifier = Modifier.padding(top = 2.dp).size(20.dp))
+            Column {
+                Text("Last free check-up window", style = MaterialTheme.typography.titleMedium, color = AmbrColors.Card)
+                Text("Anything not working right? A check-up is free for ${ui.status.daysLeft} more days. After that, repairs cost money.", style = MaterialTheme.typography.bodyMedium, color = AmbrColors.OnDarkMuted)
+            }
+        }
+        Row(horizontalArrangement = Arrangement.spacedBy(10.dp)) {
+            AmbrButton("All good", onAllGood, Modifier.weight(1f), style = ButtonStyle.Quiet, height = 44.dp)
+            ui.item.servicePhone?.let { phone ->
+                AmbrButton("Book check-up", { Intents.dial(context, phone) }, Modifier.weight(1f), icon = R.drawable.ic_phone_call, height = 44.dp)
+            }
+        }
     }
 }
 
