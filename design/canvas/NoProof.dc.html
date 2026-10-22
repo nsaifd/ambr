@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Item with no proof yet</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#1D2433;text-decoration:none}
+</style>
+</helmet>
+<div style="width: 390px; height: 1000px; box-sizing: border-box; background: #F4F5F8; font-family: 'Public Sans', system-ui, sans-serif; color: #1D2433; display: flex; flex-direction: column; overflow: hidden">
+  <div style="background: #ECE9FB; padding: 54px 16px 64px; border-radius: 0 0 36px 36px; display: flex; flex-direction: column; gap: 16px">
+    <div style="display: flex; align-items: center; justify-content: space-between">
+      <a href="Vault.dc.html" aria-label="Back" style="width: 44px; height: 44px; border-radius: 50%; background: rgba(255, 255, 255, 0.85); display: flex; align-items: center; justify-content: center"><dc-import name="Icon" icon="angle-small-left" size="22" color="#1D2433" hint-size="22px,22px"></dc-import></a>
+      <a href="EditItem.dc.html" aria-label="Edit" style="width: 44px; height: 44px; border-radius: 50%; background: rgba(255, 255, 255, 0.85); display: flex; align-items: center; justify-content: center"><dc-import name="Icon" icon="pencil" size="17" color="#1D2433" hint-size="17px,17px"></dc-import></a>
+    </div>
+    <div style="display: flex; align-items: center; gap: 14px">
+      <span style="width: 72px; height: 72px; border-radius: 24px; background: #FFFFFF; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 22px rgba(81, 70, 168, 0.16)"><dc-import name="Icon" icon="laptop" size="34" color="#5146A8" hint-size="34px,34px"></dc-import></span>
+      <span style="display: flex; flex-direction: column; gap: 2px"><span style="font-size: 24px; font-weight: 700; letter-spacing: -0.02em">Lenovo laptop</span><span style="font-size: 14px; color: #463C8F">Office · Computers</span></span>
+    </div>
+  </div>
+
+  <div style="margin: -44px 16px 0; display: flex; flex-direction: column; gap: 14px">
+    <div style="border-radius: 28px; background: #FFFFFF; box-shadow: 0 0 0 1px #E8EAF0, 0 12px 32px rgba(31, 42, 68, 0.08); padding: 18px; display: flex; flex-direction: column; gap: 8px">
+      <span style="display: inline-flex; align-self: flex-start; align-items: center; gap: 5px; background: #E4F4EA; color: #17704A; font-size: 13px; font-weight: 700; padding: 4px 10px 4px 8px; border-radius: 999px"><dc-import name="Icon" icon="check" size="11" color="#17704A" hint-size="11px,11px"></dc-import>Covered</span>
+      <span style="font-size: 22px; font-weight: 700; letter-spacing: -0.015em">Covered until 2 Aug 2027</span>
+      <span style="font-size: 13px; color: #646B7E">Bought 2 Aug 2025 · 2-year warranty</span>
+    </div>
+
+    <div style="border-radius: 24px; background: #FFFFFF; box-shadow: 0 0 0 1px #E8EAF0; padding: 16px; display: flex; flex-direction: column; gap: 14px">
+      <span style="font-size: 17px; font-weight: 700">Proof</span>
+      <div style="border-radius: 20px; border: 2px dashed #F2C27A; background: #FFFAF0; padding: 20px 16px; display: flex; flex-direction: column; align-items: center; gap: 10px; text-align: center">
+        <span style="width: 52px; height: 52px; border-radius: 50%; background: #FFF4DE; display: flex; align-items: center; justify-content: center"><dc-import name="Icon" icon="receipt" size="22" color="#7A4A00" hint-size="22px,22px"></dc-import></span>
+        <span style="font-size: 16px; font-weight: 700">No proof yet</span>
+        <span style="font-size: 14px; line-height: 1.45; color: #4A5163">Without a receipt or card the shop may refuse a free repair. Add a photo if you find one.</span>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px">
+        <a href="Camera.dc.html" style="height: 52px; border-radius: 26px; background: #EF9426; display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 14px; font-weight: 700"><dc-import name="Icon" icon="camera" size="15" color="#1D2433" hint-size="15px,15px"></dc-import>Scan receipt</a>
+        <a href="Camera.dc.html" style="height: 52px; border-radius: 26px; background: #F4F5F8; display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 14px; font-weight: 700"><dc-import name="Icon" icon="badge-check" size="15" color="#1D2433" hint-size="15px,15px"></dc-import>Warranty card</a>
+      </div>
+      <span style="display: flex; gap: 8px; font-size: 13px; line-height: 1.45; color: #4A5163"><span style="flex: none; padding-top: 1px"><dc-import name="Icon" icon="bulb" size="14" color="#7A4A00" hint-size="14px,14px"></dc-import></span>The sticker with the serial number on the box or under the laptop counts too.</span>
+    </div>
+
+    <a href="ClaimPack.dc.html" style="height: 56px; border-radius: 28px; background: #FFFFFF; box-shadow: 0 0 0 1px #E8EAF0; display: flex; align-items: center; justify-content: center; gap: 10px; font-size: 16px; font-weight: 700"><dc-import name="Icon" icon="wrench-simple" size="18" color="#1D2433" hint-size="18px,18px"></dc-import>Something broke</a>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":1000}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

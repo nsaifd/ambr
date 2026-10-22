@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Backup is off</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#1D2433;text-decoration:none}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; background: #F4F5F8; font-family: 'Public Sans', system-ui, sans-serif; color: #1D2433; padding: 54px 16px 26px; display: flex; flex-direction: column; gap: 14px">
+  <div style="display: flex; align-items: center; gap: 12px">
+    <a href="Main.dc.html" aria-label="Back" style="width: 44px; height: 44px; border-radius: 50%; background: #FFFFFF; box-shadow: 0 0 0 1px #E8EAF0; display: flex; align-items: center; justify-content: center"><dc-import name="Icon" icon="angle-small-left" size="22" color="#1D2433" hint-size="22px,22px"></dc-import></a>
+    <span style="font-size: 22px; font-weight: 700; letter-spacing: -0.02em">Backup</span>
+  </div>
+
+  <div style="border-radius: 28px; background: #FFFFFF; box-shadow: 0 0 0 1px #E8EAF0; padding: 20px; display: flex; flex-direction: column; align-items: center; gap: 14px; text-align: center">
+    <div style="position: relative; width: 96px; height: 96px">
+      <span style="position: absolute; inset: 0; border-radius: 50%; background: #FFF4DE"></span>
+      <span style="position: absolute; inset: 16px; border-radius: 50%; background: #FFFFFF; box-shadow: 0 8px 20px rgba(239, 148, 38, 0.25); display: flex; align-items: center; justify-content: center"><dc-import name="Icon" icon="cloud-upload-alt" size="30" color="#C27400" hint-size="30px,30px"></dc-import></span>
+    </div>
+    <span style="display: flex; flex-direction: column; gap: 6px"><span style="font-size: 20px; font-weight: 700">Your receipts live only on this phone</span><span style="font-size: 14px; line-height: 1.5; color: #4A5163">If the phone is lost or broken, the receipts go with it. Back them up to your own Google Drive. It's free.</span></span>
+  </div>
+
+  <div style="border-radius: 24px; background: #FFFFFF; box-shadow: 0 0 0 1px #E8EAF0; padding: 8px 16px">
+    <sc-for list="{{steps}}" as="s" hint-placeholder-count="3">
+      <div style="display: flex; align-items: center; gap: 12px; padding: 10px 0; border-top: {{s.sep}}">
+        <span style="width: 28px; height: 28px; border-radius: 50%; background: #1F2A44; color: #FFFFFF; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; flex: none">{{s.n}}</span>
+        <span style="font-size: 15px; font-weight: 600">{{s.text}}</span>
+      </div>
+    </sc-for>
+  </div>
+
+  <div style="margin-top: auto; display: flex; flex-direction: column; gap: 10px">
+    <span style="display: flex; gap: 8px; align-items: flex-start; font-size: 13px; line-height: 1.45; color: #4A5163; padding: 0 4px"><span style="flex: none; padding-top: 1px"><dc-import name="Icon" icon="lock" size="14" color="#4A5163" hint-size="14px,14px"></dc-import></span>Saved in a private folder of your Drive. The people who make Ambr can't open it.</span>
+    <a href="Backup.dc.html" style="height: 56px; border-radius: 28px; background: #1F2A44; color: #FFFFFF; display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 17px; font-weight: 700"><dc-import name="Icon" icon="cloud-upload-alt" size="17" color="#FFFFFF" hint-size="17px,17px"></dc-import>Connect Google Drive</a>
+    <a href="Main.dc.html" style="height: 44px; display: flex; align-items: center; justify-content: center; font-size: 15px; font-weight: 600; color: #4A5163">Not now</a>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const S = ['Sign in with your Google account', 'We back up 18 items and 32 photos', 'Then every week, on Wi-Fi, by itself'];
+    return { steps: S.map((t, i) => ({ n: i + 1, text: t, sep: i === 0 ? 'none' : '1px solid #EEF0F4' })) };
+  }
+}
+</script>
+</body>
+</html>

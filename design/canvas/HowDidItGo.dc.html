@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>How did it go</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#1D2433;text-decoration:none}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; background: #F4F5F8; font-family: 'Public Sans', system-ui, sans-serif; color: #1D2433; position: relative; overflow: hidden">
+  <div aria-hidden="true" style="padding: 54px 16px; display: flex; flex-direction: column; gap: 16px">
+    <div style="height: 44px; display: flex; justify-content: space-between"><span style="width: 90px; height: 40px; border-radius: 20px; background: #FFFFFF"></span><span style="width: 44px; height: 44px; border-radius: 50%; background: #FFFFFF"></span></div>
+    <div style="height: 64px; width: 70%; border-radius: 12px; background: #E8EAF0"></div>
+    <div style="height: 52px; border-radius: 18px; background: #FFFFFF"></div>
+    <div style="height: 176px; border-radius: 28px; background: #1F2A44"></div>
+  </div>
+  <div style="position: absolute; inset: 0; background: rgba(20, 27, 44, 0.45)"></div>
+
+  <div role="dialog" aria-label="How did the repair go" style="position: absolute; left: 8px; right: 8px; bottom: 8px; background: #FFFFFF; border-radius: 36px; padding: 10px 18px 20px; display: flex; flex-direction: column; gap: 16px">
+    <span style="align-self: center; width: 40px; height: 5px; border-radius: 3px; background: #DDE1E8"></span>
+    <div style="display: flex; align-items: center; gap: 12px">
+      <span style="width: 52px; height: 52px; border-radius: 16px; background: #E6F0FB; display: flex; align-items: center; justify-content: center; flex: none"><dc-import name="Icon" icon="air-conditioner" size="24" color="#2B5F8E" hint-size="24px,24px"></dc-import></span>
+      <span style="display: flex; flex-direction: column; gap: 2px"><span style="font-size: 20px; font-weight: 700; letter-spacing: -0.015em">How did the AC repair go?</span><span style="font-size: 13px; color: #646B7E">You opened its claim pack yesterday</span></span>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px">
+      <sc-for list="{{outcomes}}" as="o" hint-placeholder-count="4">
+        <a href="LogRepair.dc.html" style="height: 64px; border-radius: 20px; background: #F7F8FA; display: flex; align-items: center; gap: 10px; padding: 0 12px; font-size: 15px; font-weight: 700">
+          <span style="width: 34px; height: 34px; border-radius: 50%; background: {{o.wash}}; display: flex; align-items: center; justify-content: center; flex: none"><dc-import name="Icon" icon="{{o.icon}}" size="15" color="{{o.ink}}" hint-size="15px,15px"></dc-import></span>{{o.label}}</a>
+      </sc-for>
+    </div>
+    <span style="font-size: 13px; color: #646B7E; text-align: center">One tap saves it to the AC's service history</span>
+    <a href="Main.dc.html" style="height: 48px; border-radius: 24px; display: flex; align-items: center; justify-content: center; font-size: 15px; font-weight: 600; color: #4A5163">I didn't go yet</a>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return { outcomes: [
+      { label: 'Fixed', icon: 'check', ink: '#17704A', wash: '#E4F4EA' },
+      { label: 'Replaced', icon: 'refresh', ink: '#2B5F8E', wash: '#E6F0FB' },
+      { label: 'Rejected', icon: 'cross-small', ink: '#B42318', wash: '#FEE4E2' },
+      { label: 'Still waiting', icon: 'clock-three', ink: '#8F5000', wash: '#FFEFD3' }
+    ] };
+  }
+}
+</script>
+</body>
+</html>

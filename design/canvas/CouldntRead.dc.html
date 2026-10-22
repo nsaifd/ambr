@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Couldn't read receipt</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#1D2433;text-decoration:none}
+input{font:inherit}
+input::placeholder{color:#9AA0AE}
+</style>
+</helmet>
+<div style="width: 390px; height: 1000px; box-sizing: border-box; background: #F4F5F8; font-family: 'Public Sans', system-ui, sans-serif; color: #1D2433; padding: 54px 16px 130px; display: flex; flex-direction: column; gap: 14px; position: relative">
+  <div style="display: flex; align-items: center; justify-content: space-between">
+    <a href="Camera.dc.html" aria-label="Back" style="width: 44px; height: 44px; border-radius: 50%; background: #FFFFFF; box-shadow: 0 0 0 1px #E8EAF0; display: flex; align-items: center; justify-content: center"><dc-import name="Icon" icon="angle-small-left" size="22" color="#1D2433" hint-size="22px,22px"></dc-import></a>
+    <span style="font-size: 16px; font-weight: 700">New item</span>
+    <a href="Camera.dc.html" style="height: 44px; padding: 0 14px; border-radius: 22px; background: #FFFFFF; box-shadow: 0 0 0 1px #E8EAF0; display: flex; align-items: center; font-size: 14px; font-weight: 600">Retake</a>
+  </div>
+
+  <div style="height: 150px; border-radius: 24px; background: #E3E6EC; display: flex; align-items: center; justify-content: center; position: relative">
+    <div style="width: 140px; background: #FBFAF6; padding: 10px; display: flex; flex-direction: column; gap: 5px; transform: rotate(-3deg); opacity: 0.75"><span style="height: 4px; width: 60%; align-self: center; background: #D5D8DE"></span><span style="height: 3px; background: #E3E5E9"></span><span style="height: 3px; width: 70%; background: #E3E5E9"></span><span style="height: 3px; background: #E8EAED"></span><span style="height: 3px; width: 50%; background: #E3E5E9"></span><span style="height: 4px; width: 40%; background: #D5D8DE"></span></div>
+    <span style="position: absolute; left: 12px; bottom: 12px; height: 28px; padding: 0 10px; border-radius: 14px; background: #FFFFFF; display: flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 700; color: #17704A"><dc-import name="Icon" icon="check" size="11" color="#17704A" hint-size="11px,11px"></dc-import>Photo saved as proof</span>
+  </div>
+
+  <div style="display: flex; gap: 12px; align-items: flex-start; border-radius: 20px; background: #FFFFFF; box-shadow: 0 0 0 1px #E8EAF0; padding: 14px">
+    <span style="width: 40px; height: 40px; border-radius: 12px; background: #FFF4DE; display: flex; align-items: center; justify-content: center; flex: none"><dc-import name="Icon" icon="receipt" size="18" color="#7A4A00" hint-size="18px,18px"></dc-import></span>
+    <span style="display: flex; flex-direction: column; gap: 3px"><span style="font-size: 16px; font-weight: 700">Couldn't read this one</span><span style="font-size: 14px; line-height: 1.45; color: #4A5163">Just type the name. Everything else is optional and you can add it later.</span></span>
+  </div>
+
+  <div style="border-radius: 24px; background: #FFFFFF; box-shadow: 0 0 0 1px #E8EAF0; padding: 16px; display: flex; flex-direction: column; gap: 14px">
+    <div style="display: flex; flex-direction: column; gap: 6px">
+      <label for="cr-name" style="font-size: 13px; font-weight: 600; color: #4A5163">Item name</label>
+      <input id="cr-name" value="" placeholder="e.g. Ceiling fan" style="height: 52px; border-radius: 16px; border: 2px solid #1F2A44; background: #FFFFFF; padding: 0 13px; font-size: 16px; color: #1D2433; box-sizing: border-box">
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px">
+      <div style="display: flex; flex-direction: column; gap: 6px; min-width: 0"><label for="cr-price" style="font-size: 13px; font-weight: 600; color: #4A5163">Price (৳)</label><input id="cr-price" placeholder="Optional" style="height: 52px; border-radius: 16px; border: 1px solid #E3E6EC; background: #F7F8FA; padding: 0 14px; font-size: 16px; color: #1D2433; box-sizing: border-box; width: 100%"></div>
+      <div style="display: flex; flex-direction: column; gap: 6px; min-width: 0"><label for="cr-date" style="font-size: 13px; font-weight: 600; color: #4A5163">Bought on</label><input id="cr-date" placeholder="Today" style="height: 52px; border-radius: 16px; border: 1px solid #E3E6EC; background: #F7F8FA; padding: 0 14px; font-size: 16px; color: #1D2433; box-sizing: border-box; width: 100%"></div>
+    </div>
+  </div>
+
+  <div style="display: flex; gap: 10px; align-items: flex-start; border-radius: 18px; background: #FFF4DE; padding: 12px 14px">
+    <span style="flex: none; padding-top: 1px"><dc-import name="Icon" icon="info" size="15" color="#7A4A00" hint-size="15px,15px"></dc-import></span>
+    <span style="font-size: 13px; line-height: 1.45; color: #4A3300">Thermal receipts fade within months. Snap new ones soon after you buy.</span>
+  </div>
+
+  <div style="position: absolute; left: 16px; right: 16px; bottom: 26px; height: 72px; border-radius: 36px; background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(20px); box-shadow: 0 0 0 1px rgba(31, 42, 68, 0.06), 0 14px 34px rgba(31, 42, 68, 0.16); padding: 8px; box-sizing: border-box">
+    <a href="Saved.dc.html" style="height: 56px; border-radius: 28px; background: #EF9426; display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 17px; font-weight: 700"><dc-import name="Icon" icon="check" size="16" color="#1D2433" hint-size="16px,16px"></dc-import>Save item</a>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":1000}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

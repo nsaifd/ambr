@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Reading receipt</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#1D2433;text-decoration:none}
+@keyframes amb-shimmer{0%{background-position:-200px 0}100%{background-position:200px 0}}
+@keyframes amb-scan{0%{top:8px}100%{top:84px}}
+.amb-sh{background:linear-gradient(90deg,#EEF0F4 0%,#F8F9FB 50%,#EEF0F4 100%);background-size:400px 100%;animation:amb-shimmer 1.4s linear infinite}
+@media (prefers-reduced-motion: reduce){.amb-sh{animation:none}.amb-scanline{animation:none}}
+</style>
+</helmet>
+<a href="Confirm.dc.html" style="width: 390px; height: 844px; box-sizing: border-box; background: #F4F5F8; font-family: 'Public Sans', system-ui, sans-serif; color: #1D2433; padding: 54px 16px 26px; display: flex; flex-direction: column; gap: 14px">
+  <div style="display: flex; align-items: center; justify-content: space-between">
+    <span style="width: 44px; height: 44px; border-radius: 50%; background: #FFFFFF; box-shadow: 0 0 0 1px #E8EAF0; display: flex; align-items: center; justify-content: center"><dc-import name="Icon" icon="angle-small-left" size="22" color="#1D2433" hint-size="22px,22px"></dc-import></span>
+    <span style="font-size: 16px; font-weight: 700">New item</span>
+    <span style="width: 44px"></span>
+  </div>
+  <div style="display: flex; flex-direction: column; gap: 4px; padding: 0 2px">
+    <span style="font-size: 28px; font-weight: 700; letter-spacing: -0.025em">Reading your receipt…</span>
+    <span style="font-size: 15px; color: #4A5163">Takes a second or two. It all happens on your phone.</span>
+  </div>
+
+  <div style="border-radius: 24px; background: #FFFFFF; box-shadow: 0 0 0 1px #E8EAF0; padding: 10px; display: flex; gap: 12px; align-items: center">
+    <div style="width: 64px; height: 92px; border-radius: 16px; background: #EEF0F4; display: flex; align-items: center; justify-content: center; flex: none; position: relative; overflow: hidden">
+      <div style="width: 42px; background: #FFFFFF; padding: 5px; display: flex; flex-direction: column; gap: 3px"><span style="height: 3px; width: 70%; align-self: center; background: #3B3F4A"></span><span style="height: 2px; background: #B9BFCB"></span><span style="height: 2px; width: 80%; background: #B9BFCB"></span><span style="height: 2px; background: #B9BFCB"></span><span style="height: 3px; width: 60%; background: #3B3F4A"></span></div>
+      <span class="amb-scanline" style="position: absolute; left: 4px; right: 4px; top: 40px; height: 2px; background: #EF9426; box-shadow: 0 0 10px #EF9426; animation: amb-scan 1.2s ease-in-out infinite alternate"></span>
+    </div>
+    <span style="display: flex; flex-direction: column; gap: 6px; flex: 1">
+      <span style="display: flex; align-items: center; gap: 6px; font-size: 14px; font-weight: 700; color: #7A4A00"><dc-import name="Icon" icon="sparkles" size="14" color="#7A4A00" hint-size="14px,14px"></dc-import>Finding store, price and date</span>
+      <span role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="height: 6px; border-radius: 3px; background: #EEF0F4; overflow: hidden"><span style="display: block; width: 60%; height: 6px; background: #EF9426; border-radius: 3px"></span></span>
+    </span>
+  </div>
+
+  <div style="border-radius: 24px; background: #FFFFFF; box-shadow: 0 0 0 1px #E8EAF0; padding: 16px; display: flex; flex-direction: column; gap: 14px" aria-busy="true">
+    <sc-for list="{{fields}}" as="f" hint-placeholder-count="4">
+      <div style="display: flex; flex-direction: column; gap: 6px">
+        <span style="font-size: 13px; font-weight: 600; color: #4A5163">{{f}}</span>
+        <span class="amb-sh" style="height: 52px; border-radius: 16px"></span>
+      </div>
+    </sc-for>
+  </div>
+  <span style="margin-top: auto; text-align: center; font-size: 13px; color: #646B7E">Tap anywhere to see the result</span>
+</a>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() { return { fields: ['Item name', 'Store', 'Price (৳)', 'Bought on'] }; }
+}
+</script>
+</body>
+</html>
