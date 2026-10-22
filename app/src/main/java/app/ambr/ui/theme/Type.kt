@@ -31,6 +31,7 @@ val AmbrTypography = Typography(
     headlineSmall = style(22, FontWeight.Bold, -0.015, 1.2),
     titleLarge = style(18, FontWeight.Bold),
     titleMedium = style(15, FontWeight.SemiBold),
+    titleSmall = style(14, FontWeight.SemiBold),
     bodyLarge = style(16, FontWeight.Normal, lineHeight = 1.45),
     bodyMedium = style(14, FontWeight.Normal, lineHeight = 1.45),
     labelLarge = style(15, FontWeight.Bold),
