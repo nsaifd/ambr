@@ -41,6 +41,23 @@ class Settings(context: Context) {
         get() = prefs.getInt(KEY_DELAY, 60)
         set(v) = prefs.edit().putInt(KEY_DELAY, v).apply()
 
+    var backupPhotos: Boolean
+        get() = prefs.getBoolean("backup_photos", true)
+        set(v) = prefs.edit().putBoolean("backup_photos", v).apply()
+
+    var backupWifiOnly: Boolean
+        get() = prefs.getBoolean("backup_wifi", true)
+        set(v) = prefs.edit().putBoolean("backup_wifi", v).apply()
+
+    var backupAccount: String?
+        get() = prefs.getString("backup_account", null)
+        set(v) = prefs.edit().putString("backup_account", v).apply()
+
+    private val _backupError = MutableStateFlow(prefs.getString("backup_error", null))
+    /** Why the last automatic backup failed, or null when it worked. */
+    val backupError: StateFlow<String?> = _backupError.asStateFlow()
+    fun setBackupError(v: String?) { prefs.edit().putString("backup_error", v).apply(); _backupError.value = v }
+
     var welcomed: Boolean
         get() = prefs.getBoolean(KEY_WELCOMED, false)
         set(v) = prefs.edit().putBoolean(KEY_WELCOMED, v).apply()

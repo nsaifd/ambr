@@ -13,5 +13,7 @@ class AmbrApp : Application() {
         container = AppContainer(this)
         Notifications.createChannel(this)
         ReminderWorker.schedule(this)
+        container.billing.connect()
+        app.ambr.platform.BackupWorker.schedule(this, container.settings.backupOn.value, container.settings.backupWifiOnly)
     }
 }

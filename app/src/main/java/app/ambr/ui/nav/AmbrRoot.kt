@@ -58,6 +58,11 @@ import app.ambr.ui.state.ItemsViewModel
 import app.ambr.ui.state.ambrViewModel
 import app.ambr.ui.theme.AmbrColors
 import app.ambr.ui.vault.VaultScreen
+import app.ambr.ui.backup.BackupScreen
+import app.ambr.ui.backup.RestoreScreen
+import app.ambr.ui.backup.WelcomeScreen
+import app.ambr.ui.pro.LimitReachedScreen
+import app.ambr.ui.pro.ProScreen
 import app.ambr.ui.lock.AppLockSetupScreen
 import app.ambr.ui.lock.LockScreen
 import app.ambr.ui.you.AboutScreen
@@ -121,7 +126,7 @@ fun AmbrRoot(openItem: Long? = null, onOpened: () -> Unit = {}) {
     Box(Modifier.fillMaxSize().background(AmbrColors.Ground)) {
         NavHost(
             navController = nav,
-            startDestination = Tab.Home.route,
+            startDestination = remember { if (container.settings.welcomed) Tab.Home.route else "welcome" },
             enterTransition = { if (targetState.destination.route in tabRoutes) fadeIn(tween(200)) else slideInHorizontally(tween(250)) { it / 4 } + fadeIn(tween(250)) },
             exitTransition = { fadeOut(tween(180)) },
             popEnterTransition = { fadeIn(tween(200)) },
@@ -254,8 +259,26 @@ fun AmbrRoot(openItem: Long? = null, onOpened: () -> Unit = {}) {
                 val scope = rememberCoroutineScope()
                 AboutScreen(onBack = { nav.popBackStack() }, onDeleteAll = { scope.launch { container.wipe() } })
             }
-            listOf(Routes.Pro, Routes.Limit, "backup").forEach { r ->
-                composable(r) { Placeholder(r.replaceFirstChar { it.uppercase() }) { nav.popBackStack() } }
+            composable(Routes.Pro) { ProScreen(container.billing, container.settings, onClose = { nav.popBackStack() }) }
+            composable(Routes.Limit) {
+                LimitReachedScreen(
+                    ambrViewModel { ItemsViewModel(it.items) },
+                    onPro = { nav.navigate(Routes.Pro) { popUpTo(Routes.Limit) { inclusive = true } } },
+                    onArchive = { nav.goTab(Tab.Vault.route) },
+                    onClose = { nav.popBackStack() },
+                )
+            }
+            composable("backup") { BackupScreen(container, onBack = { nav.popBackStack() }, onRestore = { nav.navigate("restore") }) }
+            composable("restore") {
+                RestoreScreen(container, onClose = { nav.popBackStack() }, onDone = { nav.navigate(Tab.Home.route) { popUpTo(0) } })
+            }
+            composable("welcome") {
+                val done = { container.settings.welcomed = true }
+                WelcomeScreen(
+                    onAdd = { done(); nav.navigate(Tab.Home.route) { popUpTo(0) }; nav.navigate(Routes.Add) },
+                    onExplore = { done(); nav.navigate(Tab.Home.route) { popUpTo(0) } },
+                    onRestore = { nav.navigate("restore") },
+                )
             }
         }
         if (currentTab != null) {
@@ -329,13 +352,4 @@ private fun DuplicateDialog(existing: app.ambr.data.ItemWithDetails, onOpen: () 
             }
         },
     )
-}
-
-// Stand-in until each screen is built.
-@Composable
-private fun Placeholder(title: String, onBack: () -> Unit) {
-    Column(Modifier.fillMaxSize().statusBarsPadding().padding(horizontal = 16.dp, vertical = 8.dp)) {
-        TopBar(title, onBack)
-        Text("Coming in the next build.", style = MaterialTheme.typography.bodyLarge, color = AmbrColors.TextSecondary, modifier = Modifier.padding(top = 16.dp))
-    }
 }

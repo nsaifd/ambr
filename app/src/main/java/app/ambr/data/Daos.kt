@@ -35,6 +35,10 @@ interface ItemDao {
     @Query("SELECT * FROM items WHERE archivedReason IS NULL")
     suspend fun activeOnce(): List<ItemWithDetails>
 
+    @Transaction
+    @Query("SELECT * FROM items WHERE archivedReason IS NOT NULL")
+    suspend fun archivedOnce(): List<ItemWithDetails>
+
     @Query("SELECT COUNT(*) FROM items WHERE archivedReason IS NULL")
     suspend fun activeCount(): Int
 

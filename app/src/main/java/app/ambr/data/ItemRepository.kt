@@ -11,6 +11,7 @@ class ItemRepository(private val dao: ItemDao) {
     fun item(id: Long): Flow<ItemWithDetails?> = dao.observe(id)
     suspend fun activeCount(): Int = dao.activeCount()
     suspend fun activeOnce(): List<ItemWithDetails> = dao.activeOnce()
+    suspend fun archivedOnce(): List<ItemWithDetails> = dao.archivedOnce()
 
     suspend fun save(item: ItemEntity, coverages: List<CoverageEntity>, proofs: List<ProofEntity> = emptyList()): Long {
         val id = if (item.id == 0L) dao.insert(item) else item.id.also { dao.update(item) }

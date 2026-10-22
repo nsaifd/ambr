@@ -17,6 +17,16 @@ android {
         versionName = "1.0"
     }
 
+    // A fixed debug key so the SHA-1 registered for Google Drive sign-in stays the same on every CI build.
+    signingConfigs {
+        getByName("debug") {
+            storeFile = file("debug.keystore")
+            storePassword = "android"
+            keyAlias = "androiddebugkey"
+            keyPassword = "android"
+        }
+    }
+
     buildTypes {
         release {
             isMinifyEnabled = true
@@ -61,6 +71,8 @@ dependencies {
     implementation(libs.kotlinx.coroutines.android)
     implementation(libs.coil.compose)
     implementation(libs.work.runtime)
+    implementation(libs.billing)
+    implementation(libs.play.services.auth)
     implementation(libs.biometric)
     implementation(libs.camera.camera2)
     implementation(libs.camera.lifecycle)
