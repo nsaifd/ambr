@@ -179,7 +179,7 @@ Status rule: **Covered** when the longest active coverage ends in more than 30 d
 ```mermaid
 flowchart TD
     A1[A1 Splash]
-    A2 --> Found{Drive backup found?}
+    A1 --> Found{Drive backup found?}
     Found -- yes --> A3[A3 Restore found]
     A3 -- Restore --> Home[C1 Home with items]
     A3 -- Start fresh --> A4
