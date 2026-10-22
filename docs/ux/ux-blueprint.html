@@ -351,7 +351,7 @@ flowchart LR
           <div class="flow-head"><h3>Flow 1 · First launch</h3><span class="target">Target: first item in under 60 s</span></div>
           <div class="flow-body"><pre class="mermaid">
 flowchart LR
-    A1[A1 Splash] --> A2[A2 Language]
+    A1[A1 Splash]
     A2 --> F{Drive backup found?}
     F -- yes --> A3[A3 Restore found]
     A3 -- Restore --> H[C1 Home with items]
@@ -386,7 +386,7 @@ flowchart LR
     Card -- Back up --> G[Google sign-in] --> F2[F2 Weekly backup on Wi-Fi]
     Card -- Not now --> Hide[Hidden until item 10]
     F2 --> St[You shows: Last backup today, 9:14 pm]
-    New[New phone] --> A2[A2 Language] --> A3[A3 Restore found] --> H[C1 Home with all items]
+    New[New phone] --> A3[A3 Restore found] --> H[C1 Home with all items]
 </pre></div>
         </div>
 
@@ -460,7 +460,7 @@ const SCREENS=[
  ["B","B6","Duplicate found","Dialog","“Looks like you already saved this receipt on 2 Jun. Save anyway?”","v1"],
  ["B","B7","Saved","Sheet","“Fridge saved. Covered until 22 Oct 2027.” Add another / Done","v1"],
  ["C","C1","Home","Tab","Search, “Something broke?”, needs attention, protected total","v1"],
- ["C","C2","Search","Screen","Bangla + English results with status pills; “Not saved yet? Add it”","v1"],
+ ["C","C2","Search","Screen","Results with status pills; “Not saved yet? Add it”","v1"],
  ["C","C3","What broke?","Screen","Big photo grid of items; tap one to open its claim pack","v1"],
  ["C","C4","Vault","Tab","Everything owned, by room or category, filters and sort","v1"],
  ["C","C5","Archive","Screen","Sold and given-away items, receipts kept","v1"],

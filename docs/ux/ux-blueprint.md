@@ -45,7 +45,6 @@ The spec is a strong base. These changes come from looking at each moment throug
 | ID | Screen | Type | Purpose | Release |
 | --- | --- | --- | --- | --- |
 | A1 | Splash | Screen | Logo while the database opens, under 1 s | v1 |
-| A2 | Language | Screen | বাংলা / English, two big buttons, shown once | v1 |
 | A3 | Restore found | Screen | "Restore 23 items from your Google Drive?" Only when a backup exists | v1 |
 | A4 | Welcome | Screen | One promise, one action: "Save my first receipt" | v1 |
 | A5 | First save celebration | Sheet | "Your fridge is protected until Jan 2028" + reminder permission ask | v1 |
@@ -66,7 +65,7 @@ The spec is a strong base. These changes come from looking at each moment throug
 | ID | Screen | Type | Purpose | Release |
 | --- | --- | --- | --- | --- |
 | C1 | Home | Tab | Is anything at risk? Search, "Something broke?", needs attention, protected total | v1 |
-| C2 | Search | Screen | Bangla + English results with status pills; "Not saved yet? Add it" when empty | v1 |
+| C2 | Search | Screen | Results with status pills; "Not saved yet? Add it" when empty | v1 |
 | C3 | What broke? | Screen | Big photo grid of items, tap one to open its claim pack | v1 |
 | C4 | Vault | Tab | Everything owned, by room or category, filters and sort | v1 |
 | C5 | Archive | Screen | Sold and given-away items, receipts kept | v1 |
@@ -158,7 +157,7 @@ flowchart TD
 | --- | --- | --- |
 | Home | "Is anything at risk? Where is X?" | Search bar · "Something broke?" button · Needs attention (≤ 30 days) or "All good" · Protected total (18 items · ৳4,85,000) · Recently added · Backup card when off |
 | Vault | "Show me everything I own" | By room / By category toggle · Filters: All, Covered, Ends soon, Expired · Item grid · Archive link |
-| You | "Is my data safe?" | Backup status · Reminders · Language · App lock · Ambr Pro · Privacy · Export · Help |
+| You | "Is my data safe?" | Backup status · Reminders · App lock · Ambr Pro · Privacy · Export · Help |
 
 ### Content model
 
@@ -179,7 +178,7 @@ Status rule: **Covered** when the longest active coverage ends in more than 30 d
 
 ```mermaid
 flowchart TD
-    A1[A1 Splash] --> A2[A2 Language]
+    A1[A1 Splash]
     A2 --> Found{Drive backup found?}
     Found -- yes --> A3[A3 Restore found]
     A3 -- Restore --> Home[C1 Home with items]
@@ -267,7 +266,7 @@ flowchart TD
     Card -- Back up --> G[Google sign-in, pick account] --> F2[F2 Backup on, weekly on Wi-Fi]
     Card -- Not now --> Hide[Card hides until item 10]
     F2 --> Status["F1 shows: Last backup today, 9:14 pm"]
-    New[New phone, first launch] --> A2[A2 Language] --> A3[A3 Restore found] --> Home[C1 Home with all items]
+    New[New phone, first launch] --> A3[A3 Restore found] --> Home[C1 Home with all items]
 ```
 
 ### Flow 6: Share with family
