@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Ambr foundations</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700;800&amp;display=swap">
+<style>
+body{margin:0}
+</style>
+</helmet>
+<div style="width: 1600px; height: 1060px; box-sizing: border-box; background: #F1F0EC; font-family: 'Public Sans', system-ui, sans-serif; color: #17150F; padding: 56px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px">
+
+  <div style="background: #FFFFFF; border-radius: 28px; padding: 28px; display: flex; flex-direction: column; gap: 18px">
+    <span style="font-size: 13px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #7A4300">Color</span>
+    <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px">
+      <div style="display: flex; flex-direction: column; gap: 6px"><span style="height: 72px; border-radius: 16px; background: #F5A100"></span><span style="font-size: 14px; font-weight: 700">Amber</span><span style="font-size: 12px; color: #6B665C">#F5A100 · primary fill, Add, Something broke</span></div>
+      <div style="display: flex; flex-direction: column; gap: 6px"><span style="height: 72px; border-radius: 16px; background: #1A1814"></span><span style="font-size: 14px; font-weight: 700">Night</span><span style="font-size: 12px; color: #6B665C">#1A1814 · nav, hero card, secondary button</span></div>
+      <div style="display: flex; flex-direction: column; gap: 6px"><span style="height: 72px; border-radius: 16px; background: #F1F0EC; border: 1px solid #E2DED5"></span><span style="font-size: 14px; font-weight: 700">Ground</span><span style="font-size: 12px; color: #6B665C">#F1F0EC · screen background</span></div>
+      <div style="display: flex; flex-direction: column; gap: 6px"><span style="height: 72px; border-radius: 16px; background: #FFFFFF; border: 1px solid #E2DED5"></span><span style="font-size: 14px; font-weight: 700">Card</span><span style="font-size: 12px; color: #6B665C">#FFFFFF · cards; nested tile #F7F6F2</span></div>
+      <div style="display: flex; flex-direction: column; gap: 6px"><span style="height: 72px; border-radius: 16px; background: #17150F"></span><span style="font-size: 14px; font-weight: 700">Ink</span><span style="font-size: 12px; color: #6B665C">#17150F text · #4E4A42 body 2 · #6B665C muted</span></div>
+      <div style="display: flex; flex-direction: column; gap: 6px"><span style="height: 72px; border-radius: 16px; background: #7A4300"></span><span style="font-size: 14px; font-weight: 700">Amber ink</span><span style="font-size: 12px; color: #6B665C">#7A4300 · amber as text on white (AA)</span></div>
+    </div>
+    <span style="font-size: 14px; font-weight: 700; margin-top: 4px">Item tiles</span>
+    <div style="display: grid; grid-template-columns: repeat(8, minmax(0, 1fr)); gap: 8px">
+      <span style="height: 40px; border-radius: 12px; background: #E5F0FA"></span><span style="height: 40px; border-radius: 12px; background: #E3F3EE"></span><span style="height: 40px; border-radius: 12px; background: #EEEAFB"></span><span style="height: 40px; border-radius: 12px; background: #FFEDE0"></span><span style="height: 40px; border-radius: 12px; background: #F4EEDC"></span><span style="height: 40px; border-radius: 12px; background: #E8F1F7"></span><span style="height: 40px; border-radius: 12px; background: #E9EEF3"></span><span style="height: 40px; border-radius: 12px; background: #ECEAE6"></span>
+    </div>
+    <span style="font-size: 12px; color: #6B665C">One pastel per category, glyph drawn in its deep shade. Used until the item has a photo.</span>
+  </div>
+
+  <div style="background: #FFFFFF; border-radius: 28px; padding: 28px; display: flex; flex-direction: column; gap: 16px">
+    <span style="font-size: 13px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #7A4300">Type · Public Sans</span>
+    <div style="display: flex; align-items: baseline; gap: 16px"><span style="width: 92px; font-size: 12px; color: #6B665C; flex: none">Display 36/800</span><span style="font-size: 36px; font-weight: 800; letter-spacing: -0.02em">৳4,85,000</span></div>
+    <div style="display: flex; align-items: baseline; gap: 16px"><span style="width: 92px; font-size: 12px; color: #6B665C; flex: none">Headline 30/800</span><span style="font-size: 30px; font-weight: 800; letter-spacing: -0.02em">What broke?</span></div>
+    <div style="display: flex; align-items: baseline; gap: 16px"><span style="width: 92px; font-size: 12px; color: #6B665C; flex: none">Status 26/800</span><span style="font-size: 26px; font-weight: 800; line-height: 1.15">Covered for 4 more months</span></div>
+    <div style="display: flex; align-items: baseline; gap: 16px"><span style="width: 92px; font-size: 12px; color: #6B665C; flex: none">Title 17/700</span><span style="font-size: 17px; font-weight: 700">Needs attention</span></div>
+    <div style="display: flex; align-items: baseline; gap: 16px"><span style="width: 92px; font-size: 12px; color: #6B665C; flex: none">Body 16/400</span><span style="font-size: 16px">Tap it. We'll open its proof and the service center number.</span></div>
+    <div style="display: flex; align-items: baseline; gap: 16px"><span style="width: 92px; font-size: 12px; color: #6B665C; flex: none">Label 13/600</span><span style="font-size: 13px; font-weight: 600; color: #4E4A42">Bought on</span></div>
+    <div style="display: flex; align-items: baseline; gap: 16px"><span style="width: 92px; font-size: 12px; color: #6B665C; flex: none">Pill 12/700</span><span style="font-size: 12px; font-weight: 700">Ends soon</span></div>
+    <div style="margin-top: auto; background: #F7F6F2; border: 1px solid #ECE9E2; border-radius: 18px; padding: 16px; display: flex; flex-direction: column; gap: 6px; font-size: 13px; color: #4E4A42">
+      <span><b style="color: #17150F">Dates</b> 14 Mar 2027, never 14/03/27</span>
+      <span><b style="color: #17150F">Money</b> ৳4,85,000 with South Asian grouping</span>
+      <span><b style="color: #17150F">Scale</b> reflows at 200% system font size</span>
+    </div>
+  </div>
+
+  <div style="background: #FFFFFF; border-radius: 28px; padding: 28px; display: flex; flex-direction: column; gap: 18px">
+    <span style="font-size: 13px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #7A4300">Components</span>
+    <span style="font-size: 14px; font-weight: 700">Status pills · word + icon + color</span>
+    <div style="display: flex; flex-wrap: wrap; gap: 8px">
+      <span style="display: inline-flex; align-items: center; gap: 5px; background: #E3F2E9; color: #17704A; font-size: 13px; font-weight: 700; padding: 6px 12px; border-radius: 999px"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#17704A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"></path></svg>Covered</span>
+      <span style="display: inline-flex; align-items: center; gap: 5px; background: #FFEBCC; color: #8F4E00; font-size: 13px; font-weight: 700; padding: 6px 12px; border-radius: 999px"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#8F4E00" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg>Ends soon</span>
+      <span style="display: inline-flex; align-items: center; gap: 5px; background: #ECEAE6; color: #5F5B54; font-size: 13px; font-weight: 700; padding: 6px 12px; border-radius: 999px"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#5F5B54" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path d="M6 12h12"></path></svg>Expired</span>
+    </div>
+    <span style="font-size: 14px; font-weight: 700">Buttons · 56 dp primary, 48 dp secondary</span>
+    <div style="display: flex; flex-direction: column; gap: 10px">
+      <button style="height: 56px; border-radius: 28px; border: none; background: #F5A100; color: #1A1814; font: inherit; font-size: 17px; font-weight: 800">Save</button>
+      <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px">
+        <button style="height: 48px; border-radius: 24px; border: none; background: #1A1814; color: #FFFFFF; font: inherit; font-size: 15px; font-weight: 600">Back up</button>
+        <button style="height: 48px; border-radius: 24px; border: 1px solid #E2DED5; background: #FFFFFF; color: #17150F; font: inherit; font-size: 15px; font-weight: 600">Not now</button>
+      </div>
+    </div>
+    <span style="font-size: 14px; font-weight: 700">Chips and fields</span>
+    <div style="display: flex; gap: 8px">
+      <button style="height: 44px; padding: 0 16px; border-radius: 22px; border: 1.5px solid #1A1814; background: #1A1814; color: #FFFFFF; font: inherit; font-size: 15px; font-weight: 600">1 year</button>
+      <button style="height: 44px; padding: 0 16px; border-radius: 22px; border: 1px solid #E2DED5; background: #FFFFFF; color: #17150F; font: inherit; font-size: 15px; font-weight: 600">2 years</button>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px">
+      <span style="height: 52px; border-radius: 16px; border: 1px solid #E2DED5; background: #F7F6F2; display: flex; align-items: center; padding: 0 14px; font-size: 15px">52,990</span>
+      <span style="height: 52px; border-radius: 16px; border: 2px solid #F5A100; background: #FFF6E3; display: flex; align-items: center; padding: 0 13px; font-size: 15px">20 Oct 2026</span>
+    </div>
+    <span style="font-size: 14px; font-weight: 700">Navigation</span>
+    <div style="display: flex; align-items: center; gap: 10px">
+      <div style="flex: 1; height: 64px; background: #1A1814; border-radius: 32px; padding: 0 8px; display: flex; align-items: center; justify-content: space-between">
+        <span style="height: 48px; padding: 0 18px; border-radius: 24px; background: #FFFFFF; display: flex; align-items: center; font-size: 15px; font-weight: 700">Home</span>
+        <span style="width: 48px; height: 48px; border-radius: 24px; background: #2A2721"></span>
+        <span style="width: 48px; height: 48px; border-radius: 24px; background: #2A2721"></span>
+      </div>
+      <span style="width: 64px; height: 64px; border-radius: 50%; background: #F5A100; display: flex; align-items: center; justify-content: center"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#1A1814" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg></span>
+    </div>
+    <span style="font-size: 12px; color: #6B665C">Radius: screen card 24–28 · nested tile 16–20 · pill 999. Tap targets ≥ 48 dp. Spacing on a 4 dp grid; screen gutter 16.</span>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1600,"height":1060}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

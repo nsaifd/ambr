@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Vault</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700;800&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#17150F;text-decoration:none}a:hover{color:#000}
+</style>
+</helmet>
+<div style="width: 390px; min-height: 1180px; box-sizing: border-box; background: #F1F0EC; font-family: 'Public Sans', system-ui, sans-serif; color: #17150F; padding: 56px 16px 120px; display: flex; flex-direction: column; gap: 14px; position: relative">
+
+  <div style="display: flex; align-items: center; justify-content: space-between">
+    <div style="display: flex; flex-direction: column">
+      <h1 style="margin: 0; font-size: 30px; font-weight: 800; letter-spacing: -0.02em">Vault</h1>
+      <span style="font-size: 14px; color: #6B665C">18 items · ৳4,85,000</span>
+    </div>
+    <div style="display: flex; gap: 8px">
+      <button aria-label="Search" style="width: 44px; height: 44px; border-radius: 50%; border: none; background: #FFFFFF; display: flex; align-items: center; justify-content: center; cursor: pointer">
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#17150F" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-3.5-3.5"></path></svg></button>
+      <button aria-label="Sort: ending soonest" style="width: 44px; height: 44px; border-radius: 50%; border: none; background: #FFFFFF; display: flex; align-items: center; justify-content: center; cursor: pointer">
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#17150F" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 6h18M6 12h12M10 18h4"></path></svg></button>
+    </div>
+  </div>
+
+  <div role="group" aria-label="Group items" style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); background: #FFFFFF; border-radius: 24px; padding: 4px">
+    <button aria-pressed="{{byRoom}}" onClick="{{showRoom}}" style="{{roomTab}}">By room</button>
+    <button aria-pressed="{{byCat}}" onClick="{{showCat}}" style="{{catTab}}">By category</button>
+  </div>
+
+  <div style="display: flex; gap: 8px; overflow: hidden">
+    <sc-for list="{{filters}}" as="f" hint-placeholder-count="4">
+      <button aria-pressed="{{f.on}}" onClick="{{f.pick}}" style="{{f.style}}">{{f.label}} <span style="opacity: 0.7; font-weight: 500">{{f.n}}</span></button>
+    </sc-for>
+  </div>
+
+  <sc-for list="{{groups}}" as="g" hint-placeholder-count="2">
+    <div style="display: flex; flex-direction: column; gap: 10px; margin-top: 4px">
+      <div style="display: flex; justify-content: space-between; padding: 0 4px">
+        <span style="font-size: 17px; font-weight: 700">{{g.name}}</span>
+        <span style="font-size: 14px; color: #6B665C">{{g.count}}</span>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px">
+        <sc-for list="{{g.items}}" as="it" hint-placeholder-count="2">
+          <a href="ItemDetail.dc.html" style="background: #FFFFFF; border-radius: 22px; padding: 10px; display: flex; flex-direction: column; gap: 10px">
+            <span style="{{it.tile}}">
+              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="{{it.ink}}" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="{{it.glyph}}"></path></svg>
+            </span>
+            <span style="display: flex; flex-direction: column; gap: 3px; padding: 0 4px 4px">
+              <span style="font-size: 14px; font-weight: 700">{{it.name}}</span>
+              <span style="font-size: 12px; color: #6B665C">{{it.end}}</span>
+              <span style="{{it.pill}}">{{it.status}}</span>
+            </span>
+          </a>
+        </sc-for>
+      </div>
+    </div>
+  </sc-for>
+
+  <sc-if value="{{empty}}" hint-placeholder-val="{{ false }}">
+    <div style="background: #FFFFFF; border-radius: 24px; padding: 28px 20px; text-align: center; display: flex; flex-direction: column; gap: 6px">
+      <span style="font-size: 17px; font-weight: 700">{{emptyText}}</span>
+    </div>
+  </sc-if>
+
+  <a href="Vault.dc.html" style="display: flex; align-items: center; justify-content: space-between; background: #FFFFFF; border-radius: 22px; padding: 16px 18px; font-size: 15px; font-weight: 600; margin-top: 4px">
+    <span>Archive · sold or given away</span><span style="color: #6B665C">2</span></a>
+
+  <nav aria-label="Main" style="position: absolute; left: 16px; right: 16px; bottom: 28px; display: flex; align-items: center; gap: 10px">
+    <div style="flex: 1; height: 64px; background: #1A1814; border-radius: 32px; padding: 0 8px; display: flex; align-items: center; justify-content: space-between">
+      <a href="Main.dc.html" aria-label="Home" style="width: 48px; height: 48px; border-radius: 24px; background: #2A2721; display: flex; align-items: center; justify-content: center">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z"></path></svg></a>
+      <a href="Vault.dc.html" aria-current="page" style="height: 48px; padding: 0 18px; border-radius: 24px; background: #FFFFFF; color: #1A1814; display: flex; align-items: center; gap: 8px; font-size: 15px; font-weight: 700">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1A1814" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.5"></rect><rect x="14" y="3" width="7" height="7" rx="1.5"></rect><rect x="3" y="14" width="7" height="7" rx="1.5"></rect><rect x="14" y="14" width="7" height="7" rx="1.5"></rect></svg>Vault</a>
+      <a href="Main.dc.html" aria-label="You" style="width: 48px; height: 48px; border-radius: 24px; background: #2A2721; display: flex; align-items: center; justify-content: center">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="8" r="4"></circle><path d="M4 21c0-4 4-6 8-6s8 2 8 6"></path></svg></a>
+    </div>
+    <a href="Camera.dc.html" aria-label="Add item" style="width: 64px; height: 64px; border-radius: 50%; background: #F5A100; display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 20px rgba(245, 161, 0, 0.35); flex: none">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#1A1814" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg></a>
+  </nav>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":1180}}'>
+class Component extends DCLogic {
+  constructor(p) { super(p); this.state = { by: 'room', filter: 'All' }; }
+  renderVals() {
+    const G = {
+      ac: 'M5 5h14a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2zM6 10h12M8 16v3M12 16v4M16 16v3',
+      fridge: 'M8 2h8a2 2 0 0 1 2 2v16a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2zM6 9h12M9 5v2M9 12v3',
+      tv: 'M4 4h16a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2zM8 21h8M12 17v4',
+      phone: 'M9 2h6a2 2 0 0 1 2 2v16a2 2 0 0 1-2 2H9a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2zM11 18h2',
+      fan: 'M12 3a7 7 0 1 1 0 14 7 7 0 0 1 0-14zM12 8.5V5M13.3 10.8l3 1.7M10.7 10.8l-3 1.7M12 17v4M8 21h8',
+      laptop: 'M5.5 5h13A1.5 1.5 0 0 1 20 6.5v8a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 4 14.5v-8A1.5 1.5 0 0 1 5.5 5zM2 19h20',
+      bike: 'M2 17a3.5 3.5 0 1 0 7 0 3.5 3.5 0 0 0-7 0zM15 17a3.5 3.5 0 1 0 7 0 3.5 3.5 0 0 0-7 0zM5.5 17l4-7h5l4 7M9.5 10l-1-3h-2M14.5 10l2-3h2',
+      washer: 'M6 2h12a2 2 0 0 1 2 2v16a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2zM12 8a5 5 0 1 1 0 10 5 5 0 0 1 0-10zM7 6h2'
+    };
+    const C = { ac: ['#E5F0FA', '#2A5C8A'], fridge: ['#E3F3EE', '#22705A'], tv: ['#EEEAFB', '#5A4BA0'], phone: ['#FFEDE0', '#9A4A16'], fan: ['#ECEAE6', '#5F5B54'], laptop: ['#E9EEF3', '#3E5568'], bike: ['#F4EEDC', '#7A6420'], washer: ['#E8F1F7', '#2F5F7A'] };
+    const items = [
+      { name: 'Redmi Note 13', g: 'phone', room: 'Bedroom', cat: 'Phones & tablets', s: 'Ends soon', end: 'Ends 30 Oct 2026' },
+      { name: 'Samsung 43" TV', g: 'tv', room: 'Living room', cat: 'TV & audio', s: 'Ends soon', end: 'Ends 6 Nov 2026' },
+      { name: 'Gree 1.5 ton AC', g: 'ac', room: 'Bedroom', cat: 'Cooling', s: 'Covered', end: 'Until 14 Mar 2027' },
+      { name: 'Walton fridge', g: 'fridge', room: 'Kitchen', cat: 'Cooling', s: 'Covered', end: 'Until 20 Oct 2027' },
+      { name: 'Singer washer', g: 'washer', room: 'Kitchen', cat: 'Kitchen appliances', s: 'Covered', end: 'Until 2 Feb 2028' },
+      { name: 'HP laptop', g: 'laptop', room: 'Office', cat: 'Computers', s: 'Covered', end: 'Until 11 Jul 2027' },
+      { name: 'Vision ceiling fan', g: 'fan', room: 'Bedroom', cat: 'Cooling', s: 'Expired', end: 'Ended 3 Jan 2026' },
+      { name: 'Walton TV 32"', g: 'tv', room: 'Living room', cat: 'TV & audio', s: 'Expired', end: 'Ended 18 Aug 2025' }
+    ];
+    const pill = {
+      'Covered': 'align-self: flex-start; background: #E3F2E9; color: #17704A; font-size: 11px; font-weight: 700; padding: 3px 8px; border-radius: 999px',
+      'Ends soon': 'align-self: flex-start; background: #FFEBCC; color: #8F4E00; font-size: 11px; font-weight: 700; padding: 3px 8px; border-radius: 999px',
+      'Expired': 'align-self: flex-start; background: #ECEAE6; color: #5F5B54; font-size: 11px; font-weight: 700; padding: 3px 8px; border-radius: 999px'
+    };
+    const label = { 'Covered': '✓ Covered', 'Ends soon': '◷ Ends soon', 'Expired': '– Expired' };
+    const f = this.state.filter;
+    const shown = items.filter((i) => f === 'All' || i.s === f);
+    const key = this.state.by === 'room' ? 'room' : 'cat';
+    const names = [];
+    shown.forEach((i) => { if (names.indexOf(i[key]) < 0) names.push(i[key]); });
+    const groups = names.map((n) => {
+      const list = shown.filter((i) => i[key] === n);
+      return {
+        name: n, count: list.length + (list.length === 1 ? ' item' : ' items'),
+        items: list.map((i) => ({
+          name: i.name, end: i.end, status: label[i.s], pill: pill[i.s], glyph: G[i.g], ink: C[i.g][1],
+          tile: 'height: 88px; border-radius: 16px; background: ' + C[i.g][0] + '; display: flex; align-items: center; justify-content: center'
+        }))
+      };
+    });
+    const chip = (on) => 'height: 40px; padding: 0 14px; border-radius: 20px; font: inherit; font-size: 14px; font-weight: 600; cursor: pointer; white-space: nowrap; flex: none; ' +
+      (on ? 'border: 1px solid #1A1814; background: #1A1814; color: #FFFFFF' : 'border: 1px solid #E2DED5; background: #FFFFFF; color: #17150F');
+    const counts = { 'All': 18, 'Covered': 13, 'Ends soon': 2, 'Expired': 3 };
+    const tab = (on) => 'height: 44px; border-radius: 20px; border: none; font: inherit; font-size: 15px; font-weight: 700; cursor: pointer; ' +
+      (on ? 'background: #1A1814; color: #FFFFFF' : 'background: transparent; color: #4E4A42');
+    const emptyText = { 'Expired': 'No expired items. Nice.', 'Ends soon': 'All good. Nothing ending soon.', 'Covered': 'Nothing covered right now.', 'All': 'Nothing saved yet.' };
+    return {
+      byRoom: this.state.by === 'room', byCat: this.state.by !== 'room',
+      roomTab: tab(this.state.by === 'room'), catTab: tab(this.state.by !== 'room'),
+      showRoom: () => this.setState({ by: 'room' }), showCat: () => this.setState({ by: 'cat' }),
+      filters: Object.keys(counts).map((k) => ({ label: k, n: counts[k], on: f === k, style: chip(f === k), pick: () => this.setState({ filter: k }) })),
+      groups: groups, empty: groups.length === 0, emptyText: emptyText[f]
+    };
+  }
+}
+</script>
+</body>
+</html>

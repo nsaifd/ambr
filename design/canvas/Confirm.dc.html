@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Confirm details</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700;800&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#17150F;text-decoration:none}a:hover{color:#000}
+input{font:inherit}
+</style>
+</helmet>
+<div style="width: 390px; min-height: 1380px; box-sizing: border-box; background: #F1F0EC; font-family: 'Public Sans', system-ui, sans-serif; color: #17150F; padding: 56px 16px 120px; display: flex; flex-direction: column; gap: 14px; position: relative">
+
+  <div style="display: flex; align-items: center; justify-content: space-between">
+    <a href="Camera.dc.html" aria-label="Back to camera" style="width: 44px; height: 44px; border-radius: 50%; background: #FFFFFF; display: flex; align-items: center; justify-content: center">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#17150F" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"></path></svg></a>
+    <span style="font-size: 17px; font-weight: 700">Check the details</span>
+    <span style="width: 44px; height: 44px"></span>
+  </div>
+
+  <div style="background: #FFFFFF; border-radius: 24px; padding: 12px; display: flex; gap: 12px; align-items: center">
+    <div style="width: 72px; height: 88px; border-radius: 14px; background: #E9E6DF; display: flex; align-items: center; justify-content: center; flex: none; overflow: hidden">
+      <div style="width: 50px; background: #FFFFFF; padding: 5px; display: flex; flex-direction: column; gap: 3px; transform: rotate(-3deg)">
+        <span style="height: 3px; background: #3B3833; width: 70%; align-self: center"></span>
+        <span style="height: 2px; background: #B9B4AA"></span><span style="height: 2px; background: #B9B4AA; width: 80%"></span><span style="height: 2px; background: #B9B4AA"></span><span style="height: 3px; background: #3B3833; width: 60%"></span>
+      </div>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 4px; flex: 1">
+      <span style="font-size: 15px; font-weight: 700">Read from your receipt</span>
+      <span style="font-size: 13px; color: #4E4A42; line-height: 1.4">We filled what we could. Fix anything marked <b style="color: #7A4300">Check this</b>.</span>
+      <span style="font-size: 13px; font-weight: 600; color: #7A4300">Tap to view photo</span>
+    </div>
+  </div>
+
+  <div style="background: #FFFFFF; border-radius: 24px; padding: 18px 16px; display: flex; flex-direction: column; gap: 16px">
+    <div style="display: flex; flex-direction: column; gap: 6px">
+      <label for="f-name" style="font-size: 13px; font-weight: 600; color: #4E4A42">Item name</label>
+      <input id="f-name" value="Walton frost-free fridge" style="height: 52px; border-radius: 16px; border: 1px solid #E2DED5; background: #F7F6F2; padding: 0 14px; font-size: 16px; color: #17150F; box-sizing: border-box">
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 6px">
+      <label for="f-store" style="font-size: 13px; font-weight: 600; color: #4E4A42">Store</label>
+      <input id="f-store" value="Walton Plaza, Mirpur 10" style="height: 52px; border-radius: 16px; border: 1px solid #E2DED5; background: #F7F6F2; padding: 0 14px; font-size: 16px; color: #17150F; box-sizing: border-box">
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px">
+      <div style="display: flex; flex-direction: column; gap: 6px; min-width: 0">
+        <label for="f-price" style="font-size: 13px; font-weight: 600; color: #4E4A42">Price (৳)</label>
+        <input id="f-price" value="52,990" style="height: 52px; border-radius: 16px; border: 1px solid #E2DED5; background: #F7F6F2; padding: 0 14px; font-size: 16px; color: #17150F; box-sizing: border-box; width: 100%">
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 6px; min-width: 0">
+        <label for="f-date" style="font-size: 13px; font-weight: 600; color: #4E4A42">Bought on</label>
+        <input id="f-date" value="20 Oct 2026" aria-describedby="f-date-hint" style="height: 52px; border-radius: 16px; border: 2px solid #F5A100; background: #FFF6E3; padding: 0 13px; font-size: 16px; color: #17150F; box-sizing: border-box; width: 100%">
+        <span id="f-date-hint" style="display: flex; align-items: center; gap: 4px; font-size: 12px; font-weight: 700; color: #7A4300">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#7A4300" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 8v5M12 16.5v.5"></path></svg>Check this</span>
+      </div>
+    </div>
+  </div>
+
+  <div style="background: #FFFFFF; border-radius: 24px; padding: 18px 16px; display: flex; flex-direction: column; gap: 12px">
+    <span style="font-size: 15px; font-weight: 700">How long is the warranty?</span>
+    <div style="display: flex; flex-wrap: wrap; gap: 8px">
+      <sc-for list="{{lengths}}" as="c" hint-placeholder-count="5">
+        <button aria-pressed="{{c.on}}" onClick="{{c.pick}}" style="{{c.style}}">{{c.label}}</button>
+      </sc-for>
+    </div>
+    <div style="display: flex; gap: 10px; background: #FFF2D6; border-radius: 16px; padding: 12px">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#7A4300" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; margin-top: 1px"><path d="M9 18h6M10 22h4M12 2a7 7 0 0 0-4 12.7V17h8v-2.3A7 7 0 0 0 12 2z"></path></svg>
+      <span style="font-size: 13px; line-height: 1.45; color: #4A3205">Walton fridges usually come with 1 year full warranty and 10 years on the compressor.</span>
+    </div>
+    <button style="height: 48px; border-radius: 16px; border: 1.5px dashed #CFC9BD; background: #FFFFFF; font: inherit; font-size: 15px; font-weight: 600; color: #17150F; display: flex; align-items: center; justify-content: center; gap: 8px; cursor: pointer">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#17150F" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg>Add compressor 10 years</button>
+  </div>
+
+  <div style="background: #FFFFFF; border-radius: 24px; padding: 18px 16px; display: flex; flex-direction: column; gap: 12px">
+    <span style="font-size: 15px; font-weight: 700">Where is it?</span>
+    <div style="display: flex; flex-wrap: wrap; gap: 8px">
+      <sc-for list="{{rooms}}" as="r" hint-placeholder-count="5">
+        <button aria-pressed="{{r.on}}" onClick="{{r.pick}}" style="{{r.style}}">{{r.label}}</button>
+      </sc-for>
+    </div>
+  </div>
+
+  <button aria-expanded="false" style="height: 56px; border-radius: 24px; border: none; background: #FFFFFF; font: inherit; font-size: 15px; font-weight: 600; color: #17150F; display: flex; align-items: center; justify-content: space-between; padding: 0 18px; cursor: pointer">
+    <span style="display: flex; flex-direction: column; align-items: flex-start"><span>More details</span><span style="font-size: 12px; font-weight: 500; color: #6B665C">Brand, model, serial, warranty card photo, notes</span></span>
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#17150F" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"></path></svg></button>
+
+  <div style="position: absolute; left: 0; right: 0; bottom: 0; padding: 14px 16px 30px; background: #FFFFFF; border-radius: 28px 28px 0 0; box-shadow: 0 -6px 20px rgba(26, 24, 20, 0.06)">
+    <a href="Saved.dc.html" style="height: 56px; border-radius: 28px; background: #F5A100; color: #1A1814; display: flex; align-items: center; justify-content: center; font-size: 17px; font-weight: 800">Save</a>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":1380}}'>
+class Component extends DCLogic {
+  constructor(p) { super(p); this.state = { len: '1 year', room: 'Kitchen' }; }
+  chip(on) {
+    return 'height: 44px; padding: 0 16px; border-radius: 22px; font: inherit; font-size: 15px; font-weight: 600; cursor: pointer; ' +
+      (on ? 'border: 1.5px solid #1A1814; background: #1A1814; color: #FFFFFF' : 'border: 1px solid #E2DED5; background: #FFFFFF; color: #17150F');
+  }
+  renderVals() {
+    const lens = ['6 months', '1 year', '2 years', '3 years', 'Custom'];
+    const rooms = ['Kitchen', 'Living room', 'Bedroom', 'Office', 'Car / bike', 'Other'];
+    return {
+      lengths: lens.map((l) => ({ label: l, on: this.state.len === l, style: this.chip(this.state.len === l), pick: () => this.setState({ len: l }) })),
+      rooms: rooms.map((l) => ({ label: l, on: this.state.room === l, style: this.chip(this.state.room === l), pick: () => this.setState({ room: l }) }))
+    };
+  }
+}
+</script>
+</body>
+</html>
