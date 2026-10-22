@@ -8,162 +8,161 @@
 <body>
 <x-dc>
 <helmet>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700;800&amp;display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&amp;display=swap">
 <style>
 body{margin:0}
-a{color:#17150F;text-decoration:none}a:hover{color:#000}
+a{color:#1D2433;text-decoration:none}a:hover{color:#1D2433}
 </style>
 </helmet>
-<div style="width: 390px; min-height: 1800px; box-sizing: border-box; background: #F1F0EC; font-family: 'Public Sans', system-ui, sans-serif; color: #17150F; padding: 56px 16px 40px; display: flex; flex-direction: column; gap: 14px">
+<div style="width: 390px; min-height: 1760px; box-sizing: border-box; background: #F4F5F8; font-family: 'Public Sans', system-ui, sans-serif; color: #1D2433; padding-bottom: 40px; display: flex; flex-direction: column">
 
-  <div style="display: flex; align-items: center; justify-content: space-between">
-    <a href="Main.dc.html" aria-label="Back" style="width: 44px; height: 44px; border-radius: 50%; background: #FFFFFF; display: flex; align-items: center; justify-content: center">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#17150F" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"></path></svg></a>
-    <div style="display: flex; gap: 8px">
-      <button aria-label="Share receipt" style="width: 44px; height: 44px; border-radius: 50%; border: none; background: #FFFFFF; display: flex; align-items: center; justify-content: center; cursor: pointer">
-        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#17150F" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"></path></svg></button>
-      <button aria-label="More: edit, mark as sold, delete" style="width: 44px; height: 44px; border-radius: 50%; border: none; background: #FFFFFF; display: flex; align-items: center; justify-content: center; cursor: pointer">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="#17150F" aria-hidden="true"><circle cx="5" cy="12" r="1.8"></circle><circle cx="12" cy="12" r="1.8"></circle><circle cx="19" cy="12" r="1.8"></circle></svg></button>
+  <div style="background: #E6F0FB; padding: 54px 16px 64px; border-radius: 0 0 36px 36px; display: flex; flex-direction: column; gap: 18px">
+    <div style="display: flex; align-items: center; justify-content: space-between">
+      <a href="Main.dc.html" aria-label="Back" style="width: 44px; height: 44px; border-radius: 50%; background: rgba(255, 255, 255, 0.85); display: flex; align-items: center; justify-content: center">
+        <dc-import name="Icon" icon="angle-small-left" size="22" color="#1D2433" hint-size="22px,22px"></dc-import></a>
+      <div style="display: flex; gap: 8px">
+        <button aria-label="Edit" style="width: 44px; height: 44px; border-radius: 50%; border: none; background: rgba(255, 255, 255, 0.85); display: flex; align-items: center; justify-content: center; cursor: pointer">
+          <dc-import name="Icon" icon="pencil" size="17" color="#1D2433" hint-size="17px,17px"></dc-import></button>
+        <button aria-label="More: share, mark as sold, delete" style="width: 44px; height: 44px; border-radius: 50%; border: none; background: rgba(255, 255, 255, 0.85); display: flex; align-items: center; justify-content: center; cursor: pointer">
+          <dc-import name="Icon" icon="menu-dots" size="18" color="#1D2433" hint-size="18px,18px"></dc-import></button>
+      </div>
+    </div>
+    <div style="display: flex; flex-direction: column; align-items: center; gap: 12px; text-align: center">
+      <span style="width: 104px; height: 104px; border-radius: 32px; background: #FFFFFF; display: flex; align-items: center; justify-content: center; box-shadow: 0 12px 28px rgba(43, 95, 142, 0.18)">
+        <dc-import name="Icon" icon="air-conditioner" size="52" color="#2B5F8E" hint-size="52px,52px"></dc-import></span>
+      <span style="font-size: 26px; font-weight: 700; letter-spacing: -0.02em">Gree 1.5 ton AC</span>
+      <span style="display: flex; gap: 6px">
+        <span style="height: 28px; padding: 0 12px; border-radius: 14px; background: rgba(255, 255, 255, 0.8); display: flex; align-items: center; font-size: 13px; font-weight: 600; color: #2B4A6B">Bedroom</span>
+        <span style="height: 28px; padding: 0 12px; border-radius: 14px; background: rgba(255, 255, 255, 0.8); display: flex; align-items: center; font-size: 13px; font-weight: 600; color: #2B4A6B">Cooling</span>
+      </span>
     </div>
   </div>
 
-  <div style="background: #FFFFFF; border-radius: 28px; padding: 12px; display: flex; flex-direction: column; gap: 14px">
-    <div style="height: 168px; border-radius: 20px; background: #E5F0FA; display: flex; align-items: center; justify-content: center">
-      <svg width="96" height="96" viewBox="0 0 24 24" fill="none" stroke="#2A5C8A" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="8" rx="2"></rect><path d="M6 10h12M8 16v3M12 16v4M16 16v3"></path></svg>
-    </div>
-    <div style="display: flex; flex-direction: column; gap: 2px; padding: 0 8px">
-      <span style="font-size: 24px; font-weight: 800; letter-spacing: -0.01em">Gree 1.5 ton AC</span>
-      <span style="font-size: 14px; color: #6B665C">Bedroom · Cooling</span>
-    </div>
-
-    <div style="background: #F7F6F2; border: 1px solid #ECE9E2; border-radius: 20px; padding: 16px; display: flex; flex-direction: column; gap: 12px">
-      <span style="display: inline-flex; align-self: flex-start; align-items: center; gap: 5px; background: #E3F2E9; color: #17704A; font-size: 13px; font-weight: 700; padding: 5px 11px; border-radius: 999px"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#17704A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"></path></svg>Covered</span>
-      <div style="display: flex; flex-direction: column; gap: 2px">
-        <span style="font-size: 26px; font-weight: 800; letter-spacing: -0.01em; line-height: 1.15">Covered for 4 more months</span>
-        <span style="font-size: 16px; color: #4E4A42">until 14 Mar 2027</span>
-      </div>
-      <div style="display: flex; flex-direction: column; gap: 6px">
-        <div role="img" aria-label="87 percent of the 3 year warranty used" style="height: 10px; border-radius: 5px; background: #E4E1D9; overflow: hidden">
-          <div style="width: 87%; height: 10px; border-radius: 5px; background: #17704A"></div>
+  <div style="margin: -44px 16px 0; display: flex; flex-direction: column; gap: 14px">
+    <div style="border-radius: 28px; background: #FFFFFF; box-shadow: 0 0 0 1px #E8EAF0, 0 12px 32px rgba(31, 42, 68, 0.08); padding: 18px; display: flex; flex-direction: column; gap: 16px">
+      <div style="display: flex; align-items: center; gap: 16px">
+        <div role="img" aria-label="4 of 36 months left" style="width: 104px; height: 104px; position: relative; flex: none">
+          <svg width="104" height="104" viewBox="0 0 104 104" aria-hidden="true">
+            <circle cx="52" cy="52" r="44" fill="none" stroke="#EEF0F4" stroke-width="10"></circle>
+            <circle cx="52" cy="52" r="44" fill="none" stroke="#1B7F4C" stroke-width="10" stroke-linecap="round" stroke-dasharray="36 276.5" transform="rotate(-90 52 52)"></circle>
+          </svg>
+          <span style="position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center">
+            <span style="font-size: 26px; font-weight: 700; line-height: 1">4</span>
+            <span style="font-size: 12px; font-weight: 600; color: #646B7E">months</span>
+          </span>
         </div>
-        <div style="display: flex; justify-content: space-between; font-size: 12px; color: #6B665C">
-          <span>Bought 14 Mar 2024</span><span>3-year warranty</span>
+        <div style="display: flex; flex-direction: column; gap: 6px; min-width: 0">
+          <span style="display: inline-flex; align-self: flex-start; align-items: center; gap: 5px; background: #E4F4EA; color: #17704A; font-size: 13px; font-weight: 700; padding: 4px 10px 4px 8px; border-radius: 999px"><dc-import name="Icon" icon="check" size="11" color="#17704A" hint-size="11px,11px"></dc-import>Covered</span>
+          <span style="font-size: 22px; font-weight: 700; letter-spacing: -0.015em; line-height: 1.2">Covered until 14 Mar 2027</span>
+          <span style="font-size: 13px; color: #646B7E">Bought 14 Mar 2024 · 3-year warranty</span>
         </div>
       </div>
+      <a href="ClaimPack.dc.html" style="height: 56px; border-radius: 28px; background: #F2A007; display: flex; align-items: center; justify-content: center; gap: 10px; font-size: 17px; font-weight: 700; color: #1D2433; box-shadow: 0 10px 22px rgba(242, 160, 7, 0.30)">
+        <dc-import name="Icon" icon="wrench-simple" size="19" color="#1D2433" hint-size="19px,19px"></dc-import>Something broke</a>
     </div>
 
-    <a href="ClaimPack.dc.html" style="height: 56px; border-radius: 28px; background: #F5A100; color: #1A1814; display: flex; align-items: center; justify-content: center; gap: 10px; font-size: 17px; font-weight: 800">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1A1814" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.5 2.5-2.5-.5-.5-2.5z"></path></svg>Something broke</a>
-  </div>
-
-  <div style="background: #FFFFFF; border-radius: 24px; padding: 18px 16px; display: flex; flex-direction: column; gap: 12px">
-    <div style="display: flex; justify-content: space-between; align-items: baseline">
-      <span style="font-size: 17px; font-weight: 700">Proof</span>
-      <span style="font-size: 14px; font-weight: 600; color: #7A4300">+ Add page</span>
+    <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px">
+      <button style="border: none; border-radius: 22px; background: #FFFFFF; box-shadow: 0 0 0 1px #E8EAF0; padding: 14px 6px 12px; display: flex; flex-direction: column; align-items: center; gap: 8px; font: inherit; font-size: 13px; font-weight: 600; color: #1D2433; cursor: pointer">
+        <span style="width: 40px; height: 40px; border-radius: 50%; background: #F4F5F8; display: flex; align-items: center; justify-content: center"><dc-import name="Icon" icon="phone-call" size="17" color="#1D2433" hint-size="17px,17px"></dc-import></span>Call service</button>
+      <button style="border: none; border-radius: 22px; background: #FFFFFF; box-shadow: 0 0 0 1px #E8EAF0; padding: 14px 6px 12px; display: flex; flex-direction: column; align-items: center; gap: 8px; font: inherit; font-size: 13px; font-weight: 600; color: #1D2433; cursor: pointer">
+        <span style="width: 40px; height: 40px; border-radius: 50%; background: #F4F5F8; display: flex; align-items: center; justify-content: center"><dc-import name="Icon" icon="share" size="17" color="#1D2433" hint-size="17px,17px"></dc-import></span>Share receipt</button>
+      <button style="border: none; border-radius: 22px; background: #FFFFFF; box-shadow: 0 0 0 1px #E8EAF0; padding: 14px 6px 12px; display: flex; flex-direction: column; align-items: center; gap: 8px; font: inherit; font-size: 13px; font-weight: 600; color: #1D2433; cursor: pointer">
+        <span style="width: 40px; height: 40px; border-radius: 50%; background: #F4F5F8; display: flex; align-items: center; justify-content: center"><dc-import name="Icon" icon="time-past" size="17" color="#1D2433" hint-size="17px,17px"></dc-import></span>Log repair</button>
     </div>
-    <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px">
-      <div style="display: flex; flex-direction: column; gap: 6px">
-        <div style="height: 132px; border-radius: 16px; background: #E9E6DF; display: flex; align-items: flex-start; justify-content: center; padding-top: 12px; overflow: hidden">
-          <div style="width: 92px; background: #FFFFFF; padding: 8px 8px 16px; display: flex; flex-direction: column; gap: 4px; font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 6px; color: #3B3833; box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08)">
-            <span style="text-align: center; font-weight: 700; font-size: 7px">GREE BRAND SHOP</span>
-            <span style="text-align: center">Bashundhara City</span>
-            <span>14/03/2024 18:42</span>
-            <span>GS-18XFV32 1.5T</span>
-            <span>Qty 1  78,500.00</span>
-            <span style="border-top: 1px dashed #9A958B; padding-top: 3px; font-weight: 700">TOTAL  78,500.00</span>
+
+    <div style="border-radius: 24px; background: #FFFFFF; box-shadow: 0 0 0 1px #E8EAF0; padding: 16px; display: flex; flex-direction: column; gap: 12px">
+      <div style="display: flex; justify-content: space-between; align-items: baseline">
+        <span style="font-size: 17px; font-weight: 700">Proof</span>
+        <span style="font-size: 14px; font-weight: 600; color: #7A4A00">Add page</span>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px">
+        <div style="display: flex; flex-direction: column; gap: 8px">
+          <div style="height: 136px; border-radius: 18px; background: #EEF0F4; display: flex; align-items: flex-start; justify-content: center; padding-top: 14px; overflow: hidden">
+            <div style="width: 96px; background: #FFFFFF; padding: 8px 8px 18px; display: flex; flex-direction: column; gap: 4px; font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 6px; color: #3B3F4A; box-shadow: 0 4px 10px rgba(31, 42, 68, 0.10); transform: rotate(-2deg)">
+              <span style="text-align: center; font-weight: 700; font-size: 7px">GREE BRAND SHOP</span>
+              <span style="text-align: center">Bashundhara City</span>
+              <span>14/03/2024 18:42</span>
+              <span>GS-18XFV32 1.5T</span>
+              <span>Qty 1  78,500.00</span>
+              <span style="border-top: 1px dashed #9AA0AE; padding-top: 3px; font-weight: 700">TOTAL  78,500.00</span>
+            </div>
           </div>
+          <span style="display: flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 600"><dc-import name="Icon" icon="receipt" size="13" color="#4A5163" hint-size="13px,13px"></dc-import>Receipt</span>
         </div>
-        <span style="font-size: 13px; font-weight: 600">Receipt · 1 page</span>
-      </div>
-      <div style="display: flex; flex-direction: column; gap: 6px">
-        <div style="height: 132px; border-radius: 16px; background: #E9E6DF; display: flex; align-items: center; justify-content: center; overflow: hidden">
-          <div style="width: 120px; height: 80px; background: #FFFDF6; border: 1px solid #D9D3C4; border-radius: 4px; padding: 8px; box-sizing: border-box; display: flex; flex-direction: column; gap: 4px; font-size: 6px; color: #3B3833; position: relative">
-            <span style="font-weight: 800; font-size: 8px; color: #2A5C8A">WARRANTY CARD</span>
-            <span>Model: GS-18XFV32</span>
-            <span>Serial: GR18K24030917</span>
-            <span>Date: 14-3-24</span>
-            <span style="position: absolute; right: 8px; bottom: 6px; width: 26px; height: 26px; border-radius: 50%; border: 1.5px solid #B04A4A; color: #B04A4A; font-size: 5px; display: flex; align-items: center; justify-content: center; transform: rotate(-14deg)">STAMP</span>
+        <div style="display: flex; flex-direction: column; gap: 8px">
+          <div style="height: 136px; border-radius: 18px; background: #EEF0F4; display: flex; align-items: center; justify-content: center; overflow: hidden">
+            <div style="width: 124px; height: 82px; background: #FFFDF6; border: 1px solid #DCD6C8; border-radius: 6px; padding: 8px; box-sizing: border-box; display: flex; flex-direction: column; gap: 4px; font-size: 6px; color: #3B3F4A; position: relative; transform: rotate(2deg); box-shadow: 0 4px 10px rgba(31, 42, 68, 0.10)">
+              <span style="font-weight: 700; font-size: 8px; color: #2B5F8E">WARRANTY CARD</span>
+              <span>Model: GS-18XFV32</span>
+              <span>Serial: GR18K24030917</span>
+              <span>Date: 14-3-24</span>
+              <span style="position: absolute; right: 8px; bottom: 6px; width: 26px; height: 26px; border-radius: 50%; border: 1.5px solid #B04A4A; color: #B04A4A; font-size: 5px; display: flex; align-items: center; justify-content: center; transform: rotate(-14deg)">STAMP</span>
+            </div>
           </div>
+          <span style="display: flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 600"><dc-import name="Icon" icon="badge-check" size="13" color="#4A5163" hint-size="13px,13px"></dc-import>Warranty card</span>
         </div>
-        <span style="font-size: 13px; font-weight: 600">Warranty card</span>
       </div>
     </div>
-  </div>
 
-  <div style="background: #FFFFFF; border-radius: 24px; padding: 18px 16px; display: flex; flex-direction: column; gap: 10px">
-    <span style="font-size: 17px; font-weight: 700">Coverage</span>
-    <div style="display: flex; align-items: center; gap: 12px; padding: 12px; background: #F7F6F2; border: 1px solid #ECE9E2; border-radius: 16px">
-      <span style="width: 10px; height: 10px; border-radius: 50%; background: #17704A; flex: none"></span>
-      <span style="display: flex; flex-direction: column; flex: 1">
-        <span style="font-size: 15px; font-weight: 700">Full warranty · 3 years</span>
-        <span style="font-size: 13px; color: #6B665C">Parts and service · manufacturer</span>
-      </span>
-      <span style="font-size: 13px; font-weight: 600; text-align: right">Until<br>14 Mar 2027</span>
+    <div style="border-radius: 24px; background: #FFFFFF; box-shadow: 0 0 0 1px #E8EAF0; padding: 16px; display: flex; flex-direction: column; gap: 12px">
+      <span style="font-size: 17px; font-weight: 700">Coverage</span>
+      <div style="display: flex; flex-direction: column; gap: 8px">
+        <div style="display: flex; flex-direction: column; gap: 8px; padding: 14px; border-radius: 18px; background: #F7F8FA">
+          <div style="display: flex; justify-content: space-between; align-items: baseline">
+            <span style="font-size: 15px; font-weight: 700">Full warranty · 3 years</span>
+            <span style="font-size: 13px; font-weight: 600; color: #17704A">4 mo left</span>
+          </div>
+          <div style="height: 6px; border-radius: 3px; background: #E3E6EC; overflow: hidden"><div style="width: 87%; height: 6px; border-radius: 3px; background: #1B7F4C"></div></div>
+          <span style="font-size: 12px; color: #646B7E">Parts and service · until 14 Mar 2027</span>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 8px; padding: 14px; border-radius: 18px; background: #F7F8FA">
+          <div style="display: flex; justify-content: space-between; align-items: baseline">
+            <span style="font-size: 15px; font-weight: 700">Free servicing</span>
+            <span style="font-size: 13px; font-weight: 600; color: #17704A">1 left</span>
+          </div>
+          <div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 4px">
+            <span style="height: 6px; border-radius: 3px; background: #9AA3B5"></span><span style="height: 6px; border-radius: 3px; background: #9AA3B5"></span><span style="height: 6px; border-radius: 3px; background: #9AA3B5"></span><span style="height: 6px; border-radius: 3px; background: #1B7F4C"></span>
+          </div>
+          <span style="font-size: 12px; color: #646B7E">3 of 4 used · cleaning and gas check</span>
+        </div>
+      </div>
     </div>
-    <div style="display: flex; align-items: center; gap: 12px; padding: 12px; background: #F7F6F2; border: 1px solid #ECE9E2; border-radius: 16px">
-      <span style="width: 10px; height: 10px; border-radius: 50%; background: #17704A; flex: none"></span>
-      <span style="display: flex; flex-direction: column; flex: 1">
-        <span style="font-size: 15px; font-weight: 700">Free servicing</span>
-        <span style="font-size: 13px; color: #6B665C">Shop · cleaning and gas check</span>
-      </span>
-      <span style="font-size: 13px; font-weight: 600; text-align: right">3 of 4<br>used</span>
+
+    <div style="border-radius: 24px; background: #FFFFFF; box-shadow: 0 0 0 1px #E8EAF0; padding: 6px 16px; display: flex; flex-direction: column">
+      <div style="display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid #EEF0F4; font-size: 15px"><span style="color: #646B7E">Brand · model</span><span style="font-weight: 600">Gree GS-18XFV32</span></div>
+      <div style="display: flex; justify-content: space-between; align-items: center; padding: 6px 0; border-bottom: 1px solid #EEF0F4; font-size: 15px"><span style="color: #646B7E">Serial</span>
+        <span style="display: flex; align-items: center; gap: 2px; font-weight: 600; font-variant-numeric: tabular-nums">GR18K24030917
+          <button aria-label="Copy serial number" style="width: 40px; height: 40px; border: none; background: transparent; display: flex; align-items: center; justify-content: center; cursor: pointer"><dc-import name="Icon" icon="copy" size="15" color="#7A4A00" hint-size="15px,15px"></dc-import></button></span></div>
+      <div style="display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid #EEF0F4; font-size: 15px"><span style="color: #646B7E">Price</span><span style="font-weight: 600; font-variant-numeric: tabular-nums">৳78,500</span></div>
+      <div style="display: flex; justify-content: space-between; padding: 12px 0; font-size: 15px"><span style="color: #646B7E">Store</span><span style="font-weight: 600">Gree Brand Shop</span></div>
     </div>
-  </div>
 
-  <div style="background: #FFFFFF; border-radius: 24px; padding: 18px 16px; display: flex; flex-direction: column; gap: 4px">
-    <span style="font-size: 17px; font-weight: 700; padding-bottom: 6px">Details</span>
-    <div style="display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #EFECE6; font-size: 15px"><span style="color: #6B665C">Brand</span><span style="font-weight: 600">Gree</span></div>
-    <div style="display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #EFECE6; font-size: 15px"><span style="color: #6B665C">Model</span><span style="font-weight: 600">GS-18XFV32</span></div>
-    <div style="display: flex; justify-content: space-between; align-items: center; padding: 6px 0; border-bottom: 1px solid #EFECE6; font-size: 15px"><span style="color: #6B665C">Serial</span>
-      <span style="display: flex; align-items: center; gap: 4px; font-weight: 600; font-variant-numeric: tabular-nums">GR18K24030917
-        <button aria-label="Copy serial number" style="width: 36px; height: 36px; border: none; background: transparent; display: flex; align-items: center; justify-content: center; cursor: pointer"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#7A4300" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button></span></div>
-    <div style="display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #EFECE6; font-size: 15px"><span style="color: #6B665C">Price</span><span style="font-weight: 600; font-variant-numeric: tabular-nums">৳78,500</span></div>
-    <div style="display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #EFECE6; font-size: 15px"><span style="color: #6B665C">Store</span><span style="font-weight: 600">Gree Brand Shop, Bashundhara</span></div>
-    <div style="display: flex; justify-content: space-between; padding: 10px 0; font-size: 15px"><span style="color: #6B665C">Bought on</span><span style="font-weight: 600">14 Mar 2024</span></div>
-  </div>
-
-  <div style="background: #FFFFFF; border-radius: 24px; padding: 18px 16px; display: flex; flex-direction: column; gap: 12px">
-    <span style="font-size: 17px; font-weight: 700">Service center</span>
-    <div style="display: flex; align-items: center; gap: 12px">
-      <span style="display: flex; flex-direction: column; flex: 1">
-        <span style="font-size: 15px; font-weight: 700">Gree Service Center</span>
-        <span style="font-size: 13px; color: #6B665C">Tejgaon, Dhaka · 09612-XXXXXX</span>
-      </span>
-      <button style="height: 44px; padding: 0 18px; border-radius: 22px; border: none; background: #1A1814; color: #FFFFFF; font: inherit; font-size: 15px; font-weight: 600; display: flex; align-items: center; gap: 8px; cursor: pointer">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"></path></svg>Call</button>
-    </div>
-  </div>
-
-  <div style="background: #FFFFFF; border-radius: 24px; padding: 18px 16px; display: flex; flex-direction: column; gap: 12px">
-    <div style="display: flex; justify-content: space-between; align-items: baseline">
+    <div style="border-radius: 24px; background: #FFFFFF; box-shadow: 0 0 0 1px #E8EAF0; padding: 16px; display: flex; flex-direction: column; gap: 14px">
       <span style="font-size: 17px; font-weight: 700">Service history</span>
-      <span style="font-size: 14px; font-weight: 600; color: #7A4300">+ Log a repair</span>
-    </div>
-    <div style="display: flex; gap: 12px">
-      <div style="display: flex; flex-direction: column; align-items: center">
-        <span style="width: 12px; height: 12px; border-radius: 50%; background: #17704A; margin-top: 4px"></span>
-        <span style="width: 2px; flex: 1; background: #E4E1D9"></span>
+      <div style="display: flex; gap: 12px">
+        <div style="display: flex; flex-direction: column; align-items: center; padding-top: 3px">
+          <span style="width: 28px; height: 28px; border-radius: 50%; background: #E4F4EA; display: flex; align-items: center; justify-content: center"><dc-import name="Icon" icon="check" size="12" color="#17704A" hint-size="12px,12px"></dc-import></span>
+          <span style="width: 2px; flex: 1; background: #EEF0F4; margin-top: 4px"></span>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 2px; padding-bottom: 16px">
+          <span style="font-size: 12px; font-weight: 600; color: #646B7E">12 Jun 2025</span>
+          <span style="font-size: 15px; font-weight: 700">Not cooling · fixed free</span>
+          <span style="font-size: 13px; color: #4A5163">Gas refilled under warranty</span>
+        </div>
       </div>
-      <div style="display: flex; flex-direction: column; gap: 2px; padding-bottom: 14px; flex: 1">
-        <span style="font-size: 13px; color: #6B665C">12 Jun 2025</span>
-        <span style="font-size: 15px; font-weight: 700">Not cooling · Fixed</span>
-        <span style="font-size: 13px; color: #4E4A42">Gas refilled under warranty. Cost ৳0</span>
-      </div>
-    </div>
-    <div style="display: flex; gap: 12px">
-      <div style="display: flex; flex-direction: column; align-items: center">
-        <span style="width: 12px; height: 12px; border-radius: 50%; background: #B9B4AA; margin-top: 4px"></span>
-      </div>
-      <div style="display: flex; flex-direction: column; gap: 2px; flex: 1">
-        <span style="font-size: 13px; color: #6B665C">14 Mar 2024</span>
-        <span style="font-size: 15px; font-weight: 700">Installed</span>
-        <span style="font-size: 13px; color: #4E4A42">By the shop's technician</span>
+      <div style="display: flex; gap: 12px">
+        <div style="padding-top: 3px"><span style="width: 28px; height: 28px; border-radius: 50%; background: #EEF0F4; display: flex; align-items: center; justify-content: center"><dc-import name="Icon" icon="box" size="12" color="#4A5163" hint-size="12px,12px"></dc-import></span></div>
+        <div style="display: flex; flex-direction: column; gap: 2px">
+          <span style="font-size: 12px; font-weight: 600; color: #646B7E">14 Mar 2024</span>
+          <span style="font-size: 15px; font-weight: 700">Bought and installed</span>
+          <span style="font-size: 13px; color: #4A5163">Gree Brand Shop, Bashundhara City</span>
+        </div>
       </div>
     </div>
   </div>
 </div>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":1800}}'>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":1760}}'>
 class Component extends DCLogic {
   renderVals() { return {}; }
 }

@@ -8,44 +8,48 @@
 <body>
 <x-dc>
 <helmet>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700;800&amp;display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&amp;display=swap">
 <style>
 body{margin:0}
-a{color:#17150F;text-decoration:none}a:hover{color:#000}
+a{color:#1D2433;text-decoration:none}a:hover{color:#1D2433}
 </style>
 </helmet>
-<div style="width: 390px; height: 844px; box-sizing: border-box; background: #F1F0EC; font-family: 'Public Sans', system-ui, sans-serif; color: #17150F; position: relative; overflow: hidden">
+<div style="width: 390px; height: 844px; box-sizing: border-box; background: #F4F5F8; font-family: 'Public Sans', system-ui, sans-serif; color: #1D2433; position: relative; overflow: hidden">
 
-  <div aria-hidden="true" style="padding: 56px 16px; display: flex; flex-direction: column; gap: 16px">
-    <div style="height: 44px; display: flex; justify-content: space-between"><span style="width: 44px; height: 44px; border-radius: 50%; background: #FFFFFF"></span><span style="width: 44px; height: 44px; border-radius: 50%; background: #FFFFFF"></span></div>
-    <div style="height: 52px; border-radius: 26px; background: #FFFFFF"></div>
-    <div style="height: 190px; border-radius: 28px; background: #1A1814"></div>
-    <div style="height: 80px; border-radius: 24px; background: #F5A100"></div>
-    <div style="height: 200px; border-radius: 24px; background: #FFFFFF"></div>
+  <div aria-hidden="true" style="padding: 54px 16px; display: flex; flex-direction: column; gap: 16px">
+    <div style="height: 44px; display: flex; justify-content: space-between"><span style="width: 90px; height: 40px; border-radius: 20px; background: #FFFFFF"></span><span style="width: 44px; height: 44px; border-radius: 50%; background: #FFFFFF"></span></div>
+    <div style="height: 64px; width: 70%; border-radius: 12px; background: #E8EAF0"></div>
+    <div style="height: 52px; border-radius: 18px; background: #FFFFFF"></div>
+    <div style="height: 176px; border-radius: 28px; background: #1F2A44"></div>
+    <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px"><span style="height: 152px; border-radius: 24px; background: #F2A007"></span><span style="height: 152px; border-radius: 24px; background: #FFFFFF"></span></div>
   </div>
-  <div style="position: absolute; inset: 0; background: rgba(26, 24, 20, 0.45)"></div>
+  <div style="position: absolute; inset: 0; background: rgba(20, 27, 44, 0.45)"></div>
 
-  <div role="dialog" aria-label="Fridge saved" style="position: absolute; left: 0; right: 0; bottom: 0; background: #FFFFFF; border-radius: 32px 32px 0 0; padding: 12px 20px 34px; display: flex; flex-direction: column; align-items: center; gap: 16px; text-align: center">
-    <span style="width: 40px; height: 5px; border-radius: 3px; background: #DDD8CE"></span>
-    <span style="width: 72px; height: 72px; border-radius: 50%; background: #E3F2E9; display: flex; align-items: center; justify-content: center; margin-top: 8px">
-      <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#17704A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"></path></svg></span>
-    <div style="display: flex; flex-direction: column; gap: 6px">
-      <span style="font-size: 24px; font-weight: 800; letter-spacing: -0.01em">Fridge saved</span>
-      <span style="font-size: 17px; color: #2C2922">Covered until <b>20 Oct 2027</b></span>
-      <span style="font-size: 14px; color: #6B665C">We'll remind you once, on 20 Sep 2027.</span>
+  <div role="dialog" aria-label="Fridge saved" style="position: absolute; left: 8px; right: 8px; bottom: 8px; background: #FFFFFF; border-radius: 36px; padding: 10px 20px 22px; display: flex; flex-direction: column; align-items: center; gap: 18px; text-align: center; box-shadow: 0 -10px 40px rgba(20, 27, 44, 0.20)">
+    <span style="width: 40px; height: 5px; border-radius: 3px; background: #DDE1E8"></span>
+    <div style="position: relative; width: 96px; height: 96px; margin-top: 6px">
+      <span style="position: absolute; inset: 0; border-radius: 50%; background: #E4F4EA"></span>
+      <span style="position: absolute; inset: 14px; border-radius: 50%; background: #1B7F4C; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 22px rgba(27, 127, 76, 0.35)">
+        <dc-import name="Icon" icon="check" size="30" color="#FFFFFF" hint-size="30px,30px"></dc-import></span>
     </div>
-    <div style="width: 100%; display: flex; align-items: center; gap: 12px; background: #F7F6F2; border: 1px solid #ECE9E2; border-radius: 18px; padding: 12px; text-align: left; box-sizing: border-box">
-      <span style="width: 44px; height: 44px; border-radius: 14px; background: #E3F3EE; display: flex; align-items: center; justify-content: center; flex: none"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#22705A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="2" width="12" height="20" rx="2"></rect><path d="M6 9h12M9 5v2M9 12v3"></path></svg></span>
+    <div style="display: flex; flex-direction: column; gap: 6px">
+      <span style="font-size: 26px; font-weight: 700; letter-spacing: -0.02em">Fridge saved</span>
+      <span style="font-size: 17px; color: #1D2433">Covered until <b>20 Oct 2027</b></span>
+      <span style="font-size: 14px; color: #646B7E">We'll remind you once, on 20 Sep 2027.</span>
+    </div>
+    <div style="width: 100%; display: flex; align-items: center; gap: 12px; background: #F7F8FA; border-radius: 20px; padding: 10px; text-align: left; box-sizing: border-box">
+      <span style="width: 48px; height: 48px; border-radius: 16px; background: #E2F4EE; display: flex; align-items: center; justify-content: center; flex: none"><dc-import name="Icon" icon="refrigerator" size="24" color="#1F6E58" hint-size="24px,24px"></dc-import></span>
       <span style="display: flex; flex-direction: column; flex: 1">
         <span style="font-size: 15px; font-weight: 700">Walton frost-free fridge</span>
-        <span style="font-size: 13px; color: #6B665C">Kitchen · ৳52,990 · 1 year</span>
+        <span style="font-size: 13px; color: #646B7E">Kitchen · ৳52,990 · 1 year</span>
       </span>
     </div>
     <div style="width: 100%; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px">
-      <a href="Camera.dc.html" style="height: 56px; border-radius: 28px; border: 1px solid #E2DED5; display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 700">Add another</a>
-      <a href="Main.dc.html" style="height: 56px; border-radius: 28px; background: #1A1814; color: #FFFFFF; display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 700">Done</a>
+      <a href="Camera.dc.html" style="height: 56px; border-radius: 28px; background: #F4F5F8; display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 16px; font-weight: 700">
+        <dc-import name="Icon" icon="camera" size="16" color="#1D2433" hint-size="16px,16px"></dc-import>Add another</a>
+      <a href="Main.dc.html" style="height: 56px; border-radius: 28px; background: #1F2A44; color: #FFFFFF; display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 700">Done</a>
     </div>
-    <span style="font-size: 12px; color: #6B665C">Closes by itself in 4 seconds</span>
+    <div style="width: 100%; height: 4px; border-radius: 2px; background: #EEF0F4; overflow: hidden" role="img" aria-label="Closes by itself in 4 seconds"><div style="width: 60%; height: 4px; background: #CDD2DC"></div></div>
   </div>
 </div>
 </x-dc>

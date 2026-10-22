@@ -1,19 +1,20 @@
-{"v":3,"createdOnFiles":{"v":1,"at":"2026-10-22T10:00:00Z"},"title":"Ambr App Design","launch":{"view":"canvas"},"pages":[],
+{"v":3,"attachments":{},"createdOnFiles":{"v":1,"at":"2026-10-22T10:00:00Z"},"title":"Ambr App Design","launch":{"view":"canvas"},"pages":[],
 "boards":{
-"Main.dc.html":{"x":0,"y":0,"w":390,"h":1180,"title":"C1 Home","is_interactive":true,"radius":36},
-"WhatBroke.dc.html":{"x":470,"y":0,"w":390,"h":980,"title":"C3 What broke?","is_interactive":true,"radius":36},
-"ItemDetail.dc.html":{"x":940,"y":0,"w":390,"h":1800,"title":"D1 Item detail","is_interactive":true,"radius":36},
-"ClaimPack.dc.html":{"x":1410,"y":0,"w":390,"h":1300,"title":"E1 Claim pack","is_interactive":true,"radius":36},
+"Main.dc.html":{"x":0,"y":0,"w":390,"h":1240,"title":"C1 Home","is_interactive":true,"radius":36},
+"WhatBroke.dc.html":{"x":470,"y":0,"w":390,"h":1000,"title":"C3 What broke?","is_interactive":true,"radius":36},
+"ItemDetail.dc.html":{"x":940,"y":0,"w":390,"h":1760,"title":"D1 Item detail","is_interactive":true,"radius":36},
+"ClaimPack.dc.html":{"x":1410,"y":0,"w":390,"h":1320,"title":"E1 Claim pack","is_interactive":true,"radius":36},
 "Camera.dc.html":{"x":1880,"y":0,"w":390,"h":844,"title":"B1 Camera","is_interactive":true,"radius":36},
-"Confirm.dc.html":{"x":2350,"y":0,"w":390,"h":1380,"title":"B3 Confirm details","is_interactive":true,"radius":36},
+"Confirm.dc.html":{"x":2350,"y":0,"w":390,"h":1420,"title":"B3 Confirm details","is_interactive":true,"radius":36},
 "Saved.dc.html":{"x":2820,"y":0,"w":390,"h":844,"title":"B7 Saved","is_interactive":true,"radius":36},
-"Vault.dc.html":{"x":3290,"y":0,"w":390,"h":1180,"title":"C4 Vault","is_interactive":true,"radius":36},
-"Foundations.dc.html":{"x":0,"y":2220,"w":1600,"h":1060,"title":"Foundations"},
-"ColorDirections.dc.html":{"x":3840,"y":0,"w":1410,"h":1140,"title":"Color directions · pick one"}
+"Vault.dc.html":{"x":3290,"y":0,"w":390,"h":1240,"title":"C4 Vault","is_interactive":true,"radius":36},
+"ColorDirections.dc.html":{"x":3840,"y":0,"w":1410,"h":1140,"title":"Color directions · A chosen"},
+"Foundations.dc.html":{"x":0,"y":2180,"w":1600,"h":1060,"title":"Foundations"},
+"Icon.dc.html":{"x":1720,"y":2180,"w":1240,"h":780,"title":"Icons"}
 },
-"order":["Main.dc.html","WhatBroke.dc.html","ItemDetail.dc.html","ClaimPack.dc.html","Camera.dc.html","Confirm.dc.html","Saved.dc.html","Vault.dc.html","Foundations.dc.html","ColorDirections.dc.html"],
+"order":["Main.dc.html","WhatBroke.dc.html","ItemDetail.dc.html","ClaimPack.dc.html","Camera.dc.html","Confirm.dc.html","Saved.dc.html","Vault.dc.html","ColorDirections.dc.html","Foundations.dc.html","Icon.dc.html"],
 "notes":{
-"t1":{"x":0,"y":-300,"text":"Ambr · core screens","kind":"title1","maxW":3680},
-"t2":{"x":0,"y":1920,"text":"Foundations","kind":"title1","maxW":1600}
+"t1":{"x":0,"y":-300,"text":"Ambr · core screens","kind":"title1","maxW":3680,"w":240},
+"t2":{"x":0,"y":1880,"text":"Foundations","kind":"title1","maxW":2960,"w":240}
 },
 "designSystems":[]}
