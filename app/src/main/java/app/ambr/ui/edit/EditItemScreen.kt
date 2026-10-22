@@ -108,6 +108,16 @@ fun EditItemScreen(
                 if (d.readCount > 0) Column(Modifier.padding(horizontal = 2.dp)) {
                     Text("Check the details", style = MaterialTheme.typography.headlineLarge, color = AmbrColors.TextPrimary)
                     Text(if (d.unsure.isEmpty()) "We read your receipt. Have a quick look." else "We read your receipt. Fix anything marked in amber.", style = MaterialTheme.typography.bodyLarge, color = AmbrColors.TextSecondary)
+                } else Column(
+                    Modifier.fillMaxWidth().clip(CardShape).background(AmbrColors.HoneyTint).padding(16.dp),
+                    verticalArrangement = Arrangement.spacedBy(6.dp),
+                ) {
+                    Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(6.dp)) {
+                        Icon(painterResource(R.drawable.ic_check), null, tint = AmbrColors.CoveredInk, modifier = Modifier.size(11.dp))
+                        Text("Photo saved as proof", style = MaterialTheme.typography.labelSmall, fontWeight = FontWeight.Bold, color = AmbrColors.CoveredInk)
+                    }
+                    Text("Couldn't read this one", style = MaterialTheme.typography.titleLarge, color = AmbrColors.TextPrimary)
+                    Text("Just type the name. Everything else is optional and you can add it later.", style = MaterialTheme.typography.bodyMedium, color = AmbrColors.TextSecondary)
                 }
                 ProofStrip(d)
             }

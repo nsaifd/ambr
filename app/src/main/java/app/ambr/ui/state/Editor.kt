@@ -114,6 +114,11 @@ class EditorViewModel(private val repo: ItemRepository, private val settings: Se
         onResult(SaveResult.Saved(saved))
     }
 
+    fun delete(onDone: () -> Unit) = viewModelScope.launch {
+        repo.item(id).first()?.let { repo.delete(it.item) }
+        onDone()
+    }
+
     /** Leaving a new item without saving removes the photos taken for it. */
     fun discard() {
         if (isNew) _draft.value.newProofs.forEach { File(it.filePath).delete() }

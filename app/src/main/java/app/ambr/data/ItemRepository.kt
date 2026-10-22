@@ -1,6 +1,8 @@
 package app.ambr.data
 
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.first
+import java.io.File
 import java.time.LocalDate
 
 class ItemRepository(private val dao: ItemDao) {
@@ -32,7 +34,12 @@ class ItemRepository(private val dao: ItemDao) {
 
     suspend fun unarchive(item: ItemEntity) = dao.update(item.copy(archivedReason = null, archivedOn = null))
 
-    suspend fun delete(item: ItemEntity) = dao.delete(item)
+    /** Removes the item, its rows (by cascade) and its photos on disk. */
+    suspend fun delete(item: ItemEntity) {
+        val files = dao.observe(item.id).first()?.proofs?.map { java.io.File(it.filePath) }.orEmpty() + listOfNotNull(item.photoPath?.let(::File))
+        dao.delete(item)
+        files.forEach { it.delete() }
+    }
 
     /** A receipt counts as a duplicate when its OCR text shares the same invoice line. */
     suspend fun findDuplicate(fingerprint: String?): ProofEntity? =
