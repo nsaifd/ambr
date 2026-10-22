@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Share PDF</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#1D2433;text-decoration:none}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; background: #F4F5F8; font-family: 'Public Sans', system-ui, sans-serif; color: #1D2433; position: relative; overflow: hidden">
+  <div aria-hidden="true" style="height: 300px; background: #1F2A44; border-radius: 0 0 36px 36px"></div>
+  <div style="position: absolute; inset: 0; background: rgba(20, 27, 44, 0.45)"></div>
+
+  <div role="dialog" aria-label="Share claim pack" style="position: absolute; left: 0; right: 0; bottom: 0; background: #FFFFFF; border-radius: 32px 32px 0 0; padding: 10px 18px 26px; display: flex; flex-direction: column; gap: 16px">
+    <span style="align-self: center; width: 40px; height: 5px; border-radius: 3px; background: #DDE1E8"></span>
+    <div style="display: flex; justify-content: space-between; align-items: center">
+      <span style="font-size: 22px; font-weight: 700; letter-spacing: -0.02em">Share claim pack</span>
+      <a href="ClaimPack.dc.html" aria-label="Close" style="width: 40px; height: 40px; border-radius: 50%; background: #F4F5F8; display: flex; align-items: center; justify-content: center"><dc-import name="Icon" icon="cross-small" size="20" color="#1D2433" hint-size="20px,20px"></dc-import></a>
+    </div>
+    <div style="display: flex; gap: 14px; align-items: center; border-radius: 22px; background: #F4F5F8; padding: 14px">
+      <div aria-hidden="true" style="width: 96px; height: 128px; background: #FFFFFF; border-radius: 6px; box-shadow: 0 6px 16px rgba(31, 42, 68, 0.12); padding: 8px; box-sizing: border-box; display: flex; flex-direction: column; gap: 5px; flex: none">
+        <span style="display: flex; align-items: center; gap: 4px"><svg width="7" height="9" viewBox="0 0 28 34"><path d="M14 1C14 1 2 15 2 22a12 12 0 0 0 24 0C26 15 14 1 14 1Z" fill="#F2A007"></path></svg><span style="height: 4px; width: 40px; background: #1F2A44; border-radius: 2px"></span></span>
+        <span style="height: 3px; width: 60px; background: #9AA3B5; border-radius: 2px"></span>
+        <span style="height: 10px; width: 70px; background: #E4F4EA; border-radius: 3px"></span>
+        <span style="height: 44px; background: #EEF0F4; border-radius: 4px"></span>
+        <span style="height: 3px; background: #CDD2DC; border-radius: 2px"></span><span style="height: 3px; width: 70%; background: #CDD2DC; border-radius: 2px"></span><span style="height: 3px; width: 85%; background: #CDD2DC; border-radius: 2px"></span>
+      </div>
+      <span style="display: flex; flex-direction: column; gap: 4px">
+        <span style="font-size: 15px; font-weight: 700">Gree-AC-claim.pdf</span>
+        <span style="font-size: 13px; line-height: 1.45; color: #4A5163">1 page · receipt, warranty card, serial, dates and service center</span>
+        <span style="font-size: 12px; font-weight: 700; color: #17704A">240 KB · works on any phone</span>
+      </span>
+    </div>
+    <div style="display: flex; flex-direction: column">
+      <sc-for list="{{opts}}" as="o" hint-placeholder-count="2">
+        <div style="display: flex; align-items: center; justify-content: space-between; padding: 10px 2px; border-top: {{o.sep}}">
+          <span style="display: flex; flex-direction: column"><span style="font-size: 15px; font-weight: 600">{{o.label}}</span><span style="font-size: 12px; color: #646B7E">{{o.sub}}</span></span>
+          <button role="switch" aria-checked="{{o.on}}" aria-label="{{o.label}}" onClick="{{o.flip}}" style="{{o.track}}"><span style="{{o.knob}}"></span></button>
+        </div>
+      </sc-for>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px">
+      <sc-for list="{{apps}}" as="a" hint-placeholder-count="4">
+        <button style="border: none; background: transparent; font: inherit; display: flex; flex-direction: column; align-items: center; gap: 6px; cursor: pointer; color: #1D2433">
+          <span style="width: 56px; height: 56px; border-radius: 18px; background: #F4F5F8; display: flex; align-items: center; justify-content: center"><dc-import name="Icon" icon="{{a.icon}}" size="22" color="#1D2433" hint-size="22px,22px"></dc-import></span>
+          <span style="font-size: 12px; font-weight: 600">{{a.label}}</span>
+        </button>
+      </sc-for>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  constructor(p) { super(p); this.state = { card: true, price: false }; }
+  renderVals() {
+    const sw = (on) => ({
+      track: 'width: 52px; height: 32px; border-radius: 16px; border: none; padding: 3px; box-sizing: border-box; cursor: pointer; display: flex; ' + (on ? 'background: #1B7F4C; justify-content: flex-end' : 'background: #CDD2DC; justify-content: flex-start'),
+      knob: 'width: 26px; height: 26px; border-radius: 50%; background: #FFFFFF; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2)'
+    });
+    return {
+      opts: [
+        Object.assign({ label: 'Include warranty card', sub: 'Most service centers ask for it', on: this.state.card, sep: 'none', flip: () => this.setState({ card: !this.state.card }) }, sw(this.state.card)),
+        Object.assign({ label: 'Hide the price', sub: 'For sharing outside the family', on: this.state.price, sep: '1px solid #EEF0F4', flip: () => this.setState({ price: !this.state.price }) }, sw(this.state.price))
+      ],
+      apps: [{ label: 'WhatsApp', icon: 'comment-alt' }, { label: 'Messenger', icon: 'comment-alt' }, { label: 'Email', icon: 'envelope' }, { label: 'Save', icon: 'download' }]
+    };
+  }
+}
+</script>
+</body>
+</html>

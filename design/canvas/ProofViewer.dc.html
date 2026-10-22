@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Proof viewer</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#FFFFFF;text-decoration:none}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; background: #0E1320; font-family: 'Public Sans', system-ui, sans-serif; color: #FFFFFF; padding: 54px 16px 30px; display: flex; flex-direction: column; gap: 16px">
+  <div style="display: flex; align-items: center; justify-content: space-between">
+    <a href="ItemDetail.dc.html" aria-label="Close" style="width: 44px; height: 44px; border-radius: 50%; background: #1F2A44; display: flex; align-items: center; justify-content: center"><dc-import name="Icon" icon="cross-small" size="22" color="#FFFFFF" hint-size="22px,22px"></dc-import></a>
+    <span style="display: flex; flex-direction: column; align-items: center"><span style="font-size: 15px; font-weight: 700">Receipt</span><span style="font-size: 12px; color: #B9C1D6">Page 1 of 2</span></span>
+    <a href="SharePdf.dc.html" aria-label="Share" style="width: 44px; height: 44px; border-radius: 50%; background: #1F2A44; display: flex; align-items: center; justify-content: center"><dc-import name="Icon" icon="share" size="17" color="#FFFFFF" hint-size="17px,17px"></dc-import></a>
+  </div>
+  <div style="flex: 1; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden">
+    <div style="width: 300px; background: #FFFFFF; padding: 22px 20px 30px; display: flex; flex-direction: column; gap: 9px; font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 14px; color: #2F333D">
+      <span style="text-align: center; font-weight: 700; font-size: 17px">GREE BRAND SHOP</span>
+      <span style="text-align: center; color: #646B7E; font-size: 12px">Level 4, Bashundhara City, Dhaka</span>
+      <span style="border-top: 1px dashed #9AA0AE"></span>
+      <span style="display: flex; justify-content: space-between"><span>Date</span><span>14/03/2024</span></span>
+      <span style="display: flex; justify-content: space-between"><span>Inv</span><span>GBS-24-03117</span></span>
+      <span style="border-top: 1px dashed #9AA0AE"></span>
+      <span>GS-18XFV32 Split AC 1.5T</span>
+      <span style="display: flex; justify-content: space-between"><span>1 x</span><span>78,500.00</span></span>
+      <span style="border-top: 1px dashed #9AA0AE"></span>
+      <span style="display: flex; justify-content: space-between; font-weight: 700"><span>TOTAL</span><span>78,500.00</span></span>
+    </div>
+    <span style="position: absolute; bottom: 12px; left: 50%; transform: translateX(-50%); background: rgba(31, 42, 68, 0.85); padding: 6px 12px; border-radius: 999px; font-size: 12px; font-weight: 600; color: #D5DBEA">Pinch to zoom · swipe for next page</span>
+  </div>
+  <div style="display: flex; justify-content: center; gap: 6px"><span style="width: 20px; height: 6px; border-radius: 3px; background: #FFFFFF"></span><span style="width: 6px; height: 6px; border-radius: 3px; background: #4A5674"></span></div>
+  <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px">
+    <a href="Camera.dc.html" style="height: 64px; border-radius: 20px; background: #1F2A44; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; font-size: 12px; font-weight: 600"><dc-import name="Icon" icon="plus" size="16" color="#FFFFFF" hint-size="16px,16px"></dc-import>Add page</a>
+    <button style="height: 64px; border-radius: 20px; border: none; background: #1F2A44; color: #FFFFFF; font: inherit; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; font-size: 12px; font-weight: 600; cursor: pointer"><dc-import name="Icon" icon="rotate-right" size="16" color="#FFFFFF" hint-size="16px,16px"></dc-import>Rotate</button>
+    <button style="height: 64px; border-radius: 20px; border: none; background: #1F2A44; color: #FF9B91; font: inherit; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; font-size: 12px; font-weight: 600; cursor: pointer"><dc-import name="Icon" icon="trash" size="16" color="#FF9B91" hint-size="16px,16px"></dc-import>Remove page</button>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

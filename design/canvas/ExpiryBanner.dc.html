@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Item detail with expiry banner</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#1D2433;text-decoration:none}
+</style>
+</helmet>
+<div style="width: 390px; height: 1000px; box-sizing: border-box; background: #F4F5F8; font-family: 'Public Sans', system-ui, sans-serif; color: #1D2433; display: flex; flex-direction: column; overflow: hidden">
+  <div style="background: #E6F0FB; padding: 54px 16px 64px; border-radius: 0 0 36px 36px; display: flex; flex-direction: column; gap: 16px">
+    <div style="display: flex; align-items: center; justify-content: space-between">
+      <a href="Main.dc.html" aria-label="Back" style="width: 44px; height: 44px; border-radius: 50%; background: rgba(255, 255, 255, 0.85); display: flex; align-items: center; justify-content: center"><dc-import name="Icon" icon="angle-small-left" size="22" color="#1D2433" hint-size="22px,22px"></dc-import></a>
+      <button aria-label="More" style="width: 44px; height: 44px; border-radius: 50%; border: none; background: rgba(255, 255, 255, 0.85); display: flex; align-items: center; justify-content: center; cursor: pointer"><dc-import name="Icon" icon="menu-dots" size="18" color="#1D2433" hint-size="18px,18px"></dc-import></button>
+    </div>
+    <div style="display: flex; align-items: center; gap: 14px">
+      <span style="width: 72px; height: 72px; border-radius: 24px; background: #FFFFFF; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 22px rgba(43, 95, 142, 0.16)"><dc-import name="Icon" icon="air-conditioner" size="36" color="#2B5F8E" hint-size="36px,36px"></dc-import></span>
+      <span style="display: flex; flex-direction: column; gap: 2px"><span style="font-size: 24px; font-weight: 700; letter-spacing: -0.02em">Gree 1.5 ton AC</span><span style="font-size: 14px; color: #2B4A6B">Bedroom · Cooling</span></span>
+    </div>
+  </div>
+
+  <div style="margin: -44px 16px 0; display: flex; flex-direction: column; gap: 14px">
+    <div style="border-radius: 28px; background: #FFFFFF; box-shadow: 0 0 0 1px #E8EAF0, 0 12px 32px rgba(31, 42, 68, 0.08); padding: 18px; display: flex; align-items: center; gap: 16px">
+      <div role="img" aria-label="30 days left" style="width: 96px; height: 96px; position: relative; flex: none">
+        <svg width="96" height="96" viewBox="0 0 96 96" aria-hidden="true">
+          <circle cx="48" cy="48" r="40" fill="none" stroke="#FFF1D6" stroke-width="10"></circle>
+          <circle cx="48" cy="48" r="40" fill="none" stroke="#F2A007" stroke-width="10" stroke-linecap="round" stroke-dasharray="8 243.3" transform="rotate(-90 48 48)"></circle>
+        </svg>
+        <span style="position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center"><span style="font-size: 26px; font-weight: 700; line-height: 1">30</span><span style="font-size: 12px; font-weight: 600; color: #646B7E">days</span></span>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 6px">
+        <span style="display: inline-flex; align-self: flex-start; align-items: center; gap: 5px; background: #FFEFD3; color: #8F5000; font-size: 13px; font-weight: 700; padding: 4px 10px 4px 8px; border-radius: 999px"><dc-import name="Icon" icon="clock-three" size="11" color="#8F5000" hint-size="11px,11px"></dc-import>Ends soon</span>
+        <span style="font-size: 21px; font-weight: 700; letter-spacing: -0.015em; line-height: 1.2">Covered until 14 Mar 2027</span>
+      </div>
+    </div>
+
+    <div style="border-radius: 28px; background: #1F2A44; color: #FFFFFF; padding: 18px; display: flex; flex-direction: column; gap: 14px">
+      <div style="display: flex; gap: 12px; align-items: flex-start">
+        <span style="width: 44px; height: 44px; border-radius: 14px; background: #2B3756; display: flex; align-items: center; justify-content: center; flex: none"><dc-import name="Icon" icon="bulb" size="20" color="#FFC24D" hint-size="20px,20px"></dc-import></span>
+        <span style="display: flex; flex-direction: column; gap: 4px">
+          <span style="font-size: 17px; font-weight: 700">Last free check-up window</span>
+          <span style="font-size: 14px; line-height: 1.45; color: #D5DBEA">Anything not working right? A check-up is free for 30 more days. After that, repairs cost money.</span>
+        </span>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px">
+        <button style="height: 50px; border-radius: 25px; border: none; background: #2B3756; color: #FFFFFF; font: inherit; font-size: 15px; font-weight: 700; cursor: pointer">All good</button>
+        <button style="height: 50px; border-radius: 25px; border: none; background: #F2A007; color: #1D2433; font: inherit; font-size: 15px; font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 6px; cursor: pointer"><dc-import name="Icon" icon="phone-call" size="14" color="#1D2433" hint-size="14px,14px"></dc-import>Book check-up</button>
+      </div>
+    </div>
+
+    <a href="ClaimPack.dc.html" style="height: 56px; border-radius: 28px; background: #FFFFFF; box-shadow: 0 0 0 1px #E8EAF0; display: flex; align-items: center; justify-content: center; gap: 10px; font-size: 16px; font-weight: 700"><dc-import name="Icon" icon="wrench-simple" size="18" color="#1D2433" hint-size="18px,18px"></dc-import>Something broke</a>
+
+    <div style="border-radius: 24px; background: #FFFFFF; box-shadow: 0 0 0 1px #E8EAF0; padding: 16px; display: flex; flex-direction: column; gap: 8px">
+      <span style="font-size: 17px; font-weight: 700">Coverage</span>
+      <div style="display: flex; justify-content: space-between; font-size: 14px"><span style="font-weight: 600">Full warranty · 3 years</span><span style="color: #8F5000; font-weight: 700">30 days left</span></div>
+      <div style="height: 6px; border-radius: 3px; background: #E3E6EC; overflow: hidden"><div style="width: 97%; height: 6px; border-radius: 3px; background: #F2A007"></div></div>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":1000}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

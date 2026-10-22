@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Edit item</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#1D2433;text-decoration:none}
+input{font:inherit}
+</style>
+</helmet>
+<div style="width: 390px; min-height: 1300px; box-sizing: border-box; background: #F4F5F8; font-family: 'Public Sans', system-ui, sans-serif; color: #1D2433; padding: 54px 16px 130px; display: flex; flex-direction: column; gap: 14px; position: relative">
+  <div style="display: flex; align-items: center; justify-content: space-between">
+    <a href="ItemDetail.dc.html" style="height: 44px; padding: 0 14px; border-radius: 22px; background: #FFFFFF; box-shadow: 0 0 0 1px #E8EAF0; display: flex; align-items: center; font-size: 14px; font-weight: 600">Cancel</a>
+    <span style="font-size: 16px; font-weight: 700">Edit item</span>
+    <span style="width: 76px"></span>
+  </div>
+
+  <div style="display: flex; align-items: center; gap: 14px; border-radius: 24px; background: #FFFFFF; box-shadow: 0 0 0 1px #E8EAF0; padding: 14px">
+    <span style="width: 72px; height: 72px; border-radius: 22px; background: #E6F0FB; display: flex; align-items: center; justify-content: center; position: relative; flex: none">
+      <dc-import name="Icon" icon="air-conditioner" size="34" color="#2B5F8E" hint-size="34px,34px"></dc-import>
+      <span style="position: absolute; right: -4px; bottom: -4px; width: 28px; height: 28px; border-radius: 50%; background: #1F2A44; box-shadow: 0 0 0 3px #FFFFFF; display: flex; align-items: center; justify-content: center"><dc-import name="Icon" icon="camera" size="13" color="#FFFFFF" hint-size="13px,13px"></dc-import></span>
+    </span>
+    <span style="display: flex; flex-direction: column; gap: 2px"><span style="font-size: 15px; font-weight: 700">Add a photo of the AC</span><span style="font-size: 13px; color: #646B7E">Helps you spot it fast in the Vault</span></span>
+  </div>
+
+  <div style="border-radius: 24px; background: #FFFFFF; box-shadow: 0 0 0 1px #E8EAF0; padding: 16px; display: flex; flex-direction: column; gap: 14px">
+    <span style="font-size: 16px; font-weight: 700">Details</span>
+    <sc-for list="{{fields}}" as="f" hint-placeholder-count="6">
+      <div style="display: flex; flex-direction: column; gap: 6px">
+        <label for="{{f.id}}" style="font-size: 13px; font-weight: 600; color: #4A5163">{{f.label}}</label>
+        <div style="display: flex; gap: 8px">
+          <input id="{{f.id}}" value="{{f.value}}" style="flex: 1; min-width: 0; height: 52px; border-radius: 16px; border: 1px solid #E3E6EC; background: #F7F8FA; padding: 0 14px; font-size: 16px; color: #1D2433; box-sizing: border-box">
+          <sc-if value="{{f.scan}}" hint-placeholder-val="{{ false }}"><a href="BarcodeScan.dc.html" aria-label="Scan barcode" style="width: 52px; height: 52px; border-radius: 16px; background: #1F2A44; display: flex; align-items: center; justify-content: center; flex: none"><dc-import name="Icon" icon="barcode-read" size="20" color="#FFFFFF" hint-size="20px,20px"></dc-import></a></sc-if>
+        </div>
+      </div>
+    </sc-for>
+  </div>
+
+  <div style="border-radius: 24px; background: #FFFFFF; box-shadow: 0 0 0 1px #E8EAF0; padding: 16px; display: flex; flex-direction: column; gap: 10px">
+    <span style="font-size: 16px; font-weight: 700">Coverage</span>
+    <div style="display: flex; align-items: center; gap: 12px; border-radius: 18px; background: #F7F8FA; padding: 12px 14px">
+      <span style="display: flex; flex-direction: column; flex: 1"><span style="font-size: 15px; font-weight: 700">Full warranty · 3 years</span><span style="font-size: 13px; color: #646B7E">From purchase · until 14 Mar 2027</span></span>
+      <dc-import name="Icon" icon="pencil" size="16" color="#4A5163" hint-size="16px,16px"></dc-import>
+    </div>
+    <div style="display: flex; align-items: center; gap: 12px; border-radius: 18px; background: #F7F8FA; padding: 12px 14px">
+      <span style="display: flex; flex-direction: column; flex: 1"><span style="font-size: 15px; font-weight: 700">Free servicing · 4 visits</span><span style="font-size: 13px; color: #646B7E">3 used</span></span>
+      <dc-import name="Icon" icon="pencil" size="16" color="#4A5163" hint-size="16px,16px"></dc-import>
+    </div>
+    <a href="AddCoverage.dc.html" style="height: 48px; border-radius: 16px; border: 1.5px dashed #CDD2DC; display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 15px; font-weight: 600"><dc-import name="Icon" icon="plus" size="13" color="#1D2433" hint-size="13px,13px"></dc-import>Add coverage</a>
+  </div>
+
+  <div style="border-radius: 24px; background: #FFFFFF; box-shadow: 0 0 0 1px #E8EAF0; padding: 16px; display: flex; flex-direction: column; gap: 12px">
+    <span style="font-size: 16px; font-weight: 700">Room</span>
+    <div style="display: flex; flex-wrap: wrap; gap: 8px">
+      <sc-for list="{{rooms}}" as="r" hint-placeholder-count="6"><button aria-pressed="{{r.on}}" onClick="{{r.pick}}" style="{{r.style}}">{{r.label}}</button></sc-for>
+    </div>
+  </div>
+
+  <a href="DeleteItem.dc.html" style="height: 52px; border-radius: 26px; display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 15px; font-weight: 600; color: #B42318"><dc-import name="Icon" icon="trash" size="15" color="#B42318" hint-size="15px,15px"></dc-import>Delete this item</a>
+
+  <div style="position: absolute; left: 16px; right: 16px; bottom: 26px; height: 72px; border-radius: 36px; background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(20px); box-shadow: 0 0 0 1px rgba(31, 42, 68, 0.06), 0 14px 34px rgba(31, 42, 68, 0.16); padding: 8px; box-sizing: border-box">
+    <a href="ItemDetail.dc.html" style="height: 56px; border-radius: 28px; background: #F2A007; display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 17px; font-weight: 700"><dc-import name="Icon" icon="check" size="16" color="#1D2433" hint-size="16px,16px"></dc-import>Save changes</a>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":1300}}'>
+class Component extends DCLogic {
+  constructor(p) { super(p); this.state = { room: 'Bedroom' }; }
+  renderVals() {
+    const chip = (on) => 'height: 42px; padding: 0 14px; border-radius: 21px; font: inherit; font-size: 14px; font-weight: 600; cursor: pointer; ' +
+      (on ? 'border: 1px solid #1F2A44; background: #1F2A44; color: #FFFFFF' : 'border: 1px solid #E3E6EC; background: #F7F8FA; color: #1D2433');
+    return {
+      fields: [
+        { id: 'e-name', label: 'Item name', value: 'Gree 1.5 ton AC' },
+        { id: 'e-brand', label: 'Brand', value: 'Gree' },
+        { id: 'e-model', label: 'Model', value: 'GS-18XFV32' },
+        { id: 'e-serial', label: 'Serial number', value: 'GR18K24030917', scan: true },
+        { id: 'e-price', label: 'Price (৳)', value: '78,500' },
+        { id: 'e-store', label: 'Store', value: 'Gree Brand Shop, Bashundhara City' },
+        { id: 'e-date', label: 'Bought on', value: '14 Mar 2024' }
+      ].map((f) => Object.assign({ scan: false }, f)),
+      rooms: ['Kitchen', 'Living room', 'Bedroom', 'Office', 'Car / bike', 'Other'].map((r) => ({ label: r, on: this.state.room === r, style: chip(this.state.room === r), pick: () => this.setState({ room: r }) }))
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -21,8 +21,8 @@ a{color:#1D2433;text-decoration:none}a:hover{color:#1D2433}
       <a href="Main.dc.html" aria-label="Back" style="width: 44px; height: 44px; border-radius: 50%; background: rgba(255, 255, 255, 0.85); display: flex; align-items: center; justify-content: center">
         <dc-import name="Icon" icon="angle-small-left" size="22" color="#1D2433" hint-size="22px,22px"></dc-import></a>
       <div style="display: flex; gap: 8px">
-        <button aria-label="Edit" style="width: 44px; height: 44px; border-radius: 50%; border: none; background: rgba(255, 255, 255, 0.85); display: flex; align-items: center; justify-content: center; cursor: pointer">
-          <dc-import name="Icon" icon="pencil" size="17" color="#1D2433" hint-size="17px,17px"></dc-import></button>
+        <a href="EditItem.dc.html" aria-label="Edit" style="width: 44px; height: 44px; border-radius: 50%; background: rgba(255, 255, 255, 0.85); display: flex; align-items: center; justify-content: center; cursor: pointer">
+          <dc-import name="Icon" icon="pencil" size="17" color="#1D2433" hint-size="17px,17px"></dc-import></a>
         <button aria-label="More: share, mark as sold, delete" style="width: 44px; height: 44px; border-radius: 50%; border: none; background: rgba(255, 255, 255, 0.85); display: flex; align-items: center; justify-content: center; cursor: pointer">
           <dc-import name="Icon" icon="menu-dots" size="18" color="#1D2433" hint-size="18px,18px"></dc-import></button>
       </div>
@@ -71,13 +71,13 @@ a{color:#1D2433;text-decoration:none}a:hover{color:#1D2433}
     </div>
 
     <div style="border-radius: 24px; background: #FFFFFF; box-shadow: 0 0 0 1px #E8EAF0; padding: 16px; display: flex; flex-direction: column; gap: 12px">
-      <div style="display: flex; justify-content: space-between; align-items: baseline">
+      <div style="display: flex; justify-content: space-between; align-items: center">
         <span style="font-size: 17px; font-weight: 700">Proof</span>
-        <span style="font-size: 14px; font-weight: 600; color: #7A4A00">Add page</span>
+        <span style="font-size: 14px; font-weight: 600; color: #7A4A00; display: flex; align-items: center; min-height: 44px; margin: -10px 0">Add page</span>
       </div>
       <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px">
         <div style="display: flex; flex-direction: column; gap: 8px">
-          <div style="height: 136px; border-radius: 18px; background: #EEF0F4; display: flex; align-items: flex-start; justify-content: center; padding-top: 14px; overflow: hidden">
+          <div style="height: 136px; border-radius: 18px; background: #EEF0F4; display: flex; align-items: center; justify-content: center; padding-top: 0; overflow: hidden">
             <div style="width: 96px; background: #FFFFFF; padding: 8px 8px 18px; display: flex; flex-direction: column; gap: 4px; font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 6px; color: #3B3F4A; box-shadow: 0 4px 10px rgba(31, 42, 68, 0.10); transform: rotate(-2deg)">
               <span style="text-align: center; font-weight: 700; font-size: 7px">GREE BRAND SHOP</span>
               <span style="text-align: center">Bashundhara City</span>
@@ -87,7 +87,7 @@ a{color:#1D2433;text-decoration:none}a:hover{color:#1D2433}
               <span style="border-top: 1px dashed #9AA0AE; padding-top: 3px; font-weight: 700">TOTAL  78,500.00</span>
             </div>
           </div>
-          <span style="display: flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 600"><dc-import name="Icon" icon="receipt" size="13" color="#4A5163" hint-size="13px,13px"></dc-import>Receipt</span>
+          <span style="display: flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 600; padding-left: 2px"><dc-import name="Icon" icon="receipt" size="13" color="#4A5163" hint-size="13px,13px"></dc-import>Receipt</span>
         </div>
         <div style="display: flex; flex-direction: column; gap: 8px">
           <div style="height: 136px; border-radius: 18px; background: #EEF0F4; display: flex; align-items: center; justify-content: center; overflow: hidden">
@@ -99,7 +99,7 @@ a{color:#1D2433;text-decoration:none}a:hover{color:#1D2433}
               <span style="position: absolute; right: 8px; bottom: 6px; width: 26px; height: 26px; border-radius: 50%; border: 1.5px solid #B04A4A; color: #B04A4A; font-size: 5px; display: flex; align-items: center; justify-content: center; transform: rotate(-14deg)">STAMP</span>
             </div>
           </div>
-          <span style="display: flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 600"><dc-import name="Icon" icon="badge-check" size="13" color="#4A5163" hint-size="13px,13px"></dc-import>Warranty card</span>
+          <span style="display: flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 600; padding-left: 2px"><dc-import name="Icon" icon="badge-check" size="13" color="#4A5163" hint-size="13px,13px"></dc-import>Warranty card</span>
         </div>
       </div>
     </div>

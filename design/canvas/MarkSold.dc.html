@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Mark as sold</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#1D2433;text-decoration:none}
+input{font:inherit}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; background: #F4F5F8; font-family: 'Public Sans', system-ui, sans-serif; color: #1D2433; position: relative; overflow: hidden">
+  <div aria-hidden="true" style="height: 330px; background: #E6F0FB; border-radius: 0 0 36px 36px"></div>
+  <div aria-hidden="true" style="margin: -44px 16px 0; height: 200px; border-radius: 28px; background: #FFFFFF"></div>
+  <div style="position: absolute; inset: 0; background: rgba(20, 27, 44, 0.45)"></div>
+
+  <div role="dialog" aria-label="Move to archive" style="position: absolute; left: 0; right: 0; bottom: 0; background: #FFFFFF; border-radius: 32px 32px 0 0; padding: 10px 18px 26px; display: flex; flex-direction: column; gap: 16px">
+    <span style="align-self: center; width: 40px; height: 5px; border-radius: 3px; background: #DDE1E8"></span>
+    <div style="display: flex; flex-direction: column; gap: 4px">
+      <span style="font-size: 22px; font-weight: 700; letter-spacing: -0.02em">No longer have the AC?</span>
+      <span style="font-size: 14px; line-height: 1.45; color: #4A5163">We'll move it to the Archive and keep its receipt. Handy as proof for whoever owns it next.</span>
+    </div>
+    <div role="radiogroup" aria-label="What happened" style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px">
+      <sc-for list="{{kinds}}" as="k" hint-placeholder-count="2">
+        <button role="radio" aria-checked="{{k.on}}" onClick="{{k.pick}}" style="{{k.style}}"><dc-import name="Icon" icon="{{k.icon}}" size="20" color="{{k.ink}}" hint-size="20px,20px"></dc-import>{{k.label}}</button>
+      </sc-for>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px">
+      <div style="display: flex; flex-direction: column; gap: 6px; min-width: 0">
+        <label for="s-date" style="font-size: 13px; font-weight: 600; color: #4A5163">When</label>
+        <input id="s-date" value="22 Oct 2026" style="height: 52px; border-radius: 16px; border: 1px solid #E3E6EC; background: #F7F8FA; padding: 0 14px; font-size: 16px; color: #1D2433; box-sizing: border-box; width: 100%">
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 6px; min-width: 0">
+        <label for="s-price" style="font-size: 13px; font-weight: 600; color: #4A5163">{{priceLabel}}</label>
+        <input id="s-price" value="" placeholder="Optional" style="height: 52px; border-radius: 16px; border: 1px solid #E3E6EC; background: #F7F8FA; padding: 0 14px; font-size: 16px; color: #1D2433; box-sizing: border-box; width: 100%">
+      </div>
+    </div>
+    <a href="Archive.dc.html" style="height: 56px; border-radius: 28px; background: #1F2A44; color: #FFFFFF; display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 17px; font-weight: 700"><dc-import name="Icon" icon="archive" size="17" color="#FFFFFF" hint-size="17px,17px"></dc-import>Move to Archive</a>
+    <a href="ItemDetail.dc.html" style="align-self: center; font-size: 15px; font-weight: 600; color: #4A5163; padding: 4px">Cancel</a>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  constructor(p) { super(p); this.state = { kind: 'Sold' }; }
+  renderVals() {
+    const K = [{ label: 'Sold', icon: 'money' }, { label: 'Gave away', icon: 'hand-holding-heart' }];
+    return {
+      priceLabel: this.state.kind === 'Sold' ? 'Sold for (৳)' : 'Given to',
+      kinds: K.map((k) => {
+        const on = this.state.kind === k.label;
+        return Object.assign({}, k, {
+          on: on, ink: on ? '#FFFFFF' : '#1D2433', pick: () => this.setState({ kind: k.label }),
+          style: 'height: 60px; border-radius: 20px; font: inherit; font-size: 15px; font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 10px; cursor: pointer; ' +
+            (on ? 'border: none; background: #1F2A44; color: #FFFFFF' : 'border: 1px solid #E3E6EC; background: #F7F8FA; color: #1D2433')
+        });
+      })
+    };
+  }
+}
+</script>
+</body>
+</html>

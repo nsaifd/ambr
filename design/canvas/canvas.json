@@ -10,11 +10,58 @@
 "Vault.dc.html":{"x":3290,"y":0,"w":390,"h":1240,"title":"C4 Vault","is_interactive":true,"radius":36},
 "ColorDirections.dc.html":{"x":3840,"y":0,"w":1410,"h":1140,"title":"Color directions · A chosen"},
 "Foundations.dc.html":{"x":0,"y":2180,"w":1600,"h":1060,"title":"Foundations"},
-"Icon.dc.html":{"x":1720,"y":2180,"w":1240,"h":780,"title":"Icons"}
+"Icon.dc.html":{"x":1720,"y":2180,"w":1240,"h":1120,"title":"Icons"},
+
+"Splash.dc.html":{"x":0,"y":3720,"w":390,"h":844,"title":"A1 Splash","is_interactive":true,"radius":36},
+"Language.dc.html":{"x":470,"y":3720,"w":390,"h":844,"title":"A2 Language","is_interactive":true,"radius":36},
+"Restore.dc.html":{"x":940,"y":3720,"w":390,"h":844,"title":"A3 Restore found","is_interactive":true,"radius":36},
+"Welcome.dc.html":{"x":1410,"y":3720,"w":390,"h":844,"title":"A4 Welcome","is_interactive":true,"radius":36},
+"FirstSave.dc.html":{"x":1880,"y":3720,"w":390,"h":844,"title":"A5 First save","is_interactive":true,"radius":36},
+"AppLock.dc.html":{"x":2350,"y":3720,"w":390,"h":844,"title":"A6 App lock","is_interactive":true,"radius":36},
+
+"PagesReview.dc.html":{"x":0,"y":4984,"w":390,"h":844,"title":"B2 Pages review","is_interactive":true,"radius":36},
+"AddCoverage.dc.html":{"x":470,"y":4984,"w":390,"h":844,"title":"B4 Add coverage","is_interactive":true,"radius":36},
+"BarcodeScan.dc.html":{"x":940,"y":4984,"w":390,"h":844,"title":"B5 Barcode scan","is_interactive":true,"radius":36},
+"Duplicate.dc.html":{"x":1410,"y":4984,"w":390,"h":844,"title":"B6 Duplicate found","is_interactive":true,"radius":36},
+"Search.dc.html":{"x":1880,"y":4984,"w":390,"h":844,"title":"C2 Search","is_interactive":true,"radius":36},
+"Archive.dc.html":{"x":2350,"y":4984,"w":390,"h":844,"title":"C5 Archive","is_interactive":true,"radius":36},
+
+"EditItem.dc.html":{"x":0,"y":6248,"w":390,"h":1300,"title":"D2 Edit item","is_interactive":true,"radius":36},
+"ProofViewer.dc.html":{"x":470,"y":6248,"w":390,"h":844,"title":"D3 Proof viewer","is_interactive":true,"radius":36},
+"MarkSold.dc.html":{"x":940,"y":6248,"w":390,"h":844,"title":"D4 Mark as sold","is_interactive":true,"radius":36},
+"DeleteItem.dc.html":{"x":1410,"y":6248,"w":390,"h":844,"title":"D5 Delete","is_interactive":true,"radius":36},
+"ShowCounter.dc.html":{"x":1880,"y":6248,"w":390,"h":844,"title":"E2 Show at counter","is_interactive":true,"radius":36},
+"SharePdf.dc.html":{"x":2350,"y":6248,"w":390,"h":844,"title":"E3 Share PDF","is_interactive":true,"radius":36},
+"LogRepair.dc.html":{"x":2820,"y":6248,"w":390,"h":1120,"title":"E4 Log a repair","is_interactive":true,"radius":36},
+
+"Notification.dc.html":{"x":0,"y":7968,"w":390,"h":844,"title":"Expiry notification","is_interactive":true,"radius":36},
+"ExpiryBanner.dc.html":{"x":470,"y":7968,"w":390,"h":1000,"title":"D1 with expiry banner","is_interactive":true,"radius":36},
+"HomeEmpty.dc.html":{"x":940,"y":7968,"w":390,"h":844,"title":"C1 Home · empty","is_interactive":true,"radius":36},
+"HomeAllClear.dc.html":{"x":1410,"y":7968,"w":390,"h":1000,"title":"C1 Home · all clear","is_interactive":true,"radius":36},
+
+"You.dc.html":{"x":0,"y":9388,"w":390,"h":1120,"title":"F1 You","is_interactive":true,"radius":36},
+"Backup.dc.html":{"x":470,"y":9388,"w":390,"h":844,"title":"F2 Backup & restore","is_interactive":true,"radius":36},
+"Reminders.dc.html":{"x":940,"y":9388,"w":390,"h":844,"title":"F3 Reminders","is_interactive":true,"radius":36},
+"AppLockSetup.dc.html":{"x":1410,"y":9388,"w":390,"h":844,"title":"F4 App lock setup","is_interactive":true,"radius":36},
+"Pro.dc.html":{"x":1880,"y":9388,"w":390,"h":844,"title":"F5 Ambr Pro","is_interactive":true,"radius":36},
+"Export.dc.html":{"x":2350,"y":9388,"w":390,"h":844,"title":"F6 Export all","is_interactive":true,"radius":36},
+"Privacy.dc.html":{"x":2820,"y":9388,"w":390,"h":844,"title":"F7 Privacy","is_interactive":true,"radius":36},
+"Help.dc.html":{"x":3290,"y":9388,"w":390,"h":844,"title":"F8 Help & feedback","is_interactive":true,"radius":36},
+"Household.dc.html":{"x":3760,"y":9388,"w":390,"h":844,"title":"F9 Household · v2","is_interactive":true,"radius":36}
 },
-"order":["Main.dc.html","WhatBroke.dc.html","ItemDetail.dc.html","ClaimPack.dc.html","Camera.dc.html","Confirm.dc.html","Saved.dc.html","Vault.dc.html","ColorDirections.dc.html","Foundations.dc.html","Icon.dc.html"],
+"order":["Main.dc.html","WhatBroke.dc.html","ItemDetail.dc.html","ClaimPack.dc.html","Camera.dc.html","Confirm.dc.html","Saved.dc.html","Vault.dc.html","ColorDirections.dc.html","Foundations.dc.html","Icon.dc.html",
+"Splash.dc.html","Language.dc.html","Restore.dc.html","Welcome.dc.html","FirstSave.dc.html","AppLock.dc.html",
+"PagesReview.dc.html","AddCoverage.dc.html","BarcodeScan.dc.html","Duplicate.dc.html","Search.dc.html","Archive.dc.html",
+"EditItem.dc.html","ProofViewer.dc.html","MarkSold.dc.html","DeleteItem.dc.html","ShowCounter.dc.html","SharePdf.dc.html","LogRepair.dc.html",
+"Notification.dc.html","ExpiryBanner.dc.html","HomeEmpty.dc.html","HomeAllClear.dc.html",
+"You.dc.html","Backup.dc.html","Reminders.dc.html","AppLockSetup.dc.html","Pro.dc.html","Export.dc.html","Privacy.dc.html","Help.dc.html","Household.dc.html"],
 "notes":{
 "t1":{"x":0,"y":-300,"text":"Ambr · core screens","kind":"title1","maxW":3680,"w":240},
-"t2":{"x":0,"y":1880,"text":"Foundations","kind":"title1","maxW":2960,"w":240}
+"t2":{"x":0,"y":1880,"text":"Foundations","kind":"title1","maxW":2960,"w":240},
+"t3":{"x":0,"y":3420,"text":"Start & onboarding","kind":"title1","maxW":2740,"w":240},
+"t4":{"x":0,"y":4684,"text":"Capture & find","kind":"title1","maxW":2740,"w":240},
+"t5":{"x":0,"y":5948,"text":"Item & claim","kind":"title1","maxW":3210,"w":240},
+"t6":{"x":0,"y":7668,"text":"Reminders & screen states","kind":"title1","maxW":1800,"w":240},
+"t7":{"x":0,"y":9088,"text":"You & settings","kind":"title1","maxW":4150,"w":240}
 },
 "designSystems":[]}

@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Scan serial number</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#FFFFFF;text-decoration:none}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; background: #3D3A35; font-family: 'Public Sans', system-ui, sans-serif; color: #FFFFFF; position: relative; overflow: hidden">
+  <div style="position: absolute; left: 50%; top: 250px; transform: translateX(-50%) rotate(-2deg); width: 250px; background: #F7F6F1; border-radius: 6px; padding: 14px 16px; display: flex; flex-direction: column; gap: 8px; color: #3B3F4A; box-shadow: 0 16px 34px rgba(0, 0, 0, 0.4)">
+    <span style="font-size: 11px; font-weight: 700">GREE · MODEL GS-18XFV32</span>
+    <span aria-hidden="true" style="height: 54px; background: repeating-linear-gradient(90deg, #1D2433 0 2px, transparent 2px 4px, #1D2433 4px 7px, transparent 7px 9px, #1D2433 9px 10px, transparent 10px 13px)"></span>
+    <span style="font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 12px; text-align: center; letter-spacing: 0.08em">GR18K24030917</span>
+  </div>
+  <div aria-hidden="true" style="position: absolute; left: 40px; right: 40px; top: 228px; height: 140px; border-radius: 22px; border: 3px solid #F2A007; box-shadow: 0 0 0 1000px rgba(14, 19, 32, 0.55)">
+    <span style="position: absolute; left: 14px; right: 14px; top: 66px; height: 2px; background: #F2A007; box-shadow: 0 0 12px #F2A007"></span>
+  </div>
+  <div style="position: absolute; left: 16px; right: 16px; top: 54px; display: flex; align-items: center; justify-content: space-between">
+    <a href="Confirm.dc.html" aria-label="Close scanner" style="width: 44px; height: 44px; border-radius: 50%; background: rgba(14, 19, 32, 0.6); display: flex; align-items: center; justify-content: center">
+      <dc-import name="Icon" icon="cross-small" size="22" color="#FFFFFF" hint-size="22px,22px"></dc-import></a>
+    <span style="font-size: 16px; font-weight: 700">Scan serial number</span>
+    <button aria-label="Flash" style="width: 44px; height: 44px; border-radius: 50%; border: none; background: rgba(14, 19, 32, 0.6); display: flex; align-items: center; justify-content: center; cursor: pointer">
+      <dc-import name="Icon" icon="bolt" size="17" color="#FFFFFF" hint-size="17px,17px"></dc-import></button>
+  </div>
+  <span style="position: absolute; top: 396px; left: 50%; transform: translateX(-50%); white-space: nowrap; font-size: 14px; font-weight: 600; color: #D5DBEA">Point at the barcode on the sticker or box</span>
+
+  <div style="position: absolute; left: 8px; right: 8px; bottom: 8px; border-radius: 32px; background: #FFFFFF; color: #1D2433; padding: 20px 18px 18px; display: flex; flex-direction: column; gap: 14px">
+    <div style="display: flex; align-items: center; gap: 12px">
+      <span style="width: 44px; height: 44px; border-radius: 50%; background: #E4F4EA; display: flex; align-items: center; justify-content: center; flex: none"><dc-import name="Icon" icon="barcode-read" size="20" color="#17704A" hint-size="20px,20px"></dc-import></span>
+      <span style="display: flex; flex-direction: column"><span style="font-size: 13px; font-weight: 600; color: #17704A">Found it</span><span style="font-size: 22px; font-weight: 700; letter-spacing: 0.03em; font-variant-numeric: tabular-nums">GR18K24030917</span></span>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px">
+      <a href="BarcodeScan.dc.html" style="height: 52px; border-radius: 26px; background: #F4F5F8; color: #1D2433; display: flex; align-items: center; justify-content: center; font-size: 15px; font-weight: 700">Scan again</a>
+      <a href="Confirm.dc.html" style="height: 52px; border-radius: 26px; background: #1F2A44; display: flex; align-items: center; justify-content: center; font-size: 15px; font-weight: 700">Use this</a>
+    </div>
+    <a href="Confirm.dc.html" style="align-self: center; font-size: 14px; font-weight: 600; color: #7A4A00">Type it instead</a>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

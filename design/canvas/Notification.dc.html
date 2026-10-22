@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Expiry notification</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#1D2433;text-decoration:none}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; background: #2B3756; font-family: 'Public Sans', system-ui, sans-serif; color: #FFFFFF; padding: 120px 14px 30px; display: flex; flex-direction: column; align-items: center; gap: 6px; position: relative; overflow: hidden">
+  <span aria-hidden="true" style="position: absolute; width: 520px; height: 520px; border-radius: 50%; background: #34436B; top: 380px; left: -60px"></span>
+  <span style="position: relative; font-size: 15px; font-weight: 600; color: #D5DBEA">Thursday, 12 Feb</span>
+  <span style="position: relative; font-size: 76px; font-weight: 300; letter-spacing: -0.03em; line-height: 1">10:30</span>
+  <span style="position: relative; font-size: 13px; color: #B9C1D6; margin-bottom: 40px">Phone lock screen · 30 days before the AC warranty ends</span>
+
+  <a href="ExpiryBanner.dc.html" style="position: relative; width: 100%; box-sizing: border-box; border-radius: 26px; background: rgba(255, 255, 255, 0.94); padding: 14px 16px; display: flex; flex-direction: column; gap: 10px; box-shadow: 0 16px 40px rgba(10, 14, 26, 0.30)">
+    <span style="display: flex; align-items: center; gap: 8px; font-size: 12px; color: #646B7E">
+      <span style="width: 22px; height: 22px; border-radius: 7px; background: #1F2A44; display: flex; align-items: center; justify-content: center"><svg width="10" height="12" viewBox="0 0 28 34" aria-hidden="true"><path d="M14 1C14 1 2 15 2 22a12 12 0 0 0 24 0C26 15 14 1 14 1Z" fill="#F2A007"></path></svg></span>
+      <span style="font-weight: 700; color: #1D2433">Ambr</span> · now</span>
+    <span style="display: flex; flex-direction: column; gap: 3px">
+      <span style="font-size: 16px; font-weight: 700">Your AC warranty ends on 14 Mar</span>
+      <span style="font-size: 14px; line-height: 1.4; color: #4A5163">Anything not working right? Get it checked for free now.</span>
+    </span>
+    <span style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px">
+      <span style="height: 40px; border-radius: 20px; background: #F2A007; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 700">Book a check-up</span>
+      <span style="height: 40px; border-radius: 20px; background: #EEF0F4; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 700">All good</span>
+    </span>
+  </a>
+  <span style="position: relative; margin-top: 14px; font-size: 13px; line-height: 1.45; color: #B9C1D6; text-align: center; padding: 0 20px">Ambr sends at most 2 notes per warranty: 30 days and 7 days before it ends. The second one only if you didn't tap All good.</span>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

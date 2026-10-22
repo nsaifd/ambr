@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Home, empty</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#1D2433;text-decoration:none}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; background: #F4F5F8; font-family: 'Public Sans', system-ui, sans-serif; color: #1D2433; padding: 54px 16px 120px; display: flex; flex-direction: column; gap: 16px; position: relative">
+  <div style="display: flex; align-items: center; justify-content: space-between">
+    <span style="height: 40px; padding: 0 14px 0 10px; border-radius: 20px; background: #FFFFFF; box-shadow: 0 0 0 1px #E8EAF0; display: flex; align-items: center; gap: 8px; font-size: 16px; font-weight: 700"><svg width="16" height="20" viewBox="0 0 28 34" aria-hidden="true"><path d="M14 1C14 1 2 15 2 22a12 12 0 0 0 24 0C26 15 14 1 14 1Z" fill="#F2A007"></path></svg>Ambr</span>
+  </div>
+
+  <div style="border-radius: 28px; background: #FFFFFF; box-shadow: 0 0 0 1px #E8EAF0; padding: 22px 18px; display: flex; flex-direction: column; align-items: center; gap: 16px; text-align: center">
+    <div aria-hidden="true" style="width: 100%; height: 120px; border-radius: 20px; background: #F7F8FA; position: relative; display: flex; align-items: flex-end; justify-content: center; gap: 12px; padding-bottom: 22px; box-sizing: border-box">
+      <span style="position: absolute; left: 20px; right: 20px; bottom: 18px; height: 4px; border-radius: 2px; background: #E3E6EC"></span>
+      <span style="width: 54px; height: 64px; border-radius: 14px; border: 2px dashed #CDD2DC; box-sizing: border-box"></span>
+      <span style="width: 54px; height: 80px; border-radius: 14px; border: 2px dashed #F2A007; box-sizing: border-box; display: flex; align-items: center; justify-content: center"><dc-import name="Icon" icon="plus" size="16" color="#C27400" hint-size="16px,16px"></dc-import></span>
+      <span style="width: 54px; height: 50px; border-radius: 14px; border: 2px dashed #CDD2DC; box-sizing: border-box"></span>
+    </div>
+    <span style="display: flex; flex-direction: column; gap: 6px">
+      <span style="font-size: 22px; font-weight: 700; letter-spacing: -0.02em">Nothing saved yet</span>
+      <span style="font-size: 15px; line-height: 1.45; color: #4A5163">Start with the most expensive thing you own. It takes 15 seconds.</span>
+    </span>
+  </div>
+
+  <span style="font-size: 13px; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; color: #646B7E; padding: 4px 4px 0">Start with</span>
+  <div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px">
+    <sc-for list="{{ideas}}" as="i" hint-placeholder-count="4">
+      <a href="Camera.dc.html" style="border-radius: 20px; background: #FFFFFF; box-shadow: 0 0 0 1px #E8EAF0; padding: 12px 4px; display: flex; flex-direction: column; align-items: center; gap: 8px; font-size: 13px; font-weight: 600">
+        <span style="width: 44px; height: 44px; border-radius: 14px; background: {{i.tile}}; display: flex; align-items: center; justify-content: center"><dc-import name="Icon" icon="{{i.icon}}" size="22" color="{{i.ink}}" hint-size="22px,22px"></dc-import></span>{{i.label}}</a>
+    </sc-for>
+  </div>
+
+  <div style="display: flex; gap: 10px; align-items: flex-start; border-radius: 18px; background: #FFF4DE; padding: 12px 14px">
+    <span style="flex: none; padding-top: 1px"><dc-import name="Icon" icon="info" size="15" color="#7A4A00" hint-size="15px,15px"></dc-import></span>
+    <span style="font-size: 13px; line-height: 1.45; color: #4A3300">Thermal receipts fade within months. Snap them soon after you buy.</span>
+  </div>
+
+  <nav aria-label="Main" style="position: absolute; left: 16px; right: 16px; bottom: 26px; display: flex; align-items: center; gap: 12px">
+    <div style="flex: 1; height: 68px; border-radius: 34px; background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(20px); box-shadow: 0 0 0 1px rgba(31, 42, 68, 0.06), 0 14px 34px rgba(31, 42, 68, 0.16); display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); padding: 6px; box-sizing: border-box; gap: 4px">
+      <a href="HomeEmpty.dc.html" aria-current="page" style="border-radius: 28px; background: #1F2A44; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px"><dc-import name="Icon" icon="home-solid" size="19" color="#FFFFFF" hint-size="19px,19px"></dc-import><span style="font-size: 12px; font-weight: 700; color: #FFFFFF">Home</span></a>
+      <a href="Vault.dc.html" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px"><dc-import name="Icon" icon="apps" size="19" color="#646B7E" hint-size="19px,19px"></dc-import><span style="font-size: 12px; font-weight: 600; color: #646B7E">Vault</span></a>
+      <a href="You.dc.html" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px"><dc-import name="Icon" icon="user" size="19" color="#646B7E" hint-size="19px,19px"></dc-import><span style="font-size: 12px; font-weight: 600; color: #646B7E">You</span></a>
+    </div>
+    <a href="Camera.dc.html" aria-label="Add item" style="width: 68px; height: 68px; border-radius: 50%; background: #F2A007; display: flex; align-items: center; justify-content: center; flex: none; box-shadow: 0 0 0 6px rgba(242, 160, 7, 0.16), 0 14px 28px rgba(242, 160, 7, 0.42)"><dc-import name="Icon" icon="plus" size="24" color="#1D2433" hint-size="24px,24px"></dc-import></a>
+  </nav>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return { ideas: [
+      { label: 'Fridge', icon: 'refrigerator', tile: '#E2F4EE', ink: '#1F6E58' },
+      { label: 'TV', icon: 'screen', tile: '#ECE9FB', ink: '#5146A8' },
+      { label: 'Phone', icon: 'mobile-notch', tile: '#FDEBDD', ink: '#9A4A16' },
+      { label: 'AC', icon: 'air-conditioner', tile: '#E6F0FB', ink: '#2B5F8E' }
+    ] };
+  }
+}
+</script>
+</body>
+</html>

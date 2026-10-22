@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Log a repair</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#1D2433;text-decoration:none}
+input,textarea{font:inherit}
+</style>
+</helmet>
+<div style="width: 390px; min-height: 1120px; box-sizing: border-box; background: #F4F5F8; font-family: 'Public Sans', system-ui, sans-serif; color: #1D2433; padding: 54px 16px 130px; display: flex; flex-direction: column; gap: 14px; position: relative">
+  <div style="display: flex; align-items: center; justify-content: space-between">
+    <a href="ClaimPack.dc.html" aria-label="Back" style="width: 44px; height: 44px; border-radius: 50%; background: #FFFFFF; box-shadow: 0 0 0 1px #E8EAF0; display: flex; align-items: center; justify-content: center"><dc-import name="Icon" icon="angle-small-left" size="22" color="#1D2433" hint-size="22px,22px"></dc-import></a>
+    <span style="height: 32px; padding: 0 12px 0 6px; border-radius: 16px; background: #FFFFFF; box-shadow: 0 0 0 1px #E8EAF0; display: flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 600"><span style="width: 22px; height: 22px; border-radius: 8px; background: #E6F0FB; display: flex; align-items: center; justify-content: center"><dc-import name="Icon" icon="air-conditioner" size="12" color="#2B5F8E" hint-size="12px,12px"></dc-import></span>Gree AC</span>
+  </div>
+  <div style="display: flex; flex-direction: column; gap: 4px; padding: 0 2px">
+    <span style="font-size: 28px; font-weight: 700; letter-spacing: -0.025em">How did it go?</span>
+    <span style="font-size: 15px; color: #4A5163">It takes 20 seconds and builds the AC's service history.</span>
+  </div>
+
+  <div style="border-radius: 24px; background: #FFFFFF; box-shadow: 0 0 0 1px #E8EAF0; padding: 16px; display: flex; flex-direction: column; gap: 12px">
+    <span style="font-size: 16px; font-weight: 700">What went wrong?</span>
+    <div style="display: flex; flex-wrap: wrap; gap: 8px">
+      <sc-for list="{{problems}}" as="p" hint-placeholder-count="5"><button aria-pressed="{{p.on}}" onClick="{{p.pick}}" style="{{p.style}}">{{p.label}}</button></sc-for>
+    </div>
+  </div>
+
+  <div style="border-radius: 24px; background: #FFFFFF; box-shadow: 0 0 0 1px #E8EAF0; padding: 16px; display: flex; flex-direction: column; gap: 12px">
+    <span style="font-size: 16px; font-weight: 700">Outcome</span>
+    <div role="radiogroup" aria-label="Outcome" style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px">
+      <sc-for list="{{outcomes}}" as="o" hint-placeholder-count="4">
+        <button role="radio" aria-checked="{{o.on}}" onClick="{{o.pick}}" style="{{o.style}}">
+          <span style="{{o.dot}}"><dc-import name="Icon" icon="{{o.icon}}" size="15" color="{{o.ink}}" hint-size="15px,15px"></dc-import></span>{{o.label}}</button>
+      </sc-for>
+    </div>
+  </div>
+
+  <div style="border-radius: 24px; background: #FFFFFF; box-shadow: 0 0 0 1px #E8EAF0; padding: 16px; display: flex; flex-direction: column; gap: 14px">
+    <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px">
+      <div style="display: flex; flex-direction: column; gap: 6px; min-width: 0">
+        <label for="r-date" style="font-size: 13px; font-weight: 600; color: #4A5163">Date</label>
+        <input id="r-date" value="Today, 22 Oct" style="height: 52px; border-radius: 16px; border: 1px solid #E3E6EC; background: #F7F8FA; padding: 0 14px; font-size: 16px; color: #1D2433; box-sizing: border-box; width: 100%">
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 6px; min-width: 0">
+        <label for="r-cost" style="font-size: 13px; font-weight: 600; color: #4A5163">Cost (৳)</label>
+        <input id="r-cost" value="0" style="height: 52px; border-radius: 16px; border: 1px solid #E3E6EC; background: #F7F8FA; padding: 0 14px; font-size: 16px; color: #1D2433; box-sizing: border-box; width: 100%">
+      </div>
+    </div>
+    <span style="display: flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 600; color: #17704A"><dc-import name="Icon" icon="shield-check" size="13" color="#17704A" hint-size="13px,13px"></dc-import>Free, because it was under warranty</span>
+    <div style="display: flex; flex-direction: column; gap: 6px">
+      <label for="r-notes" style="font-size: 13px; font-weight: 600; color: #4A5163">Notes</label>
+      <textarea id="r-notes" rows="3" style="border-radius: 16px; border: 1px solid #E3E6EC; background: #F7F8FA; padding: 12px 14px; font-size: 15px; color: #1D2433; resize: none">Technician Karim came in 2 days. Replaced the capacitor.</textarea>
+    </div>
+    <button style="height: 48px; border-radius: 16px; border: 1.5px dashed #CDD2DC; background: #FFFFFF; font: inherit; font-size: 15px; font-weight: 600; color: #1D2433; display: flex; align-items: center; justify-content: center; gap: 8px; cursor: pointer"><dc-import name="Icon" icon="camera" size="15" color="#1D2433" hint-size="15px,15px"></dc-import>Add job card photo</button>
+  </div>
+
+  <div style="position: absolute; left: 16px; right: 16px; bottom: 26px; height: 72px; border-radius: 36px; background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(20px); box-shadow: 0 0 0 1px rgba(31, 42, 68, 0.06), 0 14px 34px rgba(31, 42, 68, 0.16); padding: 8px; box-sizing: border-box">
+    <a href="ItemDetail.dc.html" style="height: 56px; border-radius: 28px; background: #F2A007; display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 17px; font-weight: 700"><dc-import name="Icon" icon="check" size="16" color="#1D2433" hint-size="16px,16px"></dc-import>Save to history</a>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":1120}}'>
+class Component extends DCLogic {
+  constructor(p) { super(p); this.state = { probs: { 'Not cooling': true }, outcome: 'Fixed' }; }
+  renderVals() {
+    const chip = (on) => 'height: 42px; padding: 0 14px; border-radius: 21px; font: inherit; font-size: 14px; font-weight: 600; cursor: pointer; ' +
+      (on ? 'border: 1px solid #1F2A44; background: #1F2A44; color: #FFFFFF' : 'border: 1px solid #E3E6EC; background: #F7F8FA; color: #1D2433');
+    const O = [
+      { label: 'Fixed', icon: 'check', c: '#17704A', w: '#E4F4EA' },
+      { label: 'Replaced', icon: 'refresh', c: '#2B5F8E', w: '#E6F0FB' },
+      { label: 'Rejected', icon: 'cross-small', c: '#B42318', w: '#FEE4E2' },
+      { label: 'Pending', icon: 'clock-three', c: '#8F5000', w: '#FFEFD3' }
+    ];
+    return {
+      problems: ['Not cooling', 'Noise', 'Leak', 'Broken part', 'Other'].map((p) => ({
+        label: p, on: !!this.state.probs[p], style: chip(!!this.state.probs[p]),
+        pick: () => { const n = Object.assign({}, this.state.probs); n[p] = !n[p]; this.setState({ probs: n }); }
+      })),
+      outcomes: O.map((o) => {
+        const on = this.state.outcome === o.label;
+        return {
+          label: o.label, icon: o.icon, on: on, ink: on ? '#FFFFFF' : o.c, pick: () => this.setState({ outcome: o.label }),
+          dot: 'width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: ' + (on ? o.c : o.w),
+          style: 'height: 56px; border-radius: 18px; font: inherit; font-size: 15px; font-weight: 700; color: #1D2433; display: flex; align-items: center; gap: 10px; padding: 0 12px; cursor: pointer; ' +
+            (on ? 'border: 2px solid ' + o.c + '; background: #FFFFFF' : 'border: 2px solid transparent; background: #F7F8FA')
+        };
+      })
+    };
+  }
+}
+</script>
+</body>
+</html>

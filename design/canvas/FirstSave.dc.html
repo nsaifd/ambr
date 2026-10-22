@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>First item saved</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#1D2433;text-decoration:none}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; background: #F4F5F8; font-family: 'Public Sans', system-ui, sans-serif; color: #1D2433; padding: 80px 20px 34px; display: flex; flex-direction: column; gap: 24px; position: relative; overflow: hidden">
+  <span aria-hidden="true" style="position: absolute; top: 70px; left: 48px; width: 10px; height: 10px; border-radius: 3px; background: #F2A007; transform: rotate(20deg)"></span>
+  <span aria-hidden="true" style="position: absolute; top: 120px; right: 56px; width: 8px; height: 8px; border-radius: 50%; background: #5FD39A"></span>
+  <span aria-hidden="true" style="position: absolute; top: 210px; left: 34px; width: 7px; height: 14px; border-radius: 3px; background: #8D97B3; transform: rotate(-30deg)"></span>
+  <span aria-hidden="true" style="position: absolute; top: 230px; right: 40px; width: 12px; height: 6px; border-radius: 3px; background: #F2A007; transform: rotate(35deg)"></span>
+  <div style="align-self: center; position: relative; width: 156px; height: 156px">
+    <span style="position: absolute; inset: 0; border-radius: 50%; background: #E4F4EA"></span>
+    <span style="position: absolute; inset: 24px; border-radius: 40px; background: #FFFFFF; box-shadow: 0 14px 30px rgba(27, 127, 76, 0.20); display: flex; align-items: center; justify-content: center">
+      <dc-import name="Icon" icon="refrigerator" size="52" color="#1F6E58" hint-size="52px,52px"></dc-import></span>
+    <span style="position: absolute; right: 18px; bottom: 18px; width: 40px; height: 40px; border-radius: 50%; background: #1B7F4C; box-shadow: 0 0 0 4px #F4F5F8; display: flex; align-items: center; justify-content: center"><dc-import name="Icon" icon="check" size="16" color="#FFFFFF" hint-size="16px,16px"></dc-import></span>
+  </div>
+  <div style="display: flex; flex-direction: column; gap: 6px; text-align: center">
+    <span style="font-size: 28px; font-weight: 700; letter-spacing: -0.025em">Your fridge is protected</span>
+    <span style="font-size: 17px; color: #4A5163">Covered until <b style="color: #1D2433">20 Oct 2027</b></span>
+  </div>
+  <div style="border-radius: 28px; background: #FFFFFF; box-shadow: 0 0 0 1px #E8EAF0; padding: 18px; display: flex; flex-direction: column; gap: 14px">
+    <div style="display: flex; gap: 12px; align-items: flex-start">
+      <span style="width: 48px; height: 48px; border-radius: 16px; background: #FFF4DE; display: flex; align-items: center; justify-content: center; flex: none"><dc-import name="Icon" icon="bell-ring" size="22" color="#7A4A00" hint-size="22px,22px"></dc-import></span>
+      <span style="display: flex; flex-direction: column; gap: 4px">
+        <span style="font-size: 17px; font-weight: 700">Remind you before it ends?</span>
+        <span style="font-size: 14px; line-height: 1.45; color: #4A5163">One note on 20 Sep 2027, so you can get a free check-up in time. Never ads.</span>
+      </span>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px">
+      <a href="Main.dc.html" style="height: 52px; border-radius: 26px; background: #F4F5F8; display: flex; align-items: center; justify-content: center; font-size: 15px; font-weight: 700">Not now</a>
+      <a href="Main.dc.html" style="height: 52px; border-radius: 26px; background: #1F2A44; color: #FFFFFF; display: flex; align-items: center; justify-content: center; font-size: 15px; font-weight: 700">Allow</a>
+    </div>
+  </div>
+  <a href="Camera.dc.html" style="margin-top: auto; height: 52px; border-radius: 26px; display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 15px; font-weight: 600; color: #7A4A00">
+    <dc-import name="Icon" icon="plus" size="13" color="#7A4A00" hint-size="13px,13px"></dc-import>Save another item</a>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

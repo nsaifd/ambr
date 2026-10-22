@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Duplicate found</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#1D2433;text-decoration:none}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; background: #F4F5F8; font-family: 'Public Sans', system-ui, sans-serif; color: #1D2433; position: relative; overflow: hidden">
+  <div aria-hidden="true" style="padding: 54px 16px; display: flex; flex-direction: column; gap: 14px">
+    <div style="height: 44px; display: flex; justify-content: space-between"><span style="width: 44px; height: 44px; border-radius: 50%; background: #FFFFFF"></span></div>
+    <div style="height: 60px; width: 70%; border-radius: 12px; background: #E8EAF0"></div>
+    <div style="height: 96px; border-radius: 24px; background: #FFFFFF"></div>
+    <div style="height: 260px; border-radius: 24px; background: #FFFFFF"></div>
+    <div style="height: 160px; border-radius: 24px; background: #FFFFFF"></div>
+  </div>
+  <div style="position: absolute; inset: 0; background: rgba(20, 27, 44, 0.45)"></div>
+
+  <div role="alertdialog" aria-label="Duplicate receipt" style="position: absolute; left: 20px; right: 20px; top: 200px; background: #FFFFFF; border-radius: 32px; padding: 24px 20px 20px; display: flex; flex-direction: column; align-items: center; gap: 16px; text-align: center; box-shadow: 0 24px 60px rgba(20, 27, 44, 0.30)">
+    <span style="width: 64px; height: 64px; border-radius: 50%; background: #FFF4DE; display: flex; align-items: center; justify-content: center"><dc-import name="Icon" icon="copy" size="26" color="#7A4A00" hint-size="26px,26px"></dc-import></span>
+    <div style="display: flex; flex-direction: column; gap: 6px">
+      <span style="font-size: 22px; font-weight: 700; letter-spacing: -0.02em">Saved this before?</span>
+      <span style="font-size: 15px; line-height: 1.45; color: #4A5163">Looks like you already saved this receipt on 2 Jun 2026.</span>
+    </div>
+    <a href="ItemDetail.dc.html" style="width: 100%; box-sizing: border-box; display: flex; align-items: center; gap: 12px; border-radius: 20px; background: #F7F8FA; padding: 10px; text-align: left">
+      <span style="width: 44px; height: 44px; border-radius: 14px; background: #E2F4EE; display: flex; align-items: center; justify-content: center; flex: none"><dc-import name="Icon" icon="refrigerator" size="22" color="#1F6E58" hint-size="22px,22px"></dc-import></span>
+      <span style="display: flex; flex-direction: column; flex: 1"><span style="font-size: 15px; font-weight: 700">Walton frost-free fridge</span><span style="font-size: 13px; color: #646B7E">Walton Plaza · ৳52,990</span></span>
+      <dc-import name="Icon" icon="angle-small-right" size="20" color="#646B7E" hint-size="20px,20px"></dc-import>
+    </a>
+    <div style="width: 100%; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px">
+      <a href="Confirm.dc.html" style="height: 52px; border-radius: 26px; background: #F4F5F8; display: flex; align-items: center; justify-content: center; font-size: 15px; font-weight: 700">Cancel</a>
+      <a href="Saved.dc.html" style="height: 52px; border-radius: 26px; background: #1F2A44; color: #FFFFFF; display: flex; align-items: center; justify-content: center; font-size: 15px; font-weight: 700">Save anyway</a>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Home, all clear</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#1D2433;text-decoration:none}
+</style>
+</helmet>
+<div style="width: 390px; height: 1000px; box-sizing: border-box; background: #F4F5F8; font-family: 'Public Sans', system-ui, sans-serif; color: #1D2433; padding: 54px 16px 120px; display: flex; flex-direction: column; gap: 16px; position: relative">
+  <div style="display: flex; align-items: center; justify-content: space-between">
+    <span style="height: 40px; padding: 0 14px 0 10px; border-radius: 20px; background: #FFFFFF; box-shadow: 0 0 0 1px #E8EAF0; display: flex; align-items: center; gap: 8px; font-size: 16px; font-weight: 700"><svg width="16" height="20" viewBox="0 0 28 34" aria-hidden="true"><path d="M14 1C14 1 2 15 2 22a12 12 0 0 0 24 0C26 15 14 1 14 1Z" fill="#F2A007"></path></svg>Ambr</span>
+    <span style="width: 44px; height: 44px; border-radius: 50%; background: #FFFFFF; box-shadow: 0 0 0 1px #E8EAF0; display: flex; align-items: center; justify-content: center"><dc-import name="Icon" icon="bell" size="19" color="#1D2433" hint-size="19px,19px"></dc-import></span>
+  </div>
+  <div style="display: flex; flex-direction: column; gap: 2px; padding: 0 2px">
+    <span style="font-size: 15px; color: #646B7E">Good morning</span>
+    <span style="font-size: 30px; font-weight: 700; letter-spacing: -0.025em; line-height: 1.15">Everything is covered</span>
+  </div>
+  <a href="Search.dc.html" style="height: 52px; border-radius: 18px; background: #FFFFFF; box-shadow: 0 0 0 1px #E8EAF0; display: flex; align-items: center; gap: 12px; padding: 0 16px; font-size: 16px; color: #646B7E"><dc-import name="Icon" icon="search" size="18" color="#646B7E" hint-size="18px,18px"></dc-import>Search fridge, phone, AC…</a>
+
+  <div style="border-radius: 28px; background: #1F2A44; padding: 20px; color: #FFFFFF; display: flex; flex-direction: column; gap: 14px">
+    <div style="display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 600; color: #B9C1D6"><dc-import name="Icon" icon="shield-check" size="16" color="#FFC24D" hint-size="16px,16px"></dc-import>Value protected</div>
+    <div style="display: flex; align-items: baseline; justify-content: space-between"><span style="font-size: 38px; font-weight: 700; letter-spacing: -0.03em">৳3,12,400</span><span style="font-size: 14px; color: #B9C1D6">9 items</span></div>
+    <div style="height: 10px; border-radius: 5px; background: #5FD39A"></div>
+    <span style="font-size: 13px; color: #D5DBEA">All 9 covered · next one ends 14 Mar 2027</span>
+  </div>
+
+  <div style="border-radius: 24px; background: #FFFFFF; box-shadow: 0 0 0 1px #E8EAF0; padding: 18px; display: flex; align-items: center; gap: 14px">
+    <span style="width: 52px; height: 52px; border-radius: 50%; background: #E4F4EA; display: flex; align-items: center; justify-content: center; flex: none"><dc-import name="Icon" icon="check" size="22" color="#17704A" hint-size="22px,22px"></dc-import></span>
+    <span style="display: flex; flex-direction: column; gap: 2px"><span style="font-size: 17px; font-weight: 700">All good</span><span style="font-size: 14px; color: #4A5163">Nothing ends in the next 30 days. We'll tell you when something does.</span></span>
+  </div>
+
+  <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px">
+    <a href="WhatBroke.dc.html" style="border-radius: 24px; background: #F2A007; padding: 16px; display: flex; flex-direction: column; gap: 18px">
+      <span style="width: 44px; height: 44px; border-radius: 50%; background: #1F2A44; display: flex; align-items: center; justify-content: center"><dc-import name="Icon" icon="wrench-simple" size="20" color="#FFC24D" hint-size="20px,20px"></dc-import></span>
+      <span style="display: flex; flex-direction: column; gap: 2px"><span style="font-size: 17px; font-weight: 700">Something broke?</span><span style="font-size: 13px; color: #4A3300">Proof in two taps</span></span>
+    </a>
+    <a href="Backup.dc.html" style="border-radius: 24px; background: #FFFFFF; box-shadow: 0 0 0 1px #E8EAF0; padding: 16px; display: flex; flex-direction: column; gap: 18px">
+      <span style="width: 44px; height: 44px; border-radius: 50%; background: #E4F4EA; display: flex; align-items: center; justify-content: center"><dc-import name="Icon" icon="cloud-check" size="20" color="#17704A" hint-size="20px,20px"></dc-import></span>
+      <span style="display: flex; flex-direction: column; gap: 2px"><span style="font-size: 17px; font-weight: 700">Backed up</span><span style="font-size: 13px; color: #17704A; font-weight: 600">Today, 9:14 am</span></span>
+    </a>
+  </div>
+
+  <nav aria-label="Main" style="position: absolute; left: 16px; right: 16px; bottom: 26px; display: flex; align-items: center; gap: 12px">
+    <div style="flex: 1; height: 68px; border-radius: 34px; background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(20px); box-shadow: 0 0 0 1px rgba(31, 42, 68, 0.06), 0 14px 34px rgba(31, 42, 68, 0.16); display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); padding: 6px; box-sizing: border-box; gap: 4px">
+      <a href="HomeAllClear.dc.html" aria-current="page" style="border-radius: 28px; background: #1F2A44; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px"><dc-import name="Icon" icon="home-solid" size="19" color="#FFFFFF" hint-size="19px,19px"></dc-import><span style="font-size: 12px; font-weight: 700; color: #FFFFFF">Home</span></a>
+      <a href="Vault.dc.html" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px"><dc-import name="Icon" icon="apps" size="19" color="#646B7E" hint-size="19px,19px"></dc-import><span style="font-size: 12px; font-weight: 600; color: #646B7E">Vault</span></a>
+      <a href="You.dc.html" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px"><dc-import name="Icon" icon="user" size="19" color="#646B7E" hint-size="19px,19px"></dc-import><span style="font-size: 12px; font-weight: 600; color: #646B7E">You</span></a>
+    </div>
+    <a href="Camera.dc.html" aria-label="Add item" style="width: 68px; height: 68px; border-radius: 50%; background: #F2A007; display: flex; align-items: center; justify-content: center; flex: none; box-shadow: 0 0 0 6px rgba(242, 160, 7, 0.16), 0 14px 28px rgba(242, 160, 7, 0.42)"><dc-import name="Icon" icon="plus" size="24" color="#1D2433" hint-size="24px,24px"></dc-import></a>
+  </nav>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":1000}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

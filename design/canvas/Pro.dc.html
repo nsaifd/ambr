@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Ambr Pro</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#1D2433;text-decoration:none}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; background: #F4F5F8; font-family: 'Public Sans', system-ui, sans-serif; color: #1D2433; display: flex; flex-direction: column; overflow: hidden">
+  <div style="background: #1F2A44; color: #FFFFFF; padding: 54px 20px 56px; border-radius: 0 0 36px 36px; display: flex; flex-direction: column; gap: 16px; position: relative; overflow: hidden">
+    <svg width="200" height="242" viewBox="0 0 28 34" aria-hidden="true" style="position: absolute; right: -50px; top: -30px; opacity: 0.12"><path d="M14 1C14 1 2 15 2 22a12 12 0 0 0 24 0C26 15 14 1 14 1Z" fill="#F2A007"></path></svg>
+    <a href="You.dc.html" aria-label="Close" style="width: 44px; height: 44px; border-radius: 50%; background: #2B3756; display: flex; align-items: center; justify-content: center"><dc-import name="Icon" icon="cross-small" size="22" color="#FFFFFF" hint-size="22px,22px"></dc-import></a>
+    <span style="width: 56px; height: 56px; border-radius: 18px; background: #F2A007; display: flex; align-items: center; justify-content: center"><dc-import name="Icon" icon="crown" size="26" color="#1D2433" hint-size="26px,26px"></dc-import></span>
+    <span style="display: flex; flex-direction: column; gap: 6px"><span style="font-size: 30px; font-weight: 700; letter-spacing: -0.025em">Ambr Pro</span><span style="font-size: 15px; color: #D5DBEA">One payment. Yours forever. No subscription.</span></span>
+  </div>
+
+  <div style="margin: -32px 16px 0; border-radius: 28px; background: #FFFFFF; box-shadow: 0 0 0 1px #E8EAF0, 0 12px 32px rgba(31, 42, 68, 0.08); padding: 8px 16px; display: flex; flex-direction: column">
+    <sc-for list="{{perks}}" as="p" hint-placeholder-count="5">
+      <div style="display: flex; align-items: center; gap: 12px; padding: 10px 0; border-top: {{p.sep}}">
+        <span style="width: 36px; height: 36px; border-radius: 12px; background: #FFF4DE; display: flex; align-items: center; justify-content: center; flex: none"><dc-import name="Icon" icon="{{p.icon}}" size="16" color="#7A4A00" hint-size="16px,16px"></dc-import></span>
+        <span style="flex: 1; font-size: 15px; font-weight: 600">{{p.label}}</span>
+        <span style="{{p.tagStyle}}">{{p.tag}}</span>
+      </div>
+    </sc-for>
+  </div>
+
+  <div style="margin: 14px 16px 0; display: flex; gap: 10px; align-items: flex-start; border-radius: 18px; background: #E4F4EA; padding: 12px 14px">
+    <span style="flex: none; padding-top: 1px"><dc-import name="Icon" icon="shield-check" size="15" color="#17704A" hint-size="15px,15px"></dc-import></span>
+    <span style="font-size: 13px; line-height: 1.45; color: #11573A">Free stays useful: your first 10 items always keep their claim pack, share and call, even if you never pay.</span>
+  </div>
+
+  <div style="margin: auto 16px 26px; display: flex; flex-direction: column; gap: 8px">
+    <a href="You.dc.html" style="height: 60px; border-radius: 30px; background: #F2A007; display: flex; align-items: center; justify-content: center; gap: 10px; font-size: 17px; font-weight: 700; box-shadow: 0 10px 22px rgba(242, 160, 7, 0.30)">Get Pro for ৳499 <span style="font-size: 13px; font-weight: 600; color: #4A3300">once</span></a>
+    <a href="You.dc.html" style="height: 44px; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 600; color: #4A5163">Already bought it? Restore purchase</a>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const soon = 'font-size: 11px; font-weight: 700; padding: 3px 8px; border-radius: 999px; background: #ECEEF2; color: #4A5163';
+    const P = [
+      { label: 'Unlimited items', icon: 'apps' },
+      { label: 'App lock with fingerprint', icon: 'fingerprint' },
+      { label: 'Export everything to PDF or CSV', icon: 'download' },
+      { label: 'Your own categories', icon: 'list-check' },
+      { label: 'Share the vault with family', icon: 'users', tag: 'Soon' }
+    ];
+    return { perks: P.map((p, i) => ({ label: p.label, icon: p.icon, tag: p.tag || '', tagStyle: p.tag ? soon : 'display: none', sep: i === 0 ? 'none' : '1px solid #EEF0F4' })) };
+  }
+}
+</script>
+</body>
+</html>

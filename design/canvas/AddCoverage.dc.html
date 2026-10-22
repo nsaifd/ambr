@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Add coverage</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#1D2433;text-decoration:none}
+input{font:inherit}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; background: #F4F5F8; font-family: 'Public Sans', system-ui, sans-serif; color: #1D2433; position: relative; overflow: hidden">
+  <div aria-hidden="true" style="padding: 54px 16px; display: flex; flex-direction: column; gap: 14px">
+    <div style="height: 44px; display: flex; justify-content: space-between"><span style="width: 44px; height: 44px; border-radius: 50%; background: #FFFFFF"></span><span style="width: 100px; height: 32px; border-radius: 16px; background: #E4F4EA"></span></div>
+    <div style="height: 60px; width: 70%; border-radius: 12px; background: #E8EAF0"></div>
+    <div style="height: 96px; border-radius: 24px; background: #FFFFFF"></div>
+    <div style="height: 220px; border-radius: 24px; background: #FFFFFF"></div>
+  </div>
+  <div style="position: absolute; inset: 0; background: rgba(20, 27, 44, 0.45)"></div>
+
+  <div role="dialog" aria-label="Add coverage" style="position: absolute; left: 0; right: 0; bottom: 0; background: #FFFFFF; border-radius: 32px 32px 0 0; padding: 10px 18px 26px; display: flex; flex-direction: column; gap: 16px">
+    <span style="align-self: center; width: 40px; height: 5px; border-radius: 3px; background: #DDE1E8"></span>
+    <div style="display: flex; justify-content: space-between; align-items: center">
+      <span style="font-size: 22px; font-weight: 700; letter-spacing: -0.02em">Add coverage</span>
+      <a href="Confirm.dc.html" aria-label="Close" style="width: 40px; height: 40px; border-radius: 50%; background: #F4F5F8; display: flex; align-items: center; justify-content: center"><dc-import name="Icon" icon="cross-small" size="20" color="#1D2433" hint-size="20px,20px"></dc-import></a>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 8px">
+      <span style="font-size: 13px; font-weight: 600; color: #4A5163">Type</span>
+      <div style="display: flex; flex-wrap: wrap; gap: 8px">
+        <sc-for list="{{types}}" as="t" hint-placeholder-count="4"><button aria-pressed="{{t.on}}" onClick="{{t.pick}}" style="{{t.style}}">{{t.label}}</button></sc-for>
+      </div>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 6px">
+      <label for="cov-part" style="font-size: 13px; font-weight: 600; color: #4A5163">What it covers</label>
+      <input id="cov-part" value="Compressor" style="height: 52px; border-radius: 16px; border: 1px solid #E3E6EC; background: #F7F8FA; padding: 0 14px; font-size: 16px; color: #1D2433; box-sizing: border-box">
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 8px">
+      <span style="font-size: 13px; font-weight: 600; color: #4A5163">Length</span>
+      <div style="display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 6px">
+        <sc-for list="{{lens}}" as="l" hint-placeholder-count="5"><button aria-pressed="{{l.on}}" onClick="{{l.pick}}" style="{{l.style}}">{{l.label}}</button></sc-for>
+      </div>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 8px">
+      <span style="font-size: 13px; font-weight: 600; color: #4A5163">Starts from</span>
+      <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); background: #F4F5F8; border-radius: 16px; padding: 4px">
+        <span style="height: 40px; border-radius: 12px; background: #FFFFFF; box-shadow: 0 1px 3px rgba(31, 42, 68, 0.10); display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700">Purchase</span>
+        <span style="height: 40px; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 600; color: #646B7E">Delivery</span>
+        <span style="height: 40px; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 600; color: #646B7E">Custom date</span>
+      </div>
+    </div>
+    <div style="display: flex; align-items: center; gap: 10px; border-radius: 16px; background: #E4F4EA; padding: 12px 14px">
+      <dc-import name="Icon" icon="shield-check" size="16" color="#17704A" hint-size="16px,16px"></dc-import>
+      <span style="font-size: 14px; color: #17704A; font-weight: 600">{{summary}}</span>
+    </div>
+    <a href="Confirm.dc.html" style="height: 56px; border-radius: 28px; background: #F2A007; display: flex; align-items: center; justify-content: center; font-size: 17px; font-weight: 700">Add coverage</a>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  constructor(p) { super(p); this.state = { type: 'Manufacturer', len: '10 yr' }; }
+  chip(on, extra) {
+    return 'height: 42px; padding: 0 14px; border-radius: 21px; font: inherit; font-size: 14px; font-weight: 600; cursor: pointer; ' + (extra || '') +
+      (on ? 'border: 1px solid #1F2A44; background: #1F2A44; color: #FFFFFF' : 'border: 1px solid #E3E6EC; background: #F7F8FA; color: #1D2433');
+  }
+  renderVals() {
+    const years = { '1 yr': 2027, '2 yr': 2028, '5 yr': 2031, '10 yr': 2036 };
+    const end = years[this.state.len];
+    return {
+      types: ['Manufacturer', 'Shop', 'Extended', 'Free services'].map((t) => ({ label: t, on: this.state.type === t, style: this.chip(this.state.type === t), pick: () => this.setState({ type: t }) })),
+      lens: ['1 yr', '2 yr', '5 yr', '10 yr', 'Other'].map((l) => ({ label: l, on: this.state.len === l, style: this.chip(this.state.len === l, 'padding: 0; '), pick: () => this.setState({ len: l }) })),
+      summary: end ? 'Compressor covered until 20 Oct ' + end : 'Pick an end date'
+    };
+  }
+}
+</script>
+</body>
+</html>

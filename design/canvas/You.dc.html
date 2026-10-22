@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>You</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&amp;family=Noto+Sans+Bengali:wght@500&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#1D2433;text-decoration:none}
+</style>
+</helmet>
+<div style="width: 390px; min-height: 1120px; box-sizing: border-box; background: #F4F5F8; font-family: 'Public Sans', 'Noto Sans Bengali', system-ui, sans-serif; color: #1D2433; padding: 54px 16px 132px; display: flex; flex-direction: column; gap: 14px; position: relative">
+  <span style="font-size: 30px; font-weight: 700; letter-spacing: -0.025em; padding: 0 2px">You</span>
+
+  <a href="Backup.dc.html" style="border-radius: 24px; background: #FFFFFF; box-shadow: 0 0 0 1px #E8EAF0; padding: 16px; display: flex; align-items: center; gap: 14px">
+    <span style="width: 52px; height: 52px; border-radius: 16px; background: #E4F4EA; display: flex; align-items: center; justify-content: center; flex: none"><dc-import name="Icon" icon="cloud-check" size="24" color="#17704A" hint-size="24px,24px"></dc-import></span>
+    <span style="display: flex; flex-direction: column; flex: 1"><span style="font-size: 16px; font-weight: 700">Your data is backed up</span><span style="font-size: 13px; color: #646B7E">Google Drive · today, 9:14 pm</span></span>
+    <dc-import name="Icon" icon="angle-small-right" size="20" color="#646B7E" hint-size="20px,20px"></dc-import>
+  </a>
+
+  <a href="Pro.dc.html" style="border-radius: 24px; background: #1F2A44; color: #FFFFFF; padding: 16px; display: flex; flex-direction: column; gap: 12px">
+    <span style="display: flex; align-items: center; justify-content: space-between">
+      <span style="display: flex; align-items: center; gap: 10px"><span style="width: 40px; height: 40px; border-radius: 12px; background: #2B3756; display: flex; align-items: center; justify-content: center"><dc-import name="Icon" icon="crown" size="18" color="#FFC24D" hint-size="18px,18px"></dc-import></span><span style="display: flex; flex-direction: column"><span style="font-size: 16px; font-weight: 700">Free plan</span><span style="font-size: 13px; color: #B9C1D6">8 of 10 items used</span></span></span>
+      <span style="height: 36px; padding: 0 14px; border-radius: 18px; background: #F2A007; color: #1D2433; display: flex; align-items: center; font-size: 14px; font-weight: 700">Get Pro</span>
+    </span>
+    <span role="img" aria-label="8 of 10 items used" style="height: 8px; border-radius: 4px; background: #2B3756; overflow: hidden"><span style="display: block; width: 80%; height: 8px; border-radius: 4px; background: #FFC24D"></span></span>
+  </a>
+
+  <sc-for list="{{groups}}" as="g" hint-placeholder-count="3">
+    <div style="display: flex; flex-direction: column; gap: 8px">
+      <span style="font-size: 13px; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; color: #646B7E; padding: 6px 4px 0">{{g.title}}</span>
+      <div style="border-radius: 24px; background: #FFFFFF; box-shadow: 0 0 0 1px #E8EAF0; padding: 4px 0">
+        <sc-for list="{{g.rows}}" as="r" hint-placeholder-count="3">
+          <a href="{{r.href}}" style="display: flex; align-items: center; gap: 12px; padding: 10px 14px; border-top: {{r.sep}}">
+            <span style="width: 40px; height: 40px; border-radius: 12px; background: #F4F5F8; display: flex; align-items: center; justify-content: center; flex: none"><dc-import name="Icon" icon="{{r.icon}}" size="17" color="#1D2433" hint-size="17px,17px"></dc-import></span>
+            <span style="flex: 1; font-size: 15px; font-weight: 600">{{r.label}}</span>
+            <sc-if value="{{r.hasTag}}" hint-placeholder-val="{{ false }}"><span style="{{r.tagStyle}}">{{r.tag}}</span></sc-if>
+            <span style="font-size: 14px; color: #646B7E">{{r.value}}</span>
+            <dc-import name="Icon" icon="angle-small-right" size="18" color="#9AA0AE" hint-size="18px,18px"></dc-import>
+          </a>
+        </sc-for>
+      </div>
+    </div>
+  </sc-for>
+
+  <span style="font-size: 12px; color: #646B7E; text-align: center; padding-top: 6px">Ambr 1.0 · Icons: Uicons by Flaticon</span>
+
+  <nav aria-label="Main" style="position: absolute; left: 16px; right: 16px; bottom: 26px; display: flex; align-items: center; gap: 12px">
+    <div style="flex: 1; height: 68px; border-radius: 34px; background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(20px); box-shadow: 0 0 0 1px rgba(31, 42, 68, 0.06), 0 14px 34px rgba(31, 42, 68, 0.16); display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); padding: 6px; box-sizing: border-box; gap: 4px">
+      <a href="Main.dc.html" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px"><dc-import name="Icon" icon="home" size="19" color="#646B7E" hint-size="19px,19px"></dc-import><span style="font-size: 12px; font-weight: 600; color: #646B7E">Home</span></a>
+      <a href="Vault.dc.html" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px"><dc-import name="Icon" icon="apps" size="19" color="#646B7E" hint-size="19px,19px"></dc-import><span style="font-size: 12px; font-weight: 600; color: #646B7E">Vault</span></a>
+      <a href="You.dc.html" aria-current="page" style="border-radius: 28px; background: #1F2A44; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px"><dc-import name="Icon" icon="user-solid" size="19" color="#FFFFFF" hint-size="19px,19px"></dc-import><span style="font-size: 12px; font-weight: 700; color: #FFFFFF">You</span></a>
+    </div>
+    <a href="Camera.dc.html" aria-label="Add item" style="width: 68px; height: 68px; border-radius: 50%; background: #F2A007; display: flex; align-items: center; justify-content: center; flex: none; box-shadow: 0 0 0 6px rgba(242, 160, 7, 0.16), 0 14px 28px rgba(242, 160, 7, 0.42)"><dc-import name="Icon" icon="plus" size="24" color="#1D2433" hint-size="24px,24px"></dc-import></a>
+  </nav>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":1120}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const tags = {
+      Pro: 'font-size: 11px; font-weight: 700; padding: 3px 8px; border-radius: 999px; background: #FFF4DE; color: #7A4A00',
+      Soon: 'font-size: 11px; font-weight: 700; padding: 3px 8px; border-radius: 999px; background: #ECEEF2; color: #4A5163'
+    };
+    const G = [
+      { title: 'Settings', rows: [
+        { label: 'Reminders', icon: 'bell', value: '30 days before', href: 'Reminders.dc.html' },
+        { label: 'Language', icon: 'language', value: 'বাংলা', href: 'Language.dc.html' },
+        { label: 'App lock', icon: 'lock', value: '', tag: 'Pro', href: 'AppLockSetup.dc.html' },
+        { label: 'Household', icon: 'users', value: '', tag: 'Soon', href: 'Household.dc.html' }
+      ] },
+      { title: 'Your data', rows: [
+        { label: 'Export everything', icon: 'download', value: 'PDF, CSV', href: 'Export.dc.html' },
+        { label: 'Privacy', icon: 'shield-check', value: '', href: 'Privacy.dc.html' },
+        { label: 'Archive', icon: 'archive', value: '2', href: 'Archive.dc.html' }
+      ] },
+      { title: 'Support', rows: [
+        { label: 'Help & feedback', icon: 'interrogation', value: '', href: 'Help.dc.html' },
+        { label: 'Rate Ambr', icon: 'star', value: '', href: 'You.dc.html' }
+      ] }
+    ];
+    return { groups: G.map((g) => ({ title: g.title, rows: g.rows.map((r, i) => Object.assign({ hasTag: !!r.tag, tag: r.tag || '', tagStyle: tags[r.tag] || '', sep: i === 0 ? 'none' : '1px solid #EEF0F4' }, r)) })) };
+  }
+}
+</script>
+</body>
+</html>
