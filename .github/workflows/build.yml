@@ -19,7 +19,16 @@ jobs:
       - uses: gradle/actions/setup-gradle@v4
 
       - name: Build debug APK
-        run: ./gradlew testDebugUnitTest assembleDebug --stacktrace
+        run: |
+          set -o pipefail
+          ./gradlew testDebugUnitTest assembleDebug --stacktrace 2>&1 | tee build.log
+
+      # Surface compiler errors as annotations so they are readable from the API.
+      - name: Report errors
+        if: failure()
+        run: |
+          msg=$(grep -E '^e: |error:|FAILED|What went wrong' -A2 build.log | head -100 | sed 's#file:///home/runner/work/ambr/ambr/##' | awk '{printf "%s%%0A", $0}')
+          echo "::error::$msg"
 
       - uses: actions/upload-artifact@v4
         with:
