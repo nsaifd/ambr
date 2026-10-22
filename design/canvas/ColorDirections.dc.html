@@ -28,7 +28,7 @@ body{margin:0}
 
         <div style="display: flex; align-items: center; justify-content: space-between">
           <span style="display: flex; align-items: center; gap: 8px; font-size: 17px; font-weight: 700">
-            <svg width="18" height="22" viewBox="0 0 28 34" aria-hidden="true"><path d="M14 1C14 1 2 15 2 22a12 12 0 0 0 24 0C26 15 14 1 14 1Z" fill="#F2A007"></path></svg>Ambr</span>
+            <svg width="18" height="22" viewBox="110 165 132 207" aria-hidden="true"><path d="M231.075 165.855C236.579 165.855 241.042 170.318 241.042 175.822V224.214C241.042 234.303 235.659 243.624 226.922 248.669L203.424 262.236C198.601 265.02 198.601 271.98 203.424 274.764L226.922 288.331C235.659 293.376 241.042 302.697 241.042 312.786V361.178C241.042 366.682 236.579 371.145 231.075 371.145H120.417C114.913 371.145 110.45 366.682 110.45 361.178V312.786C110.45 302.698 115.833 293.376 124.569 288.331L148.068 274.764C152.89 271.98 152.89 265.02 148.068 262.236L124.569 248.669C115.833 243.624 110.45 234.302 110.45 224.214V175.822C110.45 170.318 114.913 165.855 120.417 165.855H231.075Z" fill="#EF9426"></path></svg>Ambr</span>
           <span aria-label="Reminders" style="width: 40px; height: 40px; border-radius: 50%; background: {{p.card}}; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 0 1px {{p.line}}">
             <svg width="17" height="17" viewBox="0 0 300 300" aria-hidden="true"><path d="{{ic.bell}}" fill="{{p.ink}}"></path></svg></span>
         </div>
@@ -132,21 +132,21 @@ class Component extends DCLogic {
       { name: 'A · Honey & Navy', rec: true, about: 'Navy replaces black, so it reads calm and trustworthy. Honey amber stays the brand and marks the two actions that matter: Add and Something broke.',
         bg: '#F4F5F8', card: '#FFFFFF', line: '#E6E8EE', ink: '#1D2433', ink2: '#4A5163', muted: '#646B7E', search: '#E9EBF0',
         hero: '#1F2A44', heroLine: '#1F2A44', heroText: '#FFFFFF', heroSub: '#B9C1D6', heroNum: '#FFC24D', heroTile: '#2B3756',
-        broke: '#FFF4DE', brokeLine: '#F8E3B5', brokeIconBg: '#F2A007', brokeIcon: '#1D2433',
-        nav: '#FFFFFF', navOn: '#FFEFCF', navOnInk: '#7A4A00', fab: '#F2A007', fabInk: '#1D2433',
-        swatches: [{ c: '#F2A007', n: 'Honey' }, { c: '#1F2A44', n: 'Navy' }, { c: '#F4F5F8', n: 'Mist' }, { c: '#FFF4DE', n: 'Cream tint' }, { c: '#1B7F4C', n: 'Covered' }] },
+        broke: '#FFF4DE', brokeLine: '#F8E3B5', brokeIconBg: '#EF9426', brokeIcon: '#1D2433',
+        nav: '#FFFFFF', navOn: '#FFEFCF', navOnInk: '#7A4A00', fab: '#EF9426', fabInk: '#1D2433',
+        swatches: [{ c: '#EF9426', n: 'Honey' }, { c: '#1F2A44', n: 'Navy' }, { c: '#F4F5F8', n: 'Mist' }, { c: '#FFF4DE', n: 'Cream tint' }, { c: '#1B7F4C', n: 'Covered' }] },
       { name: 'B · Sky & Amber', about: 'Google-style blue for every action, which feels familiar and safe. Amber appears only for warmth and warnings. Blue and amber stay distinct for color-blind users.',
         bg: '#F3F6FB', card: '#FFFFFF', line: '#E2E8F1', ink: '#172033', ink2: '#475166', muted: '#5F6B80', search: '#E8EDF5',
         hero: '#E8F0FE', heroLine: '#D6E3FB', heroText: '#172033', heroSub: '#475166', heroNum: '#1A56DB', heroTile: '#FFFFFF',
         broke: '#FFFFFF', brokeLine: '#E2E8F1', brokeIconBg: '#FFEFCF', brokeIcon: '#8A5300',
         nav: '#FFFFFF', navOn: '#E1EBFD', navOnInk: '#1747B8', fab: '#1A56DB', fabInk: '#FFFFFF',
-        swatches: [{ c: '#1A56DB', n: 'Sky' }, { c: '#E8F0FE', n: 'Sky tint' }, { c: '#F2A007', n: 'Amber' }, { c: '#F3F6FB', n: 'Cloud' }, { c: '#1B7F4C', n: 'Covered' }] },
+        swatches: [{ c: '#1A56DB', n: 'Sky' }, { c: '#E8F0FE', n: 'Sky tint' }, { c: '#EF9426', n: 'Amber' }, { c: '#F3F6FB', n: 'Cloud' }, { c: '#1B7F4C', n: 'Covered' }] },
       { name: 'C · Quiet light', about: 'Apple-like restraint: white cards on soft grey, almost no color. Amber is the only accent, so it pulls the eye wherever it appears.',
         bg: '#F2F2F7', card: '#FFFFFF', line: '#E5E5EA', ink: '#1C1C1E', ink2: '#48484D', muted: '#6C6C72', search: '#E4E4EA',
         hero: '#FFFFFF', heroLine: '#E5E5EA', heroText: '#1C1C1E', heroSub: '#6C6C72', heroNum: '#C27400', heroTile: '#F2F2F7',
         broke: '#FFFFFF', brokeLine: '#E5E5EA', brokeIconBg: '#FFEFCF', brokeIcon: '#8A5300',
-        nav: '#FFFFFF', navOn: '#FFEFCF', navOnInk: '#7A4A00', fab: '#F2A007', fabInk: '#1C1C1E',
-        swatches: [{ c: '#F2A007', n: 'Amber' }, { c: '#1C1C1E', n: 'Ink' }, { c: '#F2F2F7', n: 'Grey' }, { c: '#FFFFFF', n: 'White' }, { c: '#1B7F4C', n: 'Covered' }] }
+        nav: '#FFFFFF', navOn: '#FFEFCF', navOnInk: '#7A4A00', fab: '#EF9426', fabInk: '#1C1C1E',
+        swatches: [{ c: '#EF9426', n: 'Amber' }, { c: '#1C1C1E', n: 'Ink' }, { c: '#F2F2F7', n: 'Grey' }, { c: '#FFFFFF', n: 'White' }, { c: '#1B7F4C', n: 'Covered' }] }
     ];
     return { ic: ic, palettes: P.map((p) => Object.assign({}, p, { rec: !!p.rec, rows: rows(p.line) })) };
   }

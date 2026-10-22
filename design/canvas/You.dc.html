@@ -8,13 +8,13 @@
 <body>
 <x-dc>
 <helmet>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&amp;family=Noto+Sans+Bengali:wght@500&amp;display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&amp;display=swap">
 <style>
 body{margin:0}
 a{color:#1D2433;text-decoration:none}
 </style>
 </helmet>
-<div style="width: 390px; min-height: 1120px; box-sizing: border-box; background: #F4F5F8; font-family: 'Public Sans', 'Noto Sans Bengali', system-ui, sans-serif; color: #1D2433; padding: 54px 16px 132px; display: flex; flex-direction: column; gap: 14px; position: relative">
+<div style="width: 390px; min-height: 1120px; box-sizing: border-box; background: #F4F5F8; font-family: 'Public Sans', system-ui, sans-serif; color: #1D2433; padding: 54px 16px 132px; display: flex; flex-direction: column; gap: 14px; position: relative">
   <span style="font-size: 30px; font-weight: 700; letter-spacing: -0.025em; padding: 0 2px">You</span>
 
   <a href="Backup.dc.html" style="border-radius: 24px; background: #FFFFFF; box-shadow: 0 0 0 1px #E8EAF0; padding: 16px; display: flex; align-items: center; gap: 14px">
@@ -26,7 +26,7 @@ a{color:#1D2433;text-decoration:none}
   <a href="Pro.dc.html" style="border-radius: 24px; background: #1F2A44; color: #FFFFFF; padding: 16px; display: flex; flex-direction: column; gap: 12px">
     <span style="display: flex; align-items: center; justify-content: space-between">
       <span style="display: flex; align-items: center; gap: 10px"><span style="width: 40px; height: 40px; border-radius: 12px; background: #2B3756; display: flex; align-items: center; justify-content: center"><dc-import name="Icon" icon="crown" size="18" color="#FFC24D" hint-size="18px,18px"></dc-import></span><span style="display: flex; flex-direction: column"><span style="font-size: 16px; font-weight: 700">Free plan</span><span style="font-size: 13px; color: #B9C1D6">8 of 10 items used</span></span></span>
-      <span style="height: 36px; padding: 0 14px; border-radius: 18px; background: #F2A007; color: #1D2433; display: flex; align-items: center; font-size: 14px; font-weight: 700">Get Pro</span>
+      <span style="height: 36px; padding: 0 14px; border-radius: 18px; background: #EF9426; color: #1D2433; display: flex; align-items: center; font-size: 14px; font-weight: 700">Get Pro</span>
     </span>
     <span role="img" aria-label="8 of 10 items used" style="height: 8px; border-radius: 4px; background: #2B3756; overflow: hidden"><span style="display: block; width: 80%; height: 8px; border-radius: 4px; background: #FFC24D"></span></span>
   </a>
@@ -56,7 +56,7 @@ a{color:#1D2433;text-decoration:none}
       <a href="Vault.dc.html" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px"><dc-import name="Icon" icon="apps" size="19" color="#646B7E" hint-size="19px,19px"></dc-import><span style="font-size: 12px; font-weight: 600; color: #646B7E">Vault</span></a>
       <a href="You.dc.html" aria-current="page" style="border-radius: 28px; background: #1F2A44; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px"><dc-import name="Icon" icon="user-solid" size="19" color="#FFFFFF" hint-size="19px,19px"></dc-import><span style="font-size: 12px; font-weight: 700; color: #FFFFFF">You</span></a>
     </div>
-    <a href="Camera.dc.html" aria-label="Add item" style="width: 68px; height: 68px; border-radius: 50%; background: #F2A007; display: flex; align-items: center; justify-content: center; flex: none; box-shadow: 0 0 0 6px rgba(242, 160, 7, 0.16), 0 14px 28px rgba(242, 160, 7, 0.42)"><dc-import name="Icon" icon="plus" size="24" color="#1D2433" hint-size="24px,24px"></dc-import></a>
+    <a href="Camera.dc.html" aria-label="Add item" style="width: 68px; height: 68px; border-radius: 50%; background: #EF9426; display: flex; align-items: center; justify-content: center; flex: none; box-shadow: 0 0 0 6px rgba(239, 148, 38, 0.16), 0 14px 28px rgba(239, 148, 38, 0.42)"><dc-import name="Icon" icon="plus" size="24" color="#1D2433" hint-size="24px,24px"></dc-import></a>
   </nav>
 </div>
 </x-dc>
@@ -70,7 +70,6 @@ class Component extends DCLogic {
     const G = [
       { title: 'Settings', rows: [
         { label: 'Reminders', icon: 'bell', value: '30 days before', href: 'Reminders.dc.html' },
-        { label: 'Language', icon: 'language', value: 'বাংলা', href: 'Language.dc.html' },
         { label: 'App lock', icon: 'lock', value: '', tag: 'Pro', href: 'AppLockSetup.dc.html' },
         { label: 'Household', icon: 'users', value: '', tag: 'Soon', href: 'Household.dc.html' }
       ] },

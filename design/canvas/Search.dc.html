@@ -8,7 +8,7 @@
 <body>
 <x-dc>
 <helmet>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&amp;family=Noto+Sans+Bengali:wght@500;700&amp;display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&amp;display=swap">
 <style>
 body{margin:0}
 a{color:#1D2433;text-decoration:none}
@@ -16,11 +16,11 @@ input{font:inherit}
 input:focus{outline:none}
 </style>
 </helmet>
-<div style="width: 390px; height: 844px; box-sizing: border-box; background: #F4F5F8; font-family: 'Public Sans', 'Noto Sans Bengali', system-ui, sans-serif; color: #1D2433; padding: 54px 16px 26px; display: flex; flex-direction: column; gap: 16px">
+<div style="width: 390px; height: 844px; box-sizing: border-box; background: #F4F5F8; font-family: 'Public Sans', system-ui, sans-serif; color: #1D2433; padding: 54px 16px 26px; display: flex; flex-direction: column; gap: 16px">
   <div style="display: flex; align-items: center; gap: 10px">
     <label for="q" style="flex: 1; height: 52px; border-radius: 18px; background: #FFFFFF; box-shadow: 0 0 0 2px #1F2A44; display: flex; align-items: center; gap: 10px; padding: 0 14px">
       <dc-import name="Icon" icon="search" size="17" color="#1D2433" hint-size="17px,17px"></dc-import>
-      <input id="q" value="{{q}}" onInput="{{onQ}}" placeholder="Search in Bangla or English" aria-label="Search items" style="flex: 1; min-width: 0; border: none; background: transparent; font-size: 17px; color: #1D2433">
+      <input id="q" value="{{q}}" onInput="{{onQ}}" placeholder="Search fridge, phone, AC…" aria-label="Search items" style="flex: 1; min-width: 0; border: none; background: transparent; font-size: 17px; color: #1D2433">
     </label>
     <a href="Main.dc.html" style="font-size: 15px; font-weight: 600; color: #7A4A00; padding: 8px 4px">Cancel</a>
   </div>
@@ -49,11 +49,11 @@ input:focus{outline:none}
       <span style="width: 56px; height: 56px; border-radius: 50%; background: #F4F5F8; display: flex; align-items: center; justify-content: center"><dc-import name="Icon" icon="search" size="22" color="#646B7E" hint-size="22px,22px"></dc-import></span>
       <span style="font-size: 17px; font-weight: 700">Nothing called “{{q}}” yet</span>
       <span style="font-size: 14px; color: #4A5163">Not saved? Add it now and it will be here next time.</span>
-      <a href="Camera.dc.html" style="height: 48px; padding: 0 20px; border-radius: 24px; background: #F2A007; display: flex; align-items: center; gap: 8px; font-size: 15px; font-weight: 700; margin-top: 4px"><dc-import name="Icon" icon="plus" size="13" color="#1D2433" hint-size="13px,13px"></dc-import>Add {{q}}</a>
+      <a href="Camera.dc.html" style="height: 48px; padding: 0 20px; border-radius: 24px; background: #EF9426; display: flex; align-items: center; gap: 8px; font-size: 15px; font-weight: 700; margin-top: 4px"><dc-import name="Icon" icon="plus" size="13" color="#1D2433" hint-size="13px,13px"></dc-import>Add {{q}}</a>
     </div>
   </sc-if>
 
-  <span lang="bn" style="margin-top: auto; text-align: center; font-size: 13px; color: #646B7E">Tip: “এসি” finds AC, “ফ্রিজ” finds Fridge</span>
+  <span style="margin-top: auto; text-align: center; font-size: 13px; color: #646B7E">Tip: search by brand, room or store too</span>
 </div>
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
@@ -66,18 +66,18 @@ class Component extends DCLogic {
       x: { status: 'Expired', pillBg: '#ECEEF2', pillInk: '#5F6577', pillIcon: 'minus-circle' }
     };
     const all = [
-      { name: 'Gree 1.5 ton AC', sub: 'Bedroom · until 14 Mar 2027', keys: 'ac air conditioner এসি gree', icon: 'air-conditioner', tile: '#E6F0FB', ink: '#2B5F8E', s: 'c' },
-      { name: 'Walton 1 ton AC', sub: 'Living room · until 8 Jun 2027', keys: 'ac air conditioner এসি walton', icon: 'air-conditioner', tile: '#E6F0FB', ink: '#2B5F8E', s: 'c' },
-      { name: 'Walton fridge', sub: 'Kitchen · until 20 Oct 2027', keys: 'fridge refrigerator ফ্রিজ walton', icon: 'refrigerator', tile: '#E2F4EE', ink: '#1F6E58', s: 'c' },
-      { name: 'Samsung 43" TV', sub: 'Living room · ends 6 Nov 2026', keys: 'tv television টিভি samsung', icon: 'screen', tile: '#ECE9FB', ink: '#5146A8', s: 's' },
-      { name: 'Vision ceiling fan', sub: 'Bedroom · ended 3 Jan 2026', keys: 'fan ফ্যান vision', icon: 'fan', tile: '#ECEEF2', ink: '#5F6577', s: 'x' }
+      { name: 'Gree 1.5 ton AC', sub: 'Bedroom · until 14 Mar 2027', keys: 'ac air conditioner gree bedroom', icon: 'air-conditioner', tile: '#E6F0FB', ink: '#2B5F8E', s: 'c' },
+      { name: 'Walton 1 ton AC', sub: 'Living room · until 8 Jun 2027', keys: 'ac air conditioner walton living room', icon: 'air-conditioner', tile: '#E6F0FB', ink: '#2B5F8E', s: 'c' },
+      { name: 'Walton fridge', sub: 'Kitchen · until 20 Oct 2027', keys: 'fridge refrigerator walton kitchen', icon: 'refrigerator', tile: '#E2F4EE', ink: '#1F6E58', s: 'c' },
+      { name: 'Samsung 43" TV', sub: 'Living room · ends 6 Nov 2026', keys: 'tv television samsung living room', icon: 'screen', tile: '#ECE9FB', ink: '#5146A8', s: 's' },
+      { name: 'Vision ceiling fan', sub: 'Bedroom · ended 3 Jan 2026', keys: 'fan ceiling vision bedroom', icon: 'fan', tile: '#ECEEF2', ink: '#5F6577', s: 'x' }
     ];
     const q = (this.state.q || '').trim().toLowerCase();
     const res = q ? all.filter((i) => (i.name + ' ' + i.keys).toLowerCase().indexOf(q) >= 0) : all;
     return {
       q: this.state.q,
       onQ: (e) => this.setState({ q: e.target.value }),
-      recent: ['Fridge', 'ফ্যান', 'Phone'].map((r) => ({ label: r, pick: () => this.setState({ q: r }) })),
+      recent: ['Fridge', 'Fan', 'Walton'].map((r) => ({ label: r, pick: () => this.setState({ q: r }) })),
       has: res.length > 0, none: res.length === 0,
       count: res.length + (res.length === 1 ? ' result' : ' results'),
       results: res.map((i, n) => Object.assign({}, i, S[i.s], { sep: n === 0 ? 'none' : '1px solid #EEF0F4' }))
