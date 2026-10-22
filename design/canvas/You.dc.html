@@ -80,7 +80,8 @@ class Component extends DCLogic {
       ] },
       { title: 'Support', rows: [
         { label: 'Help & feedback', icon: 'interrogation', value: '', href: 'Help.dc.html' },
-        { label: 'Rate Ambr', icon: 'star', value: '', href: 'You.dc.html' }
+        { label: 'Rate Ambr', icon: 'star', value: '', href: 'You.dc.html' },
+        { label: 'About Ambr', icon: 'info', value: '1.0', href: 'About.dc.html' }
       ] }
     ];
     return { groups: G.map((g) => ({ title: g.title, rows: g.rows.map((r, i) => Object.assign({ hasTag: !!r.tag, tag: r.tag || '', tagStyle: tags[r.tag] || '', sep: i === 0 ? 'none' : '1px solid #EEF0F4' }, r)) })) };

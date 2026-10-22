@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Sort and filter</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#1D2433;text-decoration:none}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; background: #F4F5F8; font-family: 'Public Sans', system-ui, sans-serif; color: #1D2433; position: relative; overflow: hidden">
+  <div aria-hidden="true" style="padding: 54px 16px; display: flex; flex-direction: column; gap: 14px">
+    <div style="height: 56px; width: 50%; border-radius: 12px; background: #E8EAF0"></div>
+    <div style="height: 50px; border-radius: 18px; background: #E9EBF0"></div>
+    <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px"><span style="height: 170px; border-radius: 24px; background: #FFFFFF"></span><span style="height: 170px; border-radius: 24px; background: #FFFFFF"></span></div>
+  </div>
+  <div style="position: absolute; inset: 0; background: rgba(20, 27, 44, 0.45)"></div>
+
+  <div role="dialog" aria-label="Sort and filter" style="position: absolute; left: 0; right: 0; bottom: 0; background: #FFFFFF; border-radius: 32px 32px 0 0; padding: 10px 18px 26px; display: flex; flex-direction: column; gap: 16px">
+    <span style="align-self: center; width: 40px; height: 5px; border-radius: 3px; background: #DDE1E8"></span>
+    <div style="display: flex; justify-content: space-between; align-items: center">
+      <span style="font-size: 22px; font-weight: 700; letter-spacing: -0.02em">Sort & filter</span>
+      <button onClick="{{reset}}" style="border: none; background: transparent; font: inherit; font-size: 15px; font-weight: 600; color: #7A4A00; cursor: pointer; padding: 8px">Reset</button>
+    </div>
+    <div role="radiogroup" aria-label="Sort by" style="display: flex; flex-direction: column; border-radius: 20px; background: #F7F8FA; padding: 4px 14px">
+      <sc-for list="{{sorts}}" as="s" hint-placeholder-count="4">
+        <button role="radio" aria-checked="{{s.on}}" onClick="{{s.pick}}" style="border: none; border-top: {{s.sep}}; background: transparent; font: inherit; color: #1D2433; display: flex; align-items: center; justify-content: space-between; padding: 12px 0; cursor: pointer; font-size: 15px; font-weight: 600; text-align: left">{{s.label}}<span style="{{s.dot}}"></span></button>
+      </sc-for>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 8px">
+      <span style="font-size: 13px; font-weight: 600; color: #4A5163">Show categories</span>
+      <div style="display: flex; flex-wrap: wrap; gap: 8px">
+        <sc-for list="{{cats}}" as="c" hint-placeholder-count="6"><button aria-pressed="{{c.on}}" onClick="{{c.pick}}" style="{{c.style}}">{{c.label}}</button></sc-for>
+      </div>
+    </div>
+    <a href="Vault.dc.html" style="height: 56px; border-radius: 28px; background: #1F2A44; color: #FFFFFF; display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 700">Show {{count}} items</a>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  constructor(p) { super(p); this.state = { sort: 'Ending soonest', off: {} }; }
+  renderVals() {
+    const S = ['Ending soonest', 'Newest first', 'Highest value', 'Name A to Z'];
+    const C = [['Phones & tablets', 3], ['Computers', 2], ['TV & audio', 3], ['Kitchen', 4], ['Cooling', 4], ['Vehicles', 1], ['Other', 1]];
+    const off = this.state.off;
+    const count = C.reduce((n, c) => n + (off[c[0]] ? 0 : c[1]), 0);
+    return {
+      reset: () => this.setState({ sort: 'Ending soonest', off: {} }),
+      sorts: S.map((s, i) => {
+        const on = this.state.sort === s;
+        return { label: s, on: on, sep: i === 0 ? 'none' : '1px solid #E8EAF0', pick: () => this.setState({ sort: s }),
+          dot: 'width: 22px; height: 22px; border-radius: 50%; box-sizing: border-box; flex: none; ' + (on ? 'border: 7px solid #1F2A44' : 'border: 2px solid #CDD2DC') };
+      }),
+      cats: C.map((c) => {
+        const on = !off[c[0]];
+        return { label: c[0], on: on, pick: () => { const n = Object.assign({}, off); n[c[0]] = on; this.setState({ off: n }); },
+          style: 'height: 40px; padding: 0 14px; border-radius: 20px; font: inherit; font-size: 14px; font-weight: 600; cursor: pointer; ' + (on ? 'border: 1px solid #1F2A44; background: #1F2A44; color: #FFFFFF' : 'border: 1px solid #E3E6EC; background: #FFFFFF; color: #646B7E') };
+      }),
+      count: count
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Send feedback</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#1D2433;text-decoration:none}
+textarea{font:inherit}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; background: #F4F5F8; font-family: 'Public Sans', system-ui, sans-serif; color: #1D2433; padding: 54px 16px 130px; display: flex; flex-direction: column; gap: 14px; position: relative">
+  <div style="display: flex; align-items: center; gap: 12px">
+    <a href="Help.dc.html" aria-label="Back" style="width: 44px; height: 44px; border-radius: 50%; background: #FFFFFF; box-shadow: 0 0 0 1px #E8EAF0; display: flex; align-items: center; justify-content: center"><dc-import name="Icon" icon="angle-small-left" size="22" color="#1D2433" hint-size="22px,22px"></dc-import></a>
+    <span style="font-size: 22px; font-weight: 700; letter-spacing: -0.02em">Send feedback</span>
+  </div>
+  <div role="radiogroup" aria-label="Feedback type" style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px">
+    <sc-for list="{{kinds}}" as="k" hint-placeholder-count="3">
+      <button role="radio" aria-checked="{{k.on}}" onClick="{{k.pick}}" style="{{k.style}}"><dc-import name="Icon" icon="{{k.icon}}" size="20" color="{{k.ink}}" hint-size="20px,20px"></dc-import>{{k.label}}</button>
+    </sc-for>
+  </div>
+  <div style="border-radius: 24px; background: #FFFFFF; box-shadow: 0 0 0 1px #E8EAF0; padding: 16px; display: flex; flex-direction: column; gap: 8px">
+    <label for="fb-text" style="font-size: 13px; font-weight: 600; color: #4A5163">{{prompt}}</label>
+    <textarea id="fb-text" rows="6" placeholder="Write as much or as little as you like" style="border-radius: 16px; border: 1px solid #E3E6EC; background: #F7F8FA; padding: 12px 14px; font-size: 15px; color: #1D2433; resize: none"></textarea>
+    <button style="height: 44px; border-radius: 14px; border: 1.5px dashed #CDD2DC; background: #FFFFFF; font: inherit; font-size: 14px; font-weight: 600; color: #1D2433; display: flex; align-items: center; justify-content: center; gap: 8px; cursor: pointer"><dc-import name="Icon" icon="picture" size="15" color="#1D2433" hint-size="15px,15px"></dc-import>Add a screenshot</button>
+  </div>
+  <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px; border-radius: 22px; background: #FFFFFF; box-shadow: 0 0 0 1px #E8EAF0; padding: 12px 16px">
+    <span style="display: flex; flex-direction: column"><span style="font-size: 15px; font-weight: 600">Include phone model and app version</span><span style="font-size: 13px; color: #646B7E">Helps us fix bugs. Never your items.</span></span>
+    <button role="switch" aria-checked="{{dev}}" aria-label="Include phone model and app version" onClick="{{flip}}" style="{{track}}"><span style="width: 26px; height: 26px; border-radius: 50%; background: #FFFFFF; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2)"></span></button>
+  </div>
+
+  <div style="position: absolute; left: 16px; right: 16px; bottom: 26px; height: 72px; border-radius: 36px; background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(20px); box-shadow: 0 0 0 1px rgba(31, 42, 68, 0.06), 0 14px 34px rgba(31, 42, 68, 0.16); padding: 8px; box-sizing: border-box">
+    <a href="Help.dc.html" style="height: 56px; border-radius: 28px; background: #1F2A44; color: #FFFFFF; display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 17px; font-weight: 700"><dc-import name="Icon" icon="envelope" size="16" color="#FFFFFF" hint-size="16px,16px"></dc-import>Send</a>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  constructor(p) { super(p); this.state = { kind: 'idea', dev: true }; }
+  renderVals() {
+    const K = [
+      { id: 'idea', label: 'An idea', icon: 'bulb', prompt: 'What would make Ambr more useful?' },
+      { id: 'bug', label: 'A problem', icon: 'triangle-warning', prompt: 'What happened, and what did you expect?' },
+      { id: 'hi', label: 'A story', icon: 'star', prompt: 'Did Ambr help on a breakdown day? Tell us.' }
+    ];
+    const cur = K.find((k) => k.id === this.state.kind);
+    const on = this.state.dev;
+    return {
+      kinds: K.map((k) => {
+        const sel = k.id === this.state.kind;
+        return Object.assign({}, k, { on: sel, ink: sel ? '#FFFFFF' : '#1D2433', pick: () => this.setState({ kind: k.id }),
+          style: 'height: 76px; border-radius: 20px; font: inherit; font-size: 13px; font-weight: 700; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; cursor: pointer; ' +
+            (sel ? 'border: none; background: #1F2A44; color: #FFFFFF' : 'border: 1px solid #E3E6EC; background: #FFFFFF; color: #1D2433') });
+      }),
+      prompt: cur.prompt, dev: on, flip: () => this.setState({ dev: !on }),
+      track: 'width: 52px; height: 32px; border-radius: 16px; border: none; padding: 3px; box-sizing: border-box; cursor: pointer; display: flex; flex: none; ' + (on ? 'background: #1B7F4C; justify-content: flex-end' : 'background: #CDD2DC; justify-content: flex-start')
+    };
+  }
+}
+</script>
+</body>
+</html>

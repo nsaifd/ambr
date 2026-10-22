@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Free services by count</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#1D2433;text-decoration:none}
+</style>
+</helmet>
+<div style="width: 390px; height: 1100px; box-sizing: border-box; background: #F4F5F8; font-family: 'Public Sans', system-ui, sans-serif; color: #1D2433; display: flex; flex-direction: column; overflow: hidden">
+  <div style="background: #F5EEDB; padding: 54px 16px 64px; border-radius: 0 0 36px 36px; display: flex; flex-direction: column; gap: 16px">
+    <div style="display: flex; align-items: center; justify-content: space-between">
+      <a href="Vault.dc.html" aria-label="Back" style="width: 44px; height: 44px; border-radius: 50%; background: rgba(255, 255, 255, 0.85); display: flex; align-items: center; justify-content: center"><dc-import name="Icon" icon="angle-small-left" size="22" color="#1D2433" hint-size="22px,22px"></dc-import></a>
+      <a href="EditItem.dc.html" aria-label="Edit" style="width: 44px; height: 44px; border-radius: 50%; background: rgba(255, 255, 255, 0.85); display: flex; align-items: center; justify-content: center"><dc-import name="Icon" icon="pencil" size="17" color="#1D2433" hint-size="17px,17px"></dc-import></a>
+    </div>
+    <div style="display: flex; align-items: center; gap: 14px">
+      <span style="width: 72px; height: 72px; border-radius: 24px; background: #FFFFFF; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 22px rgba(122, 100, 32, 0.16)"><dc-import name="Icon" icon="motorcycle" size="38" color="#7A6420" hint-size="38px,38px"></dc-import></span>
+      <span style="display: flex; flex-direction: column; gap: 2px"><span style="font-size: 24px; font-weight: 700; letter-spacing: -0.02em">Yamaha FZ</span><span style="font-size: 14px; color: #5E4D18">Car / bike · Vehicles</span></span>
+    </div>
+  </div>
+
+  <div style="margin: -44px 16px 0; display: flex; flex-direction: column; gap: 14px">
+    <div style="border-radius: 28px; background: #FFFFFF; box-shadow: 0 0 0 1px #E8EAF0, 0 12px 32px rgba(31, 42, 68, 0.08); padding: 18px; display: flex; flex-direction: column; gap: 14px">
+      <div style="display: flex; justify-content: space-between; align-items: baseline">
+        <span style="font-size: 22px; font-weight: 700; letter-spacing: -0.015em">2 free services left</span>
+        <span style="font-size: 13px; font-weight: 600; color: #646B7E">of 4</span>
+      </div>
+      <div role="img" aria-label="2 of 4 free services used" style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px">
+        <sc-for list="{{slots}}" as="s" hint-placeholder-count="4">
+          <span style="{{s.style}}"><span style="font-size: 12px; font-weight: 700">{{s.n}}</span><span style="font-size: 11px">{{s.sub}}</span></span>
+        </sc-for>
+      </div>
+      <div style="display: flex; gap: 10px; align-items: center; border-radius: 16px; background: #FFF4DE; padding: 12px 14px">
+        <dc-import name="Icon" icon="calendar" size="16" color="#7A4A00" hint-size="16px,16px"></dc-import>
+        <span style="font-size: 13px; line-height: 1.4; color: #4A3300"><b>Next one due</b> at 6,000 km or by 5 Dec 2026, whichever comes first</span>
+      </div>
+      <a href="LogRepair.dc.html" style="height: 52px; border-radius: 26px; background: #EF9426; display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 16px; font-weight: 700"><dc-import name="Icon" icon="check" size="15" color="#1D2433" hint-size="15px,15px"></dc-import>Mark a service done</a>
+    </div>
+
+    <div style="border-radius: 24px; background: #FFFFFF; box-shadow: 0 0 0 1px #E8EAF0; padding: 16px; display: flex; flex-direction: column; gap: 10px">
+      <span style="font-size: 17px; font-weight: 700">Coverage</span>
+      <div style="display: flex; flex-direction: column; gap: 8px; padding: 14px; border-radius: 18px; background: #F7F8FA">
+        <div style="display: flex; justify-content: space-between; align-items: baseline"><span style="font-size: 15px; font-weight: 700">Engine · 2 years or 20,000 km</span><span style="font-size: 13px; font-weight: 600; color: #17704A">7 mo left</span></div>
+        <div style="height: 6px; border-radius: 3px; background: #E3E6EC; overflow: hidden"><div style="width: 70%; height: 6px; border-radius: 3px; background: #1B7F4C"></div></div>
+        <span style="font-size: 12px; color: #646B7E">Until 5 Jun 2027 · whichever comes first</span>
+      </div>
+      <div style="display: flex; justify-content: space-between; padding: 12px 14px; border-radius: 18px; background: #F7F8FA; font-size: 15px"><span style="font-weight: 700">Free services</span><span style="font-weight: 600; color: #4A5163">2 of 4 used</span></div>
+    </div>
+
+    <div style="border-radius: 24px; background: #FFFFFF; box-shadow: 0 0 0 1px #E8EAF0; padding: 16px; display: flex; flex-direction: column; gap: 12px">
+      <span style="font-size: 17px; font-weight: 700">Service history</span>
+      <sc-for list="{{history}}" as="h" hint-placeholder-count="2">
+        <div style="display: flex; align-items: center; gap: 12px">
+          <span style="width: 32px; height: 32px; border-radius: 50%; background: #E4F4EA; display: flex; align-items: center; justify-content: center; flex: none"><dc-import name="Icon" icon="check" size="12" color="#17704A" hint-size="12px,12px"></dc-import></span>
+          <span style="display: flex; flex-direction: column; flex: 1"><span style="font-size: 15px; font-weight: 700">{{h.title}}</span><span style="font-size: 13px; color: #646B7E">{{h.sub}}</span></span>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":1100}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const S = [{ n: '1st', sub: 'Done', used: true }, { n: '2nd', sub: 'Done', used: true }, { n: '3rd', sub: 'Next', used: false, next: true }, { n: '4th', sub: 'Free', used: false }];
+    return {
+      slots: S.map((s) => ({ n: s.n, sub: s.sub, style: 'height: 54px; border-radius: 14px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1px; ' +
+        (s.used ? 'background: #ECEEF2; color: #646B7E' : s.next ? 'background: #FFFFFF; border: 2px solid #EF9426; color: #7A4A00' : 'background: #E4F4EA; color: #17704A') })),
+      history: [{ title: '2nd free service', sub: '14 Aug 2026 · 4,100 km · Yamaha Tejgaon' }, { title: '1st free service', sub: '2 Jul 2025 · 1,020 km · Yamaha Tejgaon' }]
+    };
+  }
+}
+</script>
+</body>
+</html>

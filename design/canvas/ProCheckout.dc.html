@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Pay with Google Play</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#1D2433;text-decoration:none}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; background: #F4F5F8; font-family: 'Public Sans', system-ui, sans-serif; color: #1D2433; position: relative; overflow: hidden">
+  <div aria-hidden="true" style="height: 330px; background: #1F2A44; border-radius: 0 0 36px 36px"></div>
+  <div style="position: absolute; inset: 0; background: rgba(20, 27, 44, 0.5)"></div>
+
+  <span style="position: absolute; left: 20px; right: 20px; top: 300px; text-align: center; font-size: 13px; line-height: 1.45; color: #E3E7F0">This payment sheet is shown by Google Play. Ambr never sees your card or mobile wallet.</span>
+
+  <div role="dialog" aria-label="Google Play payment" style="position: absolute; left: 0; right: 0; bottom: 0; background: #FFFFFF; border-radius: 28px 28px 0 0; padding: 18px 20px 26px; display: flex; flex-direction: column; gap: 16px">
+    <span style="font-size: 13px; font-weight: 700; color: #646B7E; letter-spacing: 0.02em">Google Play</span>
+    <div style="display: flex; align-items: center; gap: 12px">
+      <span style="width: 52px; height: 52px; border-radius: 14px; background: #1D263B; display: flex; align-items: center; justify-content: center; flex: none">
+        <svg width="18" height="28" viewBox="110 165 132 207" aria-hidden="true"><path d="M231.075 165.855C236.579 165.855 241.042 170.318 241.042 175.822V224.214C241.042 234.303 235.659 243.624 226.922 248.669L203.424 262.236C198.601 265.02 198.601 271.98 203.424 274.764L226.922 288.331C235.659 293.376 241.042 302.697 241.042 312.786V361.178C241.042 366.682 236.579 371.145 231.075 371.145H120.417C114.913 371.145 110.45 366.682 110.45 361.178V312.786C110.45 302.698 115.833 293.376 124.569 288.331L148.068 274.764C152.89 271.98 152.89 265.02 148.068 262.236L124.569 248.669C115.833 243.624 110.45 234.302 110.45 224.214V175.822C110.45 170.318 114.913 165.855 120.417 165.855H231.075Z" fill="#EF9426"></path></svg></span>
+      <span style="display: flex; flex-direction: column; flex: 1"><span style="font-size: 16px; font-weight: 700">Ambr Pro</span><span style="font-size: 13px; color: #646B7E">One-time purchase · Ambr</span></span>
+      <span style="font-size: 18px; font-weight: 700">৳499</span>
+    </div>
+    <div style="height: 1px; background: #EEF0F4"></div>
+    <div style="display: flex; align-items: center; gap: 12px">
+      <span style="width: 40px; height: 40px; border-radius: 12px; background: #F4F5F8; display: flex; align-items: center; justify-content: center"><dc-import name="Icon" icon="mobile-notch" size="17" color="#1D2433" hint-size="17px,17px"></dc-import></span>
+      <span style="display: flex; flex-direction: column; flex: 1"><span style="font-size: 15px; font-weight: 600">Your Google Play payment method</span><span style="font-size: 13px; color: #646B7E">Card, mobile balance or gift card</span></span>
+      <dc-import name="Icon" icon="angle-small-right" size="18" color="#9AA0AE" hint-size="18px,18px"></dc-import>
+    </div>
+    <span style="font-size: 12px; line-height: 1.45; color: #646B7E">Pay once. Pro stays on any phone signed in to this Google account.</span>
+    <a href="ProSuccess.dc.html" style="height: 52px; border-radius: 26px; background: #1F2A44; color: #FFFFFF; display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 700">Buy</a>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Backup failed</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#1D2433;text-decoration:none}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; background: #F4F5F8; font-family: 'Public Sans', system-ui, sans-serif; color: #1D2433; padding: 54px 16px 26px; display: flex; flex-direction: column; gap: 14px">
+  <div style="display: flex; align-items: center; gap: 12px">
+    <a href="You.dc.html" aria-label="Back" style="width: 44px; height: 44px; border-radius: 50%; background: #FFFFFF; box-shadow: 0 0 0 1px #E8EAF0; display: flex; align-items: center; justify-content: center"><dc-import name="Icon" icon="angle-small-left" size="22" color="#1D2433" hint-size="22px,22px"></dc-import></a>
+    <span style="font-size: 22px; font-weight: 700; letter-spacing: -0.02em">Backup</span>
+  </div>
+
+  <div style="border-radius: 28px; background: #FFFFFF; box-shadow: 0 0 0 1px #E8EAF0; padding: 20px; display: flex; flex-direction: column; align-items: center; gap: 14px; text-align: center">
+    <div style="position: relative; width: 96px; height: 96px">
+      <span style="position: absolute; inset: 0; border-radius: 50%; background: #FEE4E2"></span>
+      <span style="position: absolute; inset: 16px; border-radius: 50%; background: #FFFFFF; display: flex; align-items: center; justify-content: center"><dc-import name="Icon" icon="cloud-upload-alt" size="30" color="#B42318" hint-size="30px,30px"></dc-import></span>
+      <span style="position: absolute; right: 4px; bottom: 4px; width: 30px; height: 30px; border-radius: 50%; background: #B42318; box-shadow: 0 0 0 3px #FFFFFF; display: flex; align-items: center; justify-content: center"><dc-import name="Icon" icon="exclamation" size="13" color="#FFFFFF" hint-size="13px,13px"></dc-import></span>
+    </div>
+    <span style="display: flex; flex-direction: column; gap: 6px"><span style="font-size: 20px; font-weight: 700">Last night's backup didn't finish</span><span style="font-size: 14px; line-height: 1.5; color: #4A5163">Your Google Drive is full. Free up about 20 MB, or back up without photos for now.</span></span>
+    <span style="font-size: 13px; font-weight: 600; color: #646B7E">Last good backup: 19 Oct, 9:02 pm</span>
+  </div>
+
+  <div style="border-radius: 24px; background: #FFFFFF; box-shadow: 0 0 0 1px #E8EAF0; padding: 4px 0">
+    <div style="display: flex; align-items: center; gap: 12px; padding: 12px 14px">
+      <span style="width: 40px; height: 40px; border-radius: 12px; background: #F4F5F8; display: flex; align-items: center; justify-content: center"><dc-import name="Icon" icon="picture" size="17" color="#1D2433" hint-size="17px,17px"></dc-import></span>
+      <span style="display: flex; flex-direction: column; flex: 1"><span style="font-size: 15px; font-weight: 600">Back up without photos</span><span style="font-size: 13px; color: #646B7E">Items and dates only · under 1 MB</span></span>
+      <dc-import name="Icon" icon="angle-small-right" size="18" color="#9AA0AE" hint-size="18px,18px"></dc-import>
+    </div>
+    <div style="display: flex; align-items: center; gap: 12px; padding: 12px 14px; border-top: 1px solid #EEF0F4">
+      <span style="width: 40px; height: 40px; border-radius: 12px; background: #F4F5F8; display: flex; align-items: center; justify-content: center"><dc-import name="Icon" icon="box" size="17" color="#1D2433" hint-size="17px,17px"></dc-import></span>
+      <span style="display: flex; flex-direction: column; flex: 1"><span style="font-size: 15px; font-weight: 600">Manage Drive storage</span><span style="font-size: 13px; color: #646B7E">Opens Google Drive</span></span>
+      <dc-import name="Icon" icon="angle-small-right" size="18" color="#9AA0AE" hint-size="18px,18px"></dc-import>
+    </div>
+  </div>
+
+  <a href="Backup.dc.html" style="margin-top: auto; height: 56px; border-radius: 28px; background: #1F2A44; color: #FFFFFF; display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 17px; font-weight: 700"><dc-import name="Icon" icon="refresh" size="16" color="#FFFFFF" hint-size="16px,16px"></dc-import>Try again</a>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Service center</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#1D2433;text-decoration:none}
+input{font:inherit}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; background: #F4F5F8; font-family: 'Public Sans', system-ui, sans-serif; color: #1D2433; padding: 54px 16px 130px; display: flex; flex-direction: column; gap: 14px; position: relative">
+  <div style="display: flex; align-items: center; gap: 12px">
+    <a href="EditItem.dc.html" aria-label="Back" style="width: 44px; height: 44px; border-radius: 50%; background: #FFFFFF; box-shadow: 0 0 0 1px #E8EAF0; display: flex; align-items: center; justify-content: center"><dc-import name="Icon" icon="angle-small-left" size="22" color="#1D2433" hint-size="22px,22px"></dc-import></a>
+    <span style="font-size: 22px; font-weight: 700; letter-spacing: -0.02em">Service center</span>
+  </div>
+
+  <div style="border-radius: 24px; background: #1F2A44; color: #FFFFFF; padding: 16px; display: flex; flex-direction: column; gap: 12px">
+    <span style="display: flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 700; color: #FFC24D"><dc-import name="Icon" icon="sparkles" size="13" color="#FFC24D" hint-size="13px,13px"></dc-import>Suggested for Gree</span>
+    <div style="display: flex; align-items: center; gap: 12px">
+      <span style="width: 44px; height: 44px; border-radius: 14px; background: #2B3756; display: flex; align-items: center; justify-content: center; flex: none"><dc-import name="Icon" icon="tools" size="19" color="#FFFFFF" hint-size="19px,19px"></dc-import></span>
+      <span style="display: flex; flex-direction: column; flex: 1"><span style="font-size: 15px; font-weight: 700">Gree Service Center</span><span style="font-size: 13px; color: #B9C1D6">Tejgaon, Dhaka · 09612-XXXXXX</span></span>
+      <span style="height: 36px; padding: 0 14px; border-radius: 18px; background: #EF9426; color: #1D2433; display: flex; align-items: center; font-size: 13px; font-weight: 700">Use</span>
+    </div>
+  </div>
+
+  <span style="font-size: 13px; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; color: #646B7E; padding: 4px 4px 0">Or the shop's own technician</span>
+  <div style="border-radius: 24px; background: #FFFFFF; box-shadow: 0 0 0 1px #E8EAF0; padding: 16px; display: flex; flex-direction: column; gap: 14px">
+    <sc-for list="{{fields}}" as="f" hint-placeholder-count="3">
+      <div style="display: flex; flex-direction: column; gap: 6px">
+        <label for="{{f.id}}" style="font-size: 13px; font-weight: 600; color: #4A5163">{{f.label}}</label>
+        <input id="{{f.id}}" value="{{f.value}}" placeholder="{{f.ph}}" style="height: 52px; border-radius: 16px; border: 1px solid #E3E6EC; background: #F7F8FA; padding: 0 14px; font-size: 16px; color: #1D2433; box-sizing: border-box">
+      </div>
+    </sc-for>
+  </div>
+
+  <div style="position: absolute; left: 16px; right: 16px; bottom: 26px; height: 72px; border-radius: 36px; background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(20px); box-shadow: 0 0 0 1px rgba(31, 42, 68, 0.06), 0 14px 34px rgba(31, 42, 68, 0.16); padding: 8px; box-sizing: border-box">
+    <a href="EditItem.dc.html" style="height: 56px; border-radius: 28px; background: #EF9426; display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 17px; font-weight: 700"><dc-import name="Icon" icon="check" size="16" color="#1D2433" hint-size="16px,16px"></dc-import>Save</a>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return { fields: [
+      { id: 'sc-name', label: 'Name', value: 'Gree Brand Shop technician', ph: '' },
+      { id: 'sc-phone', label: 'Phone', value: '', ph: '01XXX-XXXXXX' },
+      { id: 'sc-addr', label: 'Address or area', value: 'Bashundhara City, Level 4', ph: '' }
+    ] };
+  }
+}
+</script>
+</body>
+</html>

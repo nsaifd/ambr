@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Pro unlocked</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#1D2433;text-decoration:none}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; background: #1D263B; font-family: 'Public Sans', system-ui, sans-serif; color: #FFFFFF; padding: 110px 20px 30px; display: flex; flex-direction: column; align-items: center; gap: 22px; position: relative; overflow: hidden; text-align: center">
+  <span aria-hidden="true" style="position: absolute; top: 80px; left: 46px; width: 10px; height: 10px; border-radius: 3px; background: #EF9426; transform: rotate(20deg)"></span>
+  <span aria-hidden="true" style="position: absolute; top: 150px; right: 52px; width: 9px; height: 9px; border-radius: 50%; background: #5FD39A"></span>
+  <span aria-hidden="true" style="position: absolute; top: 250px; left: 30px; width: 7px; height: 14px; border-radius: 3px; background: #8D97B3; transform: rotate(-30deg)"></span>
+  <span aria-hidden="true" style="position: absolute; top: 270px; right: 36px; width: 12px; height: 6px; border-radius: 3px; background: #EF9426; transform: rotate(35deg)"></span>
+  <div style="position: relative; width: 150px; height: 150px">
+    <span style="position: absolute; inset: 0; border-radius: 50%; background: #26314C"></span>
+    <span style="position: absolute; inset: 24px; border-radius: 36px; background: #EF9426; display: flex; align-items: center; justify-content: center; box-shadow: 0 16px 34px rgba(239, 148, 38, 0.40)"><dc-import name="Icon" icon="crown" size="46" color="#1D2433" hint-size="46px,46px"></dc-import></span>
+  </div>
+  <div style="display: flex; flex-direction: column; gap: 8px">
+    <span style="font-size: 30px; font-weight: 700; letter-spacing: -0.025em">You're on Pro</span>
+    <span style="font-size: 16px; line-height: 1.5; color: #C5CBDA">Thank you for supporting Ambr. Everything below is unlocked for good.</span>
+  </div>
+  <div style="width: 100%; border-radius: 24px; background: #26314C; padding: 6px 16px; display: flex; flex-direction: column; text-align: left">
+    <sc-for list="{{perks}}" as="p" hint-placeholder-count="4">
+      <div style="display: flex; align-items: center; gap: 12px; padding: 10px 0; border-top: {{p.sep}}">
+        <span style="width: 26px; height: 26px; border-radius: 50%; background: #1B7F4C; display: flex; align-items: center; justify-content: center; flex: none"><dc-import name="Icon" icon="check" size="11" color="#FFFFFF" hint-size="11px,11px"></dc-import></span>
+        <span style="font-size: 15px; font-weight: 600">{{p.label}}</span>
+      </div>
+    </sc-for>
+  </div>
+  <a href="Saved.dc.html" style="margin-top: auto; width: 100%; height: 56px; border-radius: 28px; background: #EF9426; display: flex; align-items: center; justify-content: center; font-size: 17px; font-weight: 700">Save the fridge</a>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const P = ['Unlimited items', 'App lock with fingerprint', 'Export everything to PDF or CSV', 'Your own categories'];
+    return { perks: P.map((l, i) => ({ label: l, sep: i === 0 ? 'none' : '1px solid #34405F' })) };
+  }
+}
+</script>
+</body>
+</html>
