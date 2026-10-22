@@ -58,6 +58,16 @@ import app.ambr.ui.state.ItemsViewModel
 import app.ambr.ui.state.ambrViewModel
 import app.ambr.ui.theme.AmbrColors
 import app.ambr.ui.vault.VaultScreen
+import app.ambr.ui.lock.AppLockSetupScreen
+import app.ambr.ui.lock.LockScreen
+import app.ambr.ui.you.AboutScreen
+import app.ambr.ui.you.ExportScreen
+import app.ambr.ui.you.FeedbackScreen
+import app.ambr.ui.you.HelpScreen
+import app.ambr.ui.you.PrivacyScreen
+import app.ambr.ui.you.openPlayStore
+import androidx.compose.runtime.rememberCoroutineScope
+import kotlinx.coroutines.launch
 import app.ambr.ui.you.YouScreen
 
 object Routes {
@@ -103,7 +113,9 @@ fun AmbrRoot(openItem: Long? = null, onOpened: () -> Unit = {}) {
     val entry by nav.currentBackStackEntryAsState()
     val route = entry?.destination?.route
     val currentTab = Tab.entries.firstOrNull { it.route == route }
-    val container = (LocalContext.current.applicationContext as AmbrApp).container
+    val context = LocalContext.current
+    val container = (context.applicationContext as AmbrApp).container
+    val locked by container.lock.locked.collectAsStateWithLifecycle()
     val firstReminder by container.settings.firstReminderDays.collectAsStateWithLifecycle()
 
     Box(Modifier.fillMaxSize().background(AmbrColors.Ground)) {
@@ -145,7 +157,7 @@ fun AmbrRoot(openItem: Long? = null, onOpened: () -> Unit = {}) {
                     onPrivacy = { nav.navigate("privacy") },
                     onArchive = { nav.navigate(Routes.Archive) },
                     onHelp = { nav.navigate("help") },
-                    onRate = { nav.navigate("rate") },
+                    onRate = { openPlayStore(context) },
                     onAbout = { nav.navigate("about") },
                 )
             }
@@ -227,7 +239,22 @@ fun AmbrRoot(openItem: Long? = null, onOpened: () -> Unit = {}) {
             }
             composable(Routes.Search) { SearchScreen(ambrViewModel { ItemsViewModel(it.items) }, onBack = { nav.popBackStack() }, onOpen = { nav.navigate(Routes.item(it)) }) }
             composable(Routes.Archive) { ArchiveScreen(ambrViewModel { ItemsViewModel(it.items) }, onBack = { nav.popBackStack() }, onOpen = { nav.navigate(Routes.item(it)) }) }
-            listOf(Routes.Pro, Routes.Limit, "backup", "applock", "export", "privacy", "help", "rate", "about").forEach { r ->
+            composable("applock") {
+                val pro by container.settings.isPro.collectAsStateWithLifecycle()
+                AppLockSetupScreen(container.lock, container.settings, pro, onGetPro = { nav.navigate(Routes.Pro) }, onBack = { nav.popBackStack() })
+            }
+            composable("export") {
+                val pro by container.settings.isPro.collectAsStateWithLifecycle()
+                ExportScreen(ambrViewModel { ItemsViewModel(it.items) }, pro, onGetPro = { nav.navigate(Routes.Pro) }, onBack = { nav.popBackStack() })
+            }
+            composable("privacy") { PrivacyScreen(onBack = { nav.popBackStack() }) }
+            composable("help") { HelpScreen(onBack = { nav.popBackStack() }, onFeedback = { nav.navigate("feedback") }) }
+            composable("feedback") { FeedbackScreen(onBack = { nav.popBackStack() }) }
+            composable("about") {
+                val scope = rememberCoroutineScope()
+                AboutScreen(onBack = { nav.popBackStack() }, onDeleteAll = { scope.launch { container.wipe() } })
+            }
+            listOf(Routes.Pro, Routes.Limit, "backup").forEach { r ->
                 composable(r) { Placeholder(r.replaceFirstChar { it.uppercase() }) { nav.popBackStack() } }
             }
         }
@@ -238,6 +265,10 @@ fun AmbrRoot(openItem: Long? = null, onOpened: () -> Unit = {}) {
                 onAdd = { nav.navigate(Routes.Add) },
                 modifier = Modifier.align(Alignment.BottomCenter).navigationBarsPadding(),
             )
+        }
+        if (locked) {
+            androidx.activity.compose.BackHandler { (context as? android.app.Activity)?.moveTaskToBack(true) }
+            LockScreen(container.lock, container.settings)
         }
     }
 }

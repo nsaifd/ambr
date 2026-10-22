@@ -27,6 +27,20 @@ class Settings(context: Context) {
     private val _lastBackup = MutableStateFlow(prefs.getLong(KEY_LAST_BACKUP, 0L))
     val lastBackup: StateFlow<Long> = _lastBackup.asStateFlow()
 
+    /** SHA-256 of salt + PIN. Null when no PIN is set. */
+    var pinHash: String?
+        get() = prefs.getString(KEY_PIN, null)
+        set(v) = prefs.edit().putString(KEY_PIN, v).apply()
+
+    var useBiometric: Boolean
+        get() = prefs.getBoolean(KEY_BIO, true)
+        set(v) = prefs.edit().putBoolean(KEY_BIO, v).apply()
+
+    /** Seconds in the background before the app locks again. */
+    var lockDelaySeconds: Int
+        get() = prefs.getInt(KEY_DELAY, 60)
+        set(v) = prefs.edit().putInt(KEY_DELAY, v).apply()
+
     var welcomed: Boolean
         get() = prefs.getBoolean(KEY_WELCOMED, false)
         set(v) = prefs.edit().putBoolean(KEY_WELCOMED, v).apply()
@@ -47,5 +61,8 @@ class Settings(context: Context) {
         private const val KEY_BACKUP = "backup_on"
         private const val KEY_LAST_BACKUP = "last_backup"
         private const val KEY_WELCOMED = "welcomed"
+        private const val KEY_PIN = "pin_hash"
+        private const val KEY_BIO = "use_biometric"
+        private const val KEY_DELAY = "lock_delay"
     }
 }
