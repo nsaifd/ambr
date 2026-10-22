@@ -1,0 +1,506 @@
+<title>Ambr UX Blueprint</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap">
+<style>
+/* Layout: one reading column with a sticky section rail on wide screens; diagrams break out to full width. Light only, by brief. */
+:root{
+  --bg:#FFFFFF; --panel:#F7F5F1; --ink:#1B1915; --ink-2:#4F4A42; --muted:#7A746A; --line:#E9E4DC;
+  --amber:#E58A00; --amber-ink:#8F5400; --amber-wash:#FFF3DF;
+  --ok:#1E7A4C; --ok-wash:#E6F4EC; --warn:#9A5B00; --warn-wash:#FFF1DB; --off:#6E6A63; --off-wash:#EFEDEA;
+  --v2:#5B5BB0; --v2-wash:#EEEEFA;
+  --sans:"Public Sans",ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --r:10px;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.55;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 64px}
+.wrap{max-width:1120px;margin:0 auto;display:grid;grid-template-columns:200px minmax(0,1fr);gap:48px}
+nav.rail{position:sticky;top:calc(env(safe-area-inset-top,0px) + 24px);align-self:start;padding-top:40px;display:flex;flex-direction:column;gap:2px}
+nav.rail a{color:var(--ink-2);text-decoration:none;font-size:14px;padding:6px 10px;border-radius:6px}
+nav.rail a:hover{background:var(--panel);color:var(--ink)}
+nav.rail a:focus-visible,button:focus-visible{outline:2px solid var(--amber);outline-offset:2px}
+main{min-width:0;padding-top:40px}
+h1,h2,h3{text-wrap:balance;margin:0;line-height:1.2}
+h1{font-size:clamp(32px,5vw,48px);font-weight:800;letter-spacing:-.02em}
+h2{font-size:26px;font-weight:700;letter-spacing:-.01em}
+h3{font-size:17px;font-weight:700}
+p{margin:0;max-width:66ch}
+.eyebrow{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--amber-ink)}
+section{padding-block:48px;border-top:1px solid var(--line);display:flex;flex-direction:column;gap:20px}
+header.top{display:flex;flex-direction:column;gap:16px;padding-bottom:40px}
+.lede{font-size:19px;color:var(--ink-2);max-width:60ch}
+.drop{display:inline-flex;align-items:center;gap:10px}
+.drop svg{flex:none}
+.meta{display:flex;flex-wrap:wrap;gap:8px 20px;font-size:14px;color:var(--muted)}
+.meta b{color:var(--ink);font-weight:600}
+.facts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;margin-top:8px}
+.facts div{background:var(--bg);padding:16px}
+.facts strong{display:block;font-size:28px;font-weight:800;font-variant-numeric:tabular-nums}
+.facts span{font-size:13px;color:var(--muted)}
+
+/* moments strip */
+.moments{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:0;position:relative}
+.moment{padding:0 12px 0 0;display:flex;flex-direction:column;gap:6px;position:relative}
+.moment .dot{width:14px;height:14px;border-radius:50%;background:var(--bg);border:3px solid var(--amber);position:relative;z-index:1}
+.moment.quiet .dot{border-color:var(--line)}
+.moment.peak .dot{background:var(--amber)}
+.moments::before{content:"";position:absolute;left:7px;right:0;top:6px;height:2px;background:var(--line)}
+.moment h3{font-size:15px;margin-top:6px}
+.moment .budget{font-size:13px;font-weight:700;color:var(--amber-ink);font-variant-numeric:tabular-nums}
+.moment.quiet .budget{color:var(--muted)}
+.moment p{font-size:13px;color:var(--ink-2)}
+.moment .feel{font-style:italic;color:var(--muted)}
+
+.people{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.person{border:1px solid var(--line);border-radius:var(--r);padding:16px;display:flex;flex-direction:column;gap:8px}
+.person .role{font-size:12px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.06em}
+.person p{font-size:14px;color:var(--ink-2)}
+.person .needs{font-size:14px;color:var(--ink);border-top:1px dashed var(--line);padding-top:8px}
+
+/* decisions */
+ol.decisions{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 32px;counter-reset:d}
+ol.decisions li{counter-increment:d;display:grid;grid-template-columns:28px minmax(0,1fr);gap:4px 10px;padding-block:12px;border-bottom:1px solid var(--line)}
+ol.decisions li::before{content:counter(d);grid-row:span 2;font-weight:800;color:var(--amber-ink);font-variant-numeric:tabular-nums}
+ol.decisions b{font-weight:700}
+ol.decisions span{font-size:14px;color:var(--ink-2)}
+
+/* IA tree */
+.ia{overflow-x:auto;padding-bottom:4px}
+.ia-inner{min-width:760px;display:flex;flex-direction:column;align-items:stretch;gap:0}
+.ia-root{display:flex;justify-content:center;gap:12px;align-items:center;font-size:13px;color:var(--muted)}
+.node{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);background:var(--bg);border-radius:8px;padding:6px 10px;font-size:13px;font-weight:600;color:var(--ink);white-space:nowrap}
+.node i{font-style:normal;font-size:11px;font-weight:700;color:var(--muted);font-variant-numeric:tabular-nums}
+.node.gate{border-style:dashed;color:var(--ink-2)}
+.node.hub{background:var(--ink);color:#fff;border-color:var(--ink)}
+.node.hub i{color:#CFC8BC}
+.node.add{background:var(--amber);border-color:var(--amber);color:#1B1915;border-radius:999px}
+.node.add i{color:#5A3600}
+.node.key{border-color:var(--amber);background:var(--amber-wash)}
+.node.v2{border-style:dashed;color:var(--v2)}
+.stem{width:2px;height:20px;background:var(--line);margin:0 auto}
+.bar{border:1px solid var(--line);background:var(--panel);border-radius:14px;padding:14px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.col{display:flex;flex-direction:column;gap:8px;align-items:flex-start}
+.col .q{font-size:12px;color:var(--muted);font-style:italic;min-height:2.6em}
+.col .kids{display:flex;flex-direction:column;gap:6px;padding-left:12px;border-left:2px solid var(--line);margin-left:10px}
+.col .kids .kids{margin-top:2px}
+.ia-legend{display:flex;flex-wrap:wrap;gap:8px 16px;font-size:13px;color:var(--muted)}
+.ia-legend .node{font-size:12px;padding:3px 8px}
+.ia-note{font-size:14px;color:var(--ink-2)}
+
+/* table */
+.tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:var(--r)}
+table{border-collapse:collapse;width:100%;font-size:14px}
+th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:700;background:var(--panel)}
+tr:last-child td{border-bottom:none}
+td.id{font-weight:800;font-variant-numeric:tabular-nums;white-space:nowrap}
+td.name{font-weight:600;white-space:nowrap}
+.tag{display:inline-block;font-size:11px;font-weight:700;padding:2px 7px;border-radius:999px;background:var(--off-wash);color:var(--ink-2);white-space:nowrap}
+.tag.v1{background:var(--ok-wash);color:var(--ok)}
+.tag.v2{background:var(--v2-wash);color:var(--v2)}
+.tag.pro{background:var(--amber-wash);color:var(--amber-ink)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{font:inherit;font-size:14px;font-weight:600;border:1px solid var(--line);background:var(--bg);color:var(--ink-2);border-radius:999px;padding:8px 14px;cursor:pointer;min-height:40px}
+.chip[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:#fff}
+.chip span{font-weight:500;opacity:.7;margin-left:4px;font-variant-numeric:tabular-nums}
+
+/* flows */
+.flow{border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.flow-head{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 16px;align-items:baseline;padding:16px 18px;background:var(--panel);border-bottom:1px solid var(--line)}
+.flow-head .target{font-size:13px;font-weight:700;color:var(--amber-ink)}
+.flow-body{padding:18px;overflow-x:auto}
+.flow-body pre.mermaid{margin:0;background:transparent;display:flex;justify-content:center;min-width:0}
+.flow-foot{padding:0 18px 16px;font-size:14px;color:var(--ink-2)}
+.flows{display:flex;flex-direction:column;gap:20px}
+
+/* states + rules */
+.states{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px}
+.state{border:1px solid var(--line);border-radius:var(--r);padding:14px;display:flex;flex-direction:column;gap:6px}
+.state h3{font-size:15px}
+.state p{font-size:13px;color:var(--muted)}
+.state q{font-size:14px;color:var(--ink);quotes:"“" "”"}
+.pills{display:flex;flex-wrap:wrap;gap:8px}
+.pill{display:inline-flex;align-items:center;gap:6px;padding:6px 12px;border-radius:999px;font-size:14px;font-weight:700}
+.pill.ok{background:var(--ok-wash);color:var(--ok)}
+.pill.warn{background:var(--warn-wash);color:var(--warn)}
+.pill.off{background:var(--off-wash);color:var(--off)}
+ul.rules{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:8px;max-width:70ch}
+ul.rules li{color:var(--ink-2)}
+ul.rules b{color:var(--ink)}
+.next{background:var(--amber-wash);border-radius:14px;padding:20px;display:flex;flex-direction:column;gap:8px}
+
+@media (max-width:900px){
+  .wrap{grid-template-columns:minmax(0,1fr);gap:0}
+  nav.rail{display:none}
+  .moments{grid-template-columns:repeat(2,minmax(0,1fr));gap:20px 12px}
+  .moments::before{display:none}
+  .people,ol.decisions{grid-template-columns:minmax(0,1fr)}
+  .facts{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+
+<div class="wrap">
+  <nav class="rail" aria-label="Sections">
+    <a href="#people">People and moments</a>
+    <a href="#decisions">UX decisions</a>
+    <a href="#ia">Information architecture</a>
+    <a href="#screens">Screen inventory</a>
+    <a href="#flows">User flows</a>
+    <a href="#states">States and rules</a>
+  </nav>
+
+  <main>
+    <header class="top">
+      <div class="drop">
+        <svg width="28" height="34" viewBox="0 0 28 34" aria-hidden="true"><path d="M14 1C14 1 2 15 2 22a12 12 0 0 0 24 0C26 15 14 1 14 1Z" fill="#E58A00"/><path d="M9 22a5 5 0 0 0 5 5" stroke="#fff" stroke-width="2.4" fill="none" stroke-linecap="round"/></svg>
+        <span class="eyebrow">Ambr · v1 UX blueprint</span>
+      </div>
+      <h1>Every screen exists for one moment</h1>
+      <p class="lede">The screens, structure and flows for Ambr v1, worked out from the three people who use it and the six moments they use it in. The breakdown day sets the bar: an answer in under 10 seconds.</p>
+      <div class="meta"><span>As of <b>22 Oct 2026</b></span><span>Light mode · Public Sans</span><span>Source: <a href="https://claude.ai/artifact/7edoErE1TBBWBFKhYfXnW9" target="_blank" rel="noopener">Product &amp; UX Spec</a></span></div>
+      <div class="facts">
+        <div><strong>36</strong><span>screens, sheets and dialogs</span></div>
+        <div><strong>3 + 1</strong><span>tabs plus the Add button</span></div>
+        <div><strong>7</strong><span>user flows</span></div>
+        <div><strong>≤ 2 taps</strong><span>from launch to any claim</span></div>
+      </div>
+    </header>
+
+    <section id="people">
+      <span class="eyebrow">1 · Starting point</span>
+      <h2>Three people, six moments</h2>
+      <div class="people">
+        <div class="person"><span class="role">Primary · the keeper</span><h3>Nusrat, 34</h3><p>Saves most items. Gets blamed when a receipt goes missing.</p><p class="needs">Needs fast capture, one place for everything, calm reminders.</p></div>
+        <div class="person"><span class="role">Gadget buyer</span><h3>Rafi, 27</h3><p>Phones, laptops, earbuds. Cares about claims and resale.</p><p class="needs">Needs serial numbers, claim proof, a sold-items archive.</p></div>
+        <div class="person"><span class="role">Occasional user</span><h3>Abba, 62</h3><p>Opens the app only when something breaks. Avoids typing.</p><p class="needs">Needs big targets, no typing, one plain answer.</p></div>
+      </div>
+      <div class="moments" role="list" aria-label="Moments of use, in time order">
+        <div class="moment" role="listitem"><span class="dot"></span><h3>Buying</h3><span class="budget">15 s to save</span><p class="feel">Excited, in a hurry</p><p>Camera, Confirm, Saved</p></div>
+        <div class="moment quiet" role="listitem"><span class="dot"></span><h3>Quiet months</h3><span class="budget">0 s</span><p class="feel">Forgets the app</p><p>Nothing. No nagging</p></div>
+        <div class="moment" role="listitem"><span class="dot"></span><h3>Near expiry</h3><span class="budget">1 tap</span><p class="feel">Unaware</p><p>Reminder, Item detail banner</p></div>
+        <div class="moment peak" role="listitem"><span class="dot"></span><h3>Breakdown day</h3><span class="budget">10 s to answer</span><p class="feel">Panic, blame</p><p>Home, What broke?, Search</p></div>
+        <div class="moment peak" role="listitem"><span class="dot"></span><h3>Service center</h3><span class="budget">1 tap to show</span><p class="feel">Stressed at a counter</p><p>Claim pack, Show at counter</p></div>
+        <div class="moment" role="listitem"><span class="dot"></span><h3>After, or new phone</h3><span class="budget">30 s</span><p class="feel">Relief, then forgetting</p><p>Log repair, Backup, Restore</p></div>
+      </div>
+    </section>
+
+    <section id="decisions">
+      <span class="eyebrow">2 · What changed from the spec</span>
+      <h2>Nine UX decisions</h2>
+      <p>The spec is the base. These changes come from walking each moment as Abba and Nusrat.</p>
+      <ol class="decisions">
+        <li><b>“Something broke?” button on Home</b><span>Search assumes typing and spelling. A big button opens a photo grid of everything owned instead.</span></li>
+        <li><b>The breakdown path lands on the claim pack</b><span>From “Something broke?” the answer and the proof are one tap away. Item detail stays the route from Vault and Search.</span></li>
+        <li><b>“No receipt? Type it in” on the camera</b><span>Not every purchase has paper at hand. Nobody gets stuck in front of a camera.</span></li>
+        <li><b>Second coverage lives in a sheet</b><span>Most items have one warranty. Compressor 10 years or 4 free services goes in a sheet, so Confirm stays short.</span></li>
+        <li><b>Duplicate check is a dialog</b><span>One question, two answers, before saving. Never a separate screen.</span></li>
+        <li><b>Restore comes before Welcome</b><span>Shown only when a Drive backup exists, so a new phone never means retyping 23 items.</span></li>
+        <li><b>The free limit never touches a claim</b><span>Item 11 opens the Pro sheet. Every saved item keeps its claim pack, share and call.</span></li>
+        <li><b>Reminder permission after the first save</b><span>At that moment the reason is concrete: “We'll remind you on 22 Sep.”</span></li>
+        <li><b>Archive before Delete</b><span>“Sold or gave away” keeps the receipt as resale proof. Delete stays in the overflow menu.</span></li>
+      </ol>
+    </section>
+
+    <section id="ia">
+      <span class="eyebrow">3 · Structure</span>
+      <h2>Information architecture</h2>
+      <p>Three tabs and one Add button on every top-level screen. Item detail is the shared hub that Home, Vault and Search all lead to; the claim pack sits one tap below it.</p>
+      <div class="ia">
+        <div class="ia-inner">
+          <div class="ia-root"><span class="node gate"><i>A1–A5</i>Launch &amp; onboarding</span><span>→</span><span class="node gate"><i>A6</i>App lock, if on</span></div>
+          <div class="stem"></div>
+          <div class="bar">
+            <div class="col">
+              <span class="node hub"><i>C1</i>Home</span>
+              <span class="q">Is anything at risk? Where is X?</span>
+              <div class="kids">
+                <span class="node"><i>C2</i>Search</span>
+                <div class="kids"><span class="node key"><i>D1</i>Item detail</span></div>
+                <span class="node key"><i>C3</i>What broke?</span>
+                <div class="kids"><span class="node key"><i>E1</i>Claim pack</span></div>
+                <span class="node">Needs attention</span>
+                <div class="kids"><span class="node key"><i>D1</i>Item detail + banner</span></div>
+              </div>
+            </div>
+            <div class="col">
+              <span class="node add"><i>B1</i>+ Add</span>
+              <span class="q">Save proof in 15 seconds</span>
+              <div class="kids">
+                <span class="node"><i>B1</i>Camera</span>
+                <span class="node"><i>B2</i>Pages review</span>
+                <span class="node"><i>B3</i>Confirm details</span>
+                <div class="kids"><span class="node"><i>B4</i>Add coverage</span><span class="node"><i>B5</i>Barcode scan</span><span class="node"><i>B6</i>Duplicate found</span></div>
+                <span class="node"><i>B7</i>Saved</span>
+              </div>
+            </div>
+            <div class="col">
+              <span class="node hub"><i>C4</i>Vault</span>
+              <span class="q">Show me everything I own</span>
+              <div class="kids">
+                <span class="node key"><i>D1</i>Item detail</span>
+                <div class="kids">
+                  <span class="node key"><i>E1</i>Claim pack</span>
+                  <div class="kids"><span class="node"><i>E2</i>Show at counter</span><span class="node"><i>E3</i>Share PDF</span></div>
+                  <span class="node"><i>D3</i>Proof viewer</span>
+                  <span class="node"><i>D2</i>Edit item</span>
+                  <span class="node"><i>E4</i>Log a repair</span>
+                </div>
+                <span class="node"><i>C5</i>Archive</span>
+              </div>
+            </div>
+            <div class="col">
+              <span class="node hub"><i>F1</i>You</span>
+              <span class="q">Is my data safe?</span>
+              <div class="kids">
+                <span class="node"><i>F2</i>Backup &amp; restore</span>
+                <span class="node"><i>F3</i>Reminders</span>
+                <span class="node"><i>F4</i>App lock</span>
+                <span class="node"><i>F5</i>Ambr Pro</span>
+                <span class="node"><i>F6</i>Export all</span>
+                <span class="node"><i>F7</i>Privacy</span>
+                <span class="node"><i>F8</i>Help</span>
+                <span class="node v2"><i>F9</i>Household · v2</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="ia-legend"><span class="node hub">Tab</span><span class="node add">Add button</span><span class="node key">Breakdown-day path</span><span class="node gate">Gate</span><span class="node v2">Later</span></div>
+      <p class="ia-note">Notifications deep-link to Item detail with the expiry banner. Item detail appears under Home and Vault because it is the same screen reached from both.</p>
+
+      <h3>Content model</h3>
+      <div class="tablewrap"><table>
+        <thead><tr><th>Object</th><th>Key fields</th><th>Rule</th></tr></thead>
+        <tbody>
+          <tr><td class="name">Item</td><td>name, category, room, brand, model, serial, price, purchase date, store, photo, archived</td><td>Only name is required</td></tr>
+          <tr><td class="name">Proof</td><td>kind (receipt, card, invoice), pages, OCR text</td><td>Many per item; OCR text searchable</td></tr>
+          <tr><td class="name">Coverage</td><td>type, starts from, start, end, scope, services used / total</td><td>Many per item; status uses the longest active one</td></tr>
+          <tr><td class="name">Service contact</td><td>brand, center, phone, address</td><td>Pre-filled for known brands</td></tr>
+          <tr><td class="name">Repair</td><td>date, problem, outcome, cost, notes, photo</td><td>Builds the service history</td></tr>
+          <tr><td class="name">Reminder</td><td>coverage, fire date, kind (30 d, 7 d), state</td><td>Max 2 per coverage, ever</td></tr>
+        </tbody>
+      </table></div>
+      <div class="pills" aria-label="Status pills"><span class="pill ok">✓ Covered · more than 30 days</span><span class="pill warn">◷ Ends soon · 30 days or less</span><span class="pill off">— Expired · no active coverage</span></div>
+    </section>
+
+    <section id="screens">
+      <span class="eyebrow">4 · Screens</span>
+      <h2>Screen inventory</h2>
+      <p>36 screens, sheets and dialogs. The IDs are used in the flows below and will be used in the code.</p>
+      <div class="chips" role="group" aria-label="Filter by group" id="filters"></div>
+      <div class="tablewrap"><table>
+        <thead><tr><th>ID</th><th>Screen</th><th>Type</th><th>Purpose</th><th>Release</th></tr></thead>
+        <tbody id="inv"></tbody>
+      </table></div>
+    </section>
+
+    <section id="flows">
+      <span class="eyebrow">5 · Flows</span>
+      <h2>Seven user flows</h2>
+      <p>The two that decide whether Ambr works are Add an item and Breakdown day. Labels use screen IDs from the inventory.</p>
+      <div class="flows">
+        <div class="flow">
+          <div class="flow-head"><h3>Flow 3 · Breakdown day</h3><span class="target">Target: answer in under 10 s</span></div>
+          <div class="flow-body"><pre class="mermaid">
+flowchart LR
+    Open[Open Ambr] --> C1[C1 Home]
+    C1 -- Something broke? --> C3[C3 What broke? photo grid]
+    C1 -- types AC --> C2[C2 Search]
+    C3 -- tap item --> E1[E1 Claim pack]
+    C2 -- tap item --> D1[D1 Item detail]
+    D1 -- Something broke --> E1
+    E1 --> S{Covered?}
+    S -- Covered or Ends soon --> Act[Call / Share PDF / Show at counter]
+    S -- Expired --> Kind[Ended on 3 Jan, paid repair possible. Call stays]
+    Act --> Visit[Service visit]
+    Kind --> Visit
+    Visit --> Ask[Next open: How did it go?] --> E4[E4 Log a repair]
+</pre></div>
+          <p class="flow-foot">Abba's path is Home → What broke? → tap the AC: two taps, no typing.</p>
+        </div>
+
+        <div class="flow">
+          <div class="flow-head"><h3>Flow 2 · Add an item</h3><span class="target">Target: under 15 s, 5 taps</span></div>
+          <div class="flow-body"><pre class="mermaid">
+flowchart LR
+    Add((Add)) --> B1[B1 Camera]
+    B1 -- shutter or auto --> B2[B2 Pages review]
+    B1 -- gallery or PDF --> B2
+    B1 -- Type it in --> B3
+    B2 --> OCR[On-device OCR 1-2 s]
+    OCR -- fields found --> B3[B3 Confirm details]
+    OCR -- nothing readable --> B3e[B3 empty, photo pinned]
+    B3e --> B3
+    B3 -. optional .-> B4[B4 Add coverage]
+    B3 -. optional .-> B5[B5 Barcode scan]
+    B3 -- Save --> Dup{Saved before?}
+    Dup -- yes --> B6[B6 Duplicate found]
+    B6 -- Save anyway --> Lim
+    Dup -- no --> Lim{11th item on Free?}
+    Lim -- yes --> F5[F5 Ambr Pro]
+    Lim -- no --> B7[B7 Saved sheet]
+    B7 -- Add another --> B1
+</pre></div>
+          <p class="flow-foot">Short path: Add → shutter → Done → Save → Done. A failed OCR never shows an error screen.</p>
+        </div>
+
+        <div class="flow">
+          <div class="flow-head"><h3>Flow 1 · First launch</h3><span class="target">Target: first item in under 60 s</span></div>
+          <div class="flow-body"><pre class="mermaid">
+flowchart LR
+    A1[A1 Splash] --> A2[A2 Language]
+    A2 --> F{Drive backup found?}
+    F -- yes --> A3[A3 Restore found]
+    A3 -- Restore --> H[C1 Home with items]
+    A3 -- Start fresh --> A4
+    F -- no --> A4[A4 Welcome]
+    A4 -- Save my first receipt --> B1[B1 Camera] --> B3[B3 Confirm] --> A5[A5 Celebration + reminder ask]
+    A4 -- I'll explore first --> E[C1 Home, empty state]
+    A5 --> H2[C1 Home]
+</pre></div>
+          <p class="flow-foot">No account. Camera permission only when the camera opens; notification permission on A5 with the real date.</p>
+        </div>
+
+        <div class="flow">
+          <div class="flow-head"><h3>Flow 4 · Expiry reminder</h3><span class="target">Max 2 notifications per coverage</span></div>
+          <div class="flow-body"><pre class="mermaid">
+flowchart LR
+    T30[30 days before] --> N1[Notification: AC warranty ends 14 Mar]
+    N1 -- tap --> D1[D1 Item detail + banner]
+    D1 -- Book a check-up --> Call[Calls service center]
+    D1 -- All good --> Done[No more reminders]
+    N1 -- ignored --> T7[7 days before] --> N2[Last notification] --> D1
+    End[End date] --> Silent[Turns Expired silently]
+</pre></div>
+        </div>
+
+        <div class="flow">
+          <div class="flow-head"><h3>Flow 5 · Backup and restore</h3><span class="target">Prompted at item 3 and item 10</span></div>
+          <div class="flow-body"><pre class="mermaid">
+flowchart LR
+    I3[3rd item saved] --> Card[Home backup card]
+    I10[10th item, still off] --> Card
+    Card -- Back up --> G[Google sign-in] --> F2[F2 Weekly backup on Wi-Fi]
+    Card -- Not now --> Hide[Hidden until item 10]
+    F2 --> St[You shows: Last backup today, 9:14 pm]
+    New[New phone] --> A2[A2 Language] --> A3[A3 Restore found] --> H[C1 Home with all items]
+</pre></div>
+        </div>
+
+        <div class="flow">
+          <div class="flow-head"><h3>Flow 6 · Share with family</h3><span class="target">v1 per item · v2 shared vault</span></div>
+          <div class="flow-body"><pre class="mermaid">
+flowchart LR
+    Q[Where's the receipt?] --> Find[C2 Search or C4 Vault] --> D1[D1 Item detail]
+    D1 -- Share receipt --> E3[E3 Share PDF] --> App[WhatsApp / Messenger / email]
+    V2[v2: F9 Household] --> QR[Invite by QR] --> Same[Everyone sees one vault]
+</pre></div>
+        </div>
+
+        <div class="flow">
+          <div class="flow-head"><h3>Flow 7 · Free limit and Pro</h3><span class="target">Never paywall a claim</span></div>
+          <div class="flow-body"><pre class="mermaid">
+flowchart LR
+    S11[Save 11th item] --> F5[F5 Ambr Pro sheet]
+    F5 -- Buy once, 499 taka --> OK[Item saved, Pro on]
+    F5 -- Not now --> Draft[Draft kept, not saved]
+    Old[First 10 items] --> Free[Claim pack, share, call: always free]
+</pre></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="states">
+      <span class="eyebrow">6 · Details</span>
+      <h2>States every screen designs</h2>
+      <div class="states">
+        <div class="state"><h3>Empty</h3><p>Say what goes here, offer the first action</p><q>Nothing saved yet. Start with the most expensive thing you own.</q></div>
+        <div class="state"><h3>All clear</h3><p>Reassure, never an empty list</p><q>All good. Nothing ending soon.</q></div>
+        <div class="state"><h3>Loading</h3><p>Shimmer on the exact fields being filled</p><q>Name, Store, Price, Date shimmer during OCR</q></div>
+        <div class="state"><h3>Unsure</h3><p>Amber underline plus words, never blocks Save</p><q>Check this</q></div>
+        <div class="state"><h3>Error</h3><p>What happened and what to do, no codes</p><q>Couldn't read this one. Just type the name, the photo is saved.</q></div>
+        <div class="state"><h3>Permission off</h3><p>Explain, then a way forward</p><q>Camera is off for Ambr. Open settings, or add without a photo.</q></div>
+        <div class="state"><h3>Expired</h3><p>Kind, with a next step</p><q>Warranty ended on 3 Jan. You may still get a paid repair.</q></div>
+      </div>
+
+      <h3>Rules carried into the visual design</h3>
+      <ul class="rules">
+        <li><b>Light mode only.</b> Status pills always pair color with a word and an icon.</li>
+        <li><b>Public Sans.</b> Body at least 16 sp; the status sentence on Item detail and Claim pack at 24 sp or larger. Layouts reflow at 200% font scale.</li>
+        <li><b>Tap targets at least 48 × 48 dp.</b> Primary actions full width at the bottom, within thumb reach. One primary action per screen.</li>
+        <li><b>Dates as “14 Mar 2027”</b>, never 14/03/27. <b>Money as ৳4,85,000</b> with South Asian grouping.</li>
+        <li><b>Amber on white</b> only for large text or with a dark outline, to meet WCAG AA.</li>
+      </ul>
+
+      <div class="next">
+        <span class="eyebrow">Next</span>
+        <h3>Visual design starts when the references arrive</h3>
+        <p>Waiting on: style references, logo, and any screen you have a picture of in mind. Then the 36 screens get designed in this order: Home, Item detail, Claim pack, Camera and Confirm, Vault, then the rest.</p>
+      </div>
+    </section>
+  </main>
+</div>
+
+<script>
+const SCREENS=[
+ ["A","A1","Splash","Screen","Logo while the database opens, under 1 s","v1"],
+ ["A","A2","Language","Screen","বাংলা / English, two big buttons, shown once","v1"],
+ ["A","A3","Restore found","Screen","“Restore 23 items from your Google Drive?” Only when a backup exists","v1"],
+ ["A","A4","Welcome","Screen","One promise, one action: “Save my first receipt”","v1"],
+ ["A","A5","First save celebration","Sheet","“Your fridge is protected until Jan 2028” + reminder permission","v1"],
+ ["A","A6","App lock","Screen","Fingerprint or PIN gate, only if turned on","Pro"],
+ ["B","B1","Camera","Screen","Edge-detected capture, auto shutter, gallery/PDF import, “Type it in”","v1"],
+ ["B","B2","Pages review","Screen","Crop, reorder or retake pages before OCR","v1"],
+ ["B","B3","Confirm details","Screen","Pre-filled fields, “Check this” on unsure ones, sticky Save","v1"],
+ ["B","B4","Add coverage","Sheet","Second warranty: type, length, starts from, parts or free-service count","v1"],
+ ["B","B5","Barcode scan","Screen","Scan the serial number into Confirm","v1"],
+ ["B","B6","Duplicate found","Dialog","“Looks like you already saved this receipt on 2 Jun. Save anyway?”","v1"],
+ ["B","B7","Saved","Sheet","“Fridge saved. Covered until 22 Oct 2027.” Add another / Done","v1"],
+ ["C","C1","Home","Tab","Search, “Something broke?”, needs attention, protected total","v1"],
+ ["C","C2","Search","Screen","Bangla + English results with status pills; “Not saved yet? Add it”","v1"],
+ ["C","C3","What broke?","Screen","Big photo grid of items; tap one to open its claim pack","v1"],
+ ["C","C4","Vault","Tab","Everything owned, by room or category, filters and sort","v1"],
+ ["C","C5","Archive","Screen","Sold and given-away items, receipts kept","v1"],
+ ["D","D1","Item detail","Screen","Status sentence first, then Something broke, proof, coverage, history","v1"],
+ ["D","D2","Edit item","Screen","Same fields as Confirm, opened from Item detail","v1"],
+ ["D","D3","Proof viewer","Screen","Full-screen receipt and card pages, pinch zoom, add page","v1"],
+ ["D","D4","Mark as sold","Dialog","Move to Archive with a date, keep the receipt","v1"],
+ ["D","D5","Delete","Dialog","“Delete Fridge and its receipt? You can't undo this.”","v1"],
+ ["E","E1","Claim pack","Screen","Status, receipt, card, serial in large type, dates, Call service center","v1"],
+ ["E","E2","Show at counter","Screen","Full screen, max brightness, receipt + serial, swipe pages","v1"],
+ ["E","E3","Share PDF","Sheet","One-page PDF preview, then WhatsApp, Messenger, email","v1"],
+ ["E","E4","Log a repair","Screen","Date, what went wrong, outcome, cost, photo","v1"],
+ ["F","F1","You","Tab","Backup status on top, then the settings list","v1"],
+ ["F","F2","Backup & restore","Screen","Google Drive sign-in, Back up now, last backup, Restore","v1"],
+ ["F","F3","Reminders","Screen","Lead time 7/14/30/60 days, quiet hours","v1"],
+ ["F","F4","App lock setup","Screen","Turn on fingerprint or PIN","Pro"],
+ ["F","F5","Ambr Pro","Sheet","One-time ৳499; never locks old items","v1"],
+ ["F","F6","Export all","Screen","PDF or CSV of every item","Pro"],
+ ["F","F7","Privacy","Screen","Plain-words promise: data stays on this phone","v1"],
+ ["F","F8","Help & feedback","Screen","Short FAQ and a feedback form","v1"],
+ ["F","F9","Household","Screen","Invite by QR, members, “Added by”","v2"]
+];
+const GROUPS={all:"All",A:"Start",B:"Capture",C:"Find",D:"Item",E:"Claim",F:"You"};
+const inv=document.getElementById("inv"),fl=document.getElementById("filters");
+const v1count=SCREENS.filter(s=>s[5]!=="v2").length;
+let cur="all";
+try{const s=localStorage.getItem("ambr-ux-filter");if(s&&GROUPS[s])cur=s}catch(e){}
+function esc(t){return t.replace(/[&<>]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]))}
+function render(){
+  inv.innerHTML=SCREENS.filter(s=>cur==="all"||s[0]===cur).map(s=>{
+    const cls=s[5]==="v1"?"v1":s[5]==="v2"?"v2":"pro";
+    return `<tr><td class="id">${s[1]}</td><td class="name">${esc(s[2])}</td><td>${s[3]}</td><td>${esc(s[4])}</td><td><span class="tag ${cls}">${s[5]==="Pro"?"v1 · Pro":s[5]}</span></td></tr>`}).join("");
+  fl.querySelectorAll("button").forEach(b=>b.setAttribute("aria-pressed",b.dataset.g===cur));
+}
+Object.entries(GROUPS).forEach(([g,label])=>{
+  const n=g==="all"?SCREENS.length:SCREENS.filter(s=>s[0]===g).length;
+  const b=document.createElement("button");b.className="chip";b.type="button";b.dataset.g=g;
+  b.innerHTML=`${label}<span>${n}</span>`;
+  b.addEventListener("click",()=>{cur=g;try{localStorage.setItem("ambr-ux-filter",g)}catch(e){}render()});
+  fl.appendChild(b);
+});
+render();
+</script>

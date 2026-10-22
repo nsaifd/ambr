@@ -39,7 +39,7 @@ The spec is a strong base. These changes come from looking at each moment throug
 
 ## 3. Screen inventory
 
-32 screens and sheets. IDs are used in the flows and in code. `v1` ships at launch; `v2` comes later.
+36 screens, sheets and dialogs. IDs are used in the flows and in code. `v1` ships at launch; `v2` comes later.
 
 ### A. Start
 | ID | Screen | Type | Purpose | Release |
