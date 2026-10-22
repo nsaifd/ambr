@@ -2,6 +2,8 @@ package app.ambr.platform
 
 import android.content.Context
 import android.net.Uri
+import app.ambr.domain.OcrLayout
+import app.ambr.domain.OcrLine
 import com.google.mlkit.vision.common.InputImage
 import com.google.mlkit.vision.text.TextRecognition
 import com.google.mlkit.vision.text.latin.TextRecognizerOptions
@@ -12,9 +14,13 @@ import java.io.File
 object Recognizer {
     private val client by lazy { TextRecognition.getClient(TextRecognizerOptions.DEFAULT_OPTIONS) }
 
+    /** Returns the page as text, one printed row per line. */
     suspend fun read(context: Context, file: File): String = runCatching {
         val image = InputImage.fromFilePath(context, Uri.fromFile(file))
-        // Keep ML Kit's line order within each block; blocks come roughly top to bottom.
-        client.process(image).await().textBlocks.sortedBy { it.boundingBox?.top ?: 0 }.joinToString("\n") { it.text }
+        val result = client.process(image).await()
+        val lines = result.textBlocks.flatMap { it.lines }.mapNotNull { l ->
+            l.boundingBox?.let { b -> OcrLine(l.text, b.left, b.top, b.right, b.bottom) }
+        }
+        OcrLayout.rows(lines).joinToString("\n").ifBlank { result.text }
     }.getOrDefault("")
 }
