@@ -306,7 +306,7 @@ private fun ZoomableImage(file: File) {
         file, null,
         Modifier.fillMaxSize()
             .pointerInput(Unit) { detectTapGestures(onDoubleTap = { scale = if (scale > 1f) 1f else 2.5f; offset = Offset.Zero }) }
-            .transformable(state, canPan = { scale > 1f })
+            .transformable(state)
             .graphicsLayer(scaleX = scale, scaleY = scale, translationX = offset.x, translationY = offset.y),
         contentScale = ContentScale.Fit,
     )

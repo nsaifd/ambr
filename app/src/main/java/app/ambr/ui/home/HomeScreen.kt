@@ -79,7 +79,7 @@ fun HomeScreen(
         item { Header() }
         if (!overview.loaded) return@LazyColumn
         if (overview.items.isEmpty()) {
-            item { EmptyHome(onAdd = onAdd, onSamples = if (BuildConfig.DEBUG) vm::loadSamples else null) }
+            item { EmptyHome(onAdd = onAdd, onSamples = if (BuildConfig.DEBUG) ({ vm.loadSamples(); Unit }) else null) }
             return@LazyColumn
         }
         item { Greeting(overview) }
