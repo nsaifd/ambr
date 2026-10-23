@@ -140,6 +140,15 @@ fun AmbrRoot(openItem: Long? = null, onOpened: () -> Unit = {}) {
                     onSearch = { nav.navigate(Routes.Search) },
                     onSeeAll = { nav.goTab(Tab.Vault.route) },
                     onAdd = { nav.navigate(Routes.Add) },
+                    onNotifications = { nav.navigate("notifications") },
+                )
+            }
+            composable("notifications") {
+                app.ambr.ui.home.NotificationsScreen(
+                    ambrViewModel { ItemsViewModel(it.items) }, container.settings,
+                    onBack = { nav.popBackStack() },
+                    onOpen = { nav.navigate(Routes.item(it)) },
+                    onBackup = { nav.navigate("backup") },
                 )
             }
             composable(Tab.Vault.route) {
