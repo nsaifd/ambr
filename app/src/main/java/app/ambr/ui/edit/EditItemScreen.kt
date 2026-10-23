@@ -17,6 +17,7 @@ import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.statusBarsPadding
+import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -122,14 +123,20 @@ fun EditItemScreen(
                 ProofStrip(d)
             }
 
+            val sug = d.suggestions
             FormCard {
-                LabeledField("Item name", d.name, { v -> vm.edit(Field.Name) { it.copy(name = v) } }, placeholder = "e.g. Walton fridge", unsure = Field.Name in d.unsure)
+                LabeledField("Item name", d.name, { v -> vm.edit(Field.Name) { it.copy(name = v) } }, placeholder = if (sug != null) "Type it, or tap one below" else "e.g. Walton fridge", unsure = Field.Name in d.unsure)
+                sug?.names?.let { o -> Picks(o.filter { it != d.name }) { v -> vm.edit(Field.Name) { it.copy(name = v, category = null) } } }
                 LabeledField("Store", d.store, { v -> vm.edit(Field.Store) { it.copy(store = v) } }, placeholder = "Where you bought it", unsure = Field.Store in d.unsure)
+                sug?.stores?.let { o -> Picks(o.filter { it != d.store }) { v -> vm.edit(Field.Store) { it.copy(store = v) } } }
                 Row(horizontalArrangement = Arrangement.spacedBy(10.dp)) {
                     LabeledField("Price (৳)", d.price, { v -> vm.edit(Field.Price) { it.copy(price = v.filter { c -> c.isDigit() || c == ',' }) } }, Modifier.weight(1f), placeholder = "0", unsure = Field.Price in d.unsure, numeric = true)
                     DateField("Bought on", d.purchaseDate, Field.Date in d.unsure, Modifier.weight(1f)) { pickDate = true }
                 }
+                sug?.prices?.let { o -> Picks(o.filter { it != d.priceTaka }.map(Format::taka)) { v -> vm.edit(Field.Price) { it.copy(price = v.filter(Char::isDigit)) } } }
+                sug?.dates?.let { o -> Picks(o.filter { it != d.purchaseDate }.map(Format::date)) { v -> o.firstOrNull { Format.date(it) == v }?.let(vm::setDate) } }
             }
+            sug?.rawText?.takeIf { it.isNotBlank() }?.let { RawText(it) }
 
             SectionLabel("Warranty length")
             val main = d.coverages.firstOrNull { it.label == "Full warranty" && it.type != CoverageType.FreeServices }
@@ -226,6 +233,53 @@ fun EditItemScreen(
     ) { c ->
         coverageSheet?.let { vm.replaceCoverage(it, c) } ?: vm.addCoverage(c.copy(itemId = d.id))
         newCoverage = false; coverageSheet = null
+    }
+}
+
+/** Tap-to-fill choices taken from the receipt, shown under a field. */
+@Composable
+private fun Picks(options: List<String>, onPick: (String) -> Unit) {
+    if (options.isEmpty()) return
+    Column(verticalArrangement = Arrangement.spacedBy(6.dp)) {
+        Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(5.dp)) {
+            Icon(painterResource(R.drawable.ic_receipt), null, tint = AmbrColors.TextMuted, modifier = Modifier.size(11.dp))
+            Text("On the receipt", style = MaterialTheme.typography.labelSmall, color = AmbrColors.TextMuted)
+        }
+        androidx.compose.foundation.lazy.LazyRow(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+            items(options.size) { i ->
+                Text(
+                    options[i], style = MaterialTheme.typography.titleSmall, color = AmbrColors.HoneyInk, maxLines = 1,
+                    overflow = androidx.compose.ui.text.style.TextOverflow.Ellipsis,
+                    modifier = Modifier.widthIn(max = 260.dp).clip(RoundedCornerShape(18.dp)).background(AmbrColors.HoneyTint)
+                        .clickable(role = Role.Button) { onPick(options[i]) }.padding(horizontal = 12.dp, vertical = 8.dp),
+                )
+            }
+        }
+    }
+}
+
+/** Everything the reader saw, folded away. Useful when a field is wrong: copy the right bit from here. */
+@Composable
+private fun RawText(text: String) {
+    var open by rememberSaveable { mutableStateOf(false) }
+    val context = androidx.compose.ui.platform.LocalContext.current
+    Column(Modifier.fillMaxWidth().clip(CardShape).background(AmbrColors.Card).border(1.dp, AmbrColors.Ring, CardShape)) {
+        Row(Modifier.fillMaxWidth().clickable { open = !open }.padding(16.dp), verticalAlignment = Alignment.CenterVertically) {
+            Column(Modifier.weight(1f)) {
+                Text("Text we read", style = MaterialTheme.typography.titleMedium, color = AmbrColors.TextPrimary)
+                Text("Check it, or copy the right words from here", style = MaterialTheme.typography.labelSmall, color = AmbrColors.TextMuted)
+            }
+            Icon(painterResource(if (open) R.drawable.ic_angle_small_down else R.drawable.ic_angle_small_right), null, tint = AmbrColors.TextPrimary, modifier = Modifier.size(20.dp))
+        }
+        AnimatedVisibility(open) {
+            Column(Modifier.padding(start = 16.dp, end = 16.dp, bottom = 16.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
+                androidx.compose.foundation.text.selection.SelectionContainer {
+                    Text(text, style = MaterialTheme.typography.bodyMedium.copy(fontFamily = androidx.compose.ui.text.font.FontFamily.Monospace), color = AmbrColors.TextSecondary)
+                }
+                Text("Copy all", style = MaterialTheme.typography.titleSmall, color = AmbrColors.HoneyInk,
+                    modifier = Modifier.clip(RoundedCornerShape(16.dp)).clickable { app.ambr.platform.Intents.copy(context, "Receipt text", text) }.padding(vertical = 6.dp))
+            }
+        }
     }
 }
 

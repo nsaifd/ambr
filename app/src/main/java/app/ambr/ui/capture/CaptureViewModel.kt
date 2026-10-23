@@ -13,6 +13,7 @@ import app.ambr.platform.Images
 import app.ambr.platform.Recognizer
 import app.ambr.ui.state.Draft
 import app.ambr.ui.state.Field
+import app.ambr.ui.state.Suggestions
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -109,7 +110,7 @@ class CaptureViewModel(private val c: AppContainer, private val itemId: Long) : 
         val pages = _state.value.pages
         if (pages.isEmpty()) return@launch
         _state.update { it.copy(stage = Stage.Reading) }
-        val texts = pages.map { Recognizer.read(c.app, it.file) }
+        val texts = pages.map { Recognizer.read(it.file) }
 
         if (forExistingItem) {
             val existing = c.items.item(itemId).first()
@@ -136,10 +137,12 @@ class CaptureViewModel(private val c: AppContainer, private val itemId: Long) : 
             newProofs = pages.mapIndexed { i, p -> ProofEntity(itemId = 0, kind = p.kind, filePath = p.file.path, page = i, ocrText = texts[i]) },
             unsure = buildSet {
                 if (fields.name == null || fields.unsureName) add(Field.Name)
+                if (fields.unsureStore) add(Field.Store)
                 if (fields.unsurePrice) add(Field.Price)
                 if (fields.date == null || fields.unsureDate) add(Field.Date)
             },
             readCount = fields.readCount,
+            suggestions = Suggestions(fields.nameOptions, fields.storeOptions, fields.priceOptions, fields.dateOptions, texts.joinToString("\n\n")),
         )
         // The files now belong to the draft; don't delete them if this screen goes away.
         _state.value = CaptureState()

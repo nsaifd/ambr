@@ -43,17 +43,16 @@ object Brands {
     }
 
     /** Guesses the category from words in the item name. */
-    fun categoryFor(name: String): Category? {
-        val n = name.lowercase()
-        return when {
-            listOf("fridge", "refrigerator", "freezer", "oven", "microwave", "blender", "cooker", "kettle").any { it in n } -> Category.Kitchen
-            listOf(" ac", "air con", "fan", "cooler").any { it in " $n" } -> Category.Cooling
-            listOf("tv", "television", "speaker", "sound", "headphone").any { it in n } -> Category.TvAudio
-            listOf("phone", "iphone", "galaxy", "redmi", "tablet", "ipad", "watch").any { it in n } -> Category.Phones
-            listOf("laptop", "macbook", "computer", "monitor", "printer", "router").any { it in n } -> Category.Computers
-            listOf("wash", "dryer", "iron").any { it in n } -> Category.Laundry
-            listOf("bike", "motor", "scooter", "car", "cycle").any { it in n } -> Category.Vehicles
-            else -> null
-        }
-    }
+    private val categoryWords = listOf(
+        Category.Kitchen to listOf("fridge", "refrigerator", "freezer", "oven", "microwave", "blender", "cooker", "kettle", "toaster", "juicer", "dispenser"),
+        Category.Cooling to listOf("ac", "air con", "fan", "cooler", "inverter ac"),
+        Category.TvAudio to listOf("tv", "television", "speaker", "sound", "headphone", "earbud", "soundbar"),
+        Category.Phones to listOf("phone", "smartphone", "iphone", "galaxy", "redmi", "tablet", "ipad", "watch", "power bank"),
+        Category.Computers to listOf("laptop", "macbook", "computer", "monitor", "printer", "router", "ups", "keyboard", "mouse", "ssd", "desktop", "projector"),
+        Category.Laundry to listOf("wash", "washing", "dryer", "iron"),
+        Category.Vehicles to listOf("bike", "motorbike", "motorcycle", "scooter", "car", "bicycle", "cycle"),
+    ).map { (c, words) -> c to Regex("\\b(" + words.joinToString("|") + ")s?\\b", RegexOption.IGNORE_CASE) }
+
+    /** Guesses the category from whole words in the item name, so "Bangla Motor" or "card" don't count. */
+    fun categoryFor(name: String): Category? = categoryWords.firstOrNull { it.second.containsMatchIn(name) }?.first
 }

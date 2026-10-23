@@ -23,6 +23,16 @@ import java.time.LocalDate
 
 enum class Field { Name, Store, Price, Date, Brand, Model, Serial }
 
+/** What the receipt showed, offered as tap-to-fill choices under the form's fields. */
+data class Suggestions(
+    val names: List<String> = emptyList(),
+    val stores: List<String> = emptyList(),
+    val prices: List<Long> = emptyList(),
+    val dates: List<LocalDate> = emptyList(),
+    /** Everything the reader saw, so the user can check it or copy from it. */
+    val rawText: String = "",
+)
+
 /** The form's working copy. Text fields stay strings until save so typing is never fought. */
 data class Draft(
     val id: Long = 0,
@@ -45,6 +55,7 @@ data class Draft(
     /** Fields the receipt reader was not sure about. Cleared as the user edits them. */
     val unsure: Set<Field> = emptySet(),
     val readCount: Int = 0,
+    val suggestions: Suggestions? = null,
     val createdAt: Long = System.currentTimeMillis(),
 ) {
     val priceTaka: Long? get() = price.filter { it.isDigit() }.toLongOrNull()
