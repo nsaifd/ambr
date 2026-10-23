@@ -7,12 +7,12 @@ plugins {
 
 android {
     namespace = "app.ambr"
-    compileSdk = 35
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "app.ambr"
         minSdk = 26
-        targetSdk = 35
+        targetSdk = 36
         // CI sets these so every Play upload gets a higher version code.
         versionCode = System.getenv("VERSION_CODE")?.toIntOrNull() ?: 1
         versionName = System.getenv("VERSION_NAME") ?: "1.0"
