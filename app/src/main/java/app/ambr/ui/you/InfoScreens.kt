@@ -143,9 +143,16 @@ private fun FormatCard(icon: Int, title: String, sub: String, on: Boolean, ink: 
     }
 }
 
+const val PRIVACY_URL = "https://docs.google.com/document/d/11ym5RwBZ6A0QVU6CT2eO6jscY8H1OhNhhdZnYkO3o0Y/edit?usp=sharing"
+
 @Composable
 fun PrivacyScreen(onBack: () -> Unit) {
-    Page("Privacy", onBack) {
+    val context = LocalContext.current
+    Page("Privacy", onBack, bottom = {
+        AmbrButton("Read the full privacy policy", {
+            runCatching { context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(PRIVACY_URL))) }
+        }, style = ButtonStyle.Quiet, height = 52.dp)
+    }) {
         Row(Modifier.fillMaxWidth().clip(CardShape).background(AmbrColors.Navy).padding(18.dp), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(14.dp)) {
             Icon(painterResource(R.drawable.ic_shield_check), null, tint = AmbrColors.HoneyOnNavy, modifier = Modifier.size(24.dp))
             Text("Your receipts never leave this phone unless you back them up.", style = MaterialTheme.typography.titleMedium, color = Color.White)
