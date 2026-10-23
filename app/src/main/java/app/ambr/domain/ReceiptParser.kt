@@ -61,8 +61,8 @@ object ReceiptParser {
     private val monthDay = Regex("""\b(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)[a-z]*[\s\-.]*(\d{1,2})(?:st|nd|rd|th)?[\s,]+(\d{4})\b""", opts)
 
     private const val NUM = """(\d{1,2}|one|two|three|four|five|six|seven|ten|twelve)"""
-    private val warrantyBefore = Regex("""$NUM\s*\(?\d*\)?\s*(years?|yrs?|months?|mons?|mos?)\.?\s*(full\s*|parts?\s*|service\s*|replacement\s*)?(warranty|warrenty|guarantee|guaranty)""", opts)
-    private val warrantyAfter = Regex("""(warranty|warrenty|guarantee|guaranty)(\s*period)?\s*[:\-]?\s*$NUM\s*(years?|yrs?|months?|mons?|mos?)""", opts)
+    private val warrantyBefore = Regex("""(?<![\d.,])\b$NUM\s*(?:\(\d+\)\s*)?(years?|yrs?|months?|mons?|mos?)\.?\s*(full\s*|parts?\s*|service\s*|replacement\s*)?(warranty|warrenty|guarantee|guaranty)""", opts)
+    private val warrantyAfter = Regex("""(warranty|warrenty|guarantee|guaranty)(\s*period)?\s*[:\-]?\s*\b$NUM\s*(years?|yrs?|months?|mons?|mos?)""", opts)
 
     private val serial = Regex("""\b(?:s/?n|serial(?:[ \t]*(?:no|number))?\.?|imei(?:[ \t]*\d)?|esn)[ \t]*[:#\-.]?[ \t]*([A-Z0-9][A-Z0-9\-]{5,})""", opts)
     private val model = Regex("""\bmodel(?:[ \t]*(?:no|number))?\.?[ \t]*[:#\-]?[ \t]*([A-Z0-9][A-Z0-9\-/]{2,})""", opts)
