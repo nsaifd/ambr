@@ -33,6 +33,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.runtime.mutableIntStateOf
@@ -273,7 +274,8 @@ fun ShowCounterScreen(vm: ItemViewModel, onClose: () -> Unit) {
 fun ProofViewerScreen(vm: ItemViewModel, start: Int, onClose: () -> Unit, onDelete: (ProofEntity) -> Unit) {
     val ui by vm.item.collectAsStateWithLifecycle()
     val proofs = ui?.details?.proofs?.sortedBy { it.page } ?: return
-    if (proofs.isEmpty()) { onClose(); return }
+    // Deleting the last page leaves nothing to show; close once, outside composition.
+    if (proofs.isEmpty()) { LaunchedEffect(Unit) { onClose() }; return }
     val pager = rememberPagerState(initialPage = start.coerceIn(0, proofs.lastIndex)) { proofs.size }
     var confirm by remember { mutableStateOf(false) }
     Box(Modifier.fillMaxSize().background(Color(0xFF0E1320))) {

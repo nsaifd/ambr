@@ -196,6 +196,7 @@ fun LabeledField(
     placeholder: String? = null,
     unsure: Boolean = false,
     numeric: Boolean = false,
+    phone: Boolean = false,
 ) {
     Column(modifier, verticalArrangement = Arrangement.spacedBy(6.dp)) {
         Text(label, style = MaterialTheme.typography.labelMedium, color = AmbrColors.TextSecondary)
@@ -206,7 +207,11 @@ fun LabeledField(
             singleLine = true,
             shape = RoundedCornerShape(16.dp),
             placeholder = placeholder?.let { { Text(it, color = AmbrColors.TextPlaceholder) } },
-            keyboardOptions = if (numeric) KeyboardOptions(keyboardType = KeyboardType.Number) else KeyboardOptions.Default,
+            keyboardOptions = when {
+                phone -> KeyboardOptions(keyboardType = KeyboardType.Phone)
+                numeric -> KeyboardOptions(keyboardType = KeyboardType.Number)
+                else -> KeyboardOptions.Default
+            },
             textStyle = MaterialTheme.typography.bodyLarge,
             colors = OutlinedTextFieldDefaults.colors(
                 unfocusedContainerColor = if (unsure) Color(0xFFFFF8EA) else AmbrColors.Tile,

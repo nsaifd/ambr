@@ -100,7 +100,7 @@ private fun NavBackStackEntry.id() = arguments?.getLong("id") ?: 0L
 @Composable
 private fun itemVm(entry: NavBackStackEntry): ItemViewModel {
     val id = entry.id()
-    return ambrViewModel("item-$id") { ItemViewModel(it.items, id) }
+    return ambrViewModel("item-$id") { ItemViewModel(it.items, id, it.scope) }
 }
 
 private fun NavHostController.goTab(route: String) = navigate(route) {
@@ -121,12 +121,19 @@ fun AmbrRoot(openItem: Long? = null, onOpened: () -> Unit = {}) {
     val context = LocalContext.current
     val container = (context.applicationContext as AmbrApp).container
     val locked by container.lock.locked.collectAsStateWithLifecycle()
+    var showWelcome by remember { mutableStateOf(!container.settings.welcomed) }
+    // Keep receipts out of screenshots and the recent-apps preview while app lock is on.
+    val lockOn by container.settings.appLock.collectAsStateWithLifecycle()
+    LaunchedEffect(lockOn) {
+        val window = (context as? android.app.Activity)?.window ?: return@LaunchedEffect
+        if (lockOn) window.addFlags(android.view.WindowManager.LayoutParams.FLAG_SECURE) else window.clearFlags(android.view.WindowManager.LayoutParams.FLAG_SECURE)
+    }
     val firstReminder by container.settings.firstReminderDays.collectAsStateWithLifecycle()
 
     Box(Modifier.fillMaxSize().background(AmbrColors.Ground)) {
         NavHost(
             navController = nav,
-            startDestination = remember { if (container.settings.welcomed) Tab.Home.route else "welcome" },
+            startDestination = Tab.Home.route,
             enterTransition = { if (targetState.destination.route in tabRoutes) fadeIn(tween(200)) else slideInHorizontally(tween(250)) { it / 4 } + fadeIn(tween(250)) },
             exitTransition = { fadeOut(tween(180)) },
             popEnterTransition = { fadeIn(tween(200)) },
@@ -204,7 +211,7 @@ fun AmbrRoot(openItem: Long? = null, onOpened: () -> Unit = {}) {
                     )
                 }
             }
-            composable(Routes.Confirm) { EditorRoute(nav, 0L, container.pendingDraft.also { container.pendingDraft = null }) }
+            composable(Routes.Confirm) { EditorRoute(nav, 0L, container.pendingDraft.also { container.pendingDraft = null }, it) }
             composable("reminders") { app.ambr.ui.you.RemindersScreen(container.settings, onBack = { nav.popBackStack() }) }
             composable(Routes.Scan) {
                 BarcodeScanScreen { code ->
@@ -279,15 +286,7 @@ fun AmbrRoot(openItem: Long? = null, onOpened: () -> Unit = {}) {
             }
             composable("backup") { BackupScreen(container, onBack = { nav.popBackStack() }, onRestore = { nav.navigate("restore") }) }
             composable("restore") {
-                RestoreScreen(container, onClose = { nav.popBackStack() }, onDone = { nav.navigate(Tab.Home.route) { popUpTo(0) } })
-            }
-            composable("welcome") {
-                val done = { container.settings.welcomed = true }
-                WelcomeScreen(
-                    onAdd = { done(); nav.navigate(Tab.Home.route) { popUpTo(0) }; nav.navigate(Routes.Add) },
-                    onExplore = { done(); nav.navigate(Tab.Home.route) { popUpTo(0) } },
-                    onRestore = { nav.navigate("restore") },
-                )
+                RestoreScreen(container, onClose = { nav.popBackStack() }, onDone = { nav.popBackStack(Tab.Home.route, inclusive = false) })
             }
         }
         if (currentTab != null) {
@@ -296,6 +295,15 @@ fun AmbrRoot(openItem: Long? = null, onOpened: () -> Unit = {}) {
                 onSelect = { nav.goTab(it.route) },
                 onAdd = { nav.navigate(Routes.Add) },
                 modifier = Modifier.align(Alignment.BottomCenter).navigationBarsPadding(),
+            )
+        }
+        // First launch: Welcome sits over Home, so Home stays the root of every back stack.
+        if (showWelcome) {
+            val done = { container.settings.welcomed = true; showWelcome = false }
+            WelcomeScreen(
+                onAdd = { done(); nav.navigate(Routes.Add) },
+                onExplore = { done() },
+                onRestore = { done(); nav.navigate("restore") },
             )
         }
         if (locked) {

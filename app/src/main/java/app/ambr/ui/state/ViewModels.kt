@@ -14,6 +14,7 @@ import app.ambr.data.Room
 import app.ambr.domain.ItemStatus
 import app.ambr.domain.StatusKind
 import app.ambr.domain.Warranty
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.map
@@ -73,21 +74,23 @@ class ItemsViewModel(private val repo: ItemRepository) : ViewModel() {
     }
 }
 
-class ItemViewModel(private val repo: ItemRepository, val id: Long) : ViewModel() {
+class ItemViewModel(private val repo: ItemRepository, val id: Long, private val appScope: CoroutineScope) : ViewModel() {
     val item: StateFlow<ItemUi?> = repo.item(id)
         .map { it?.toUi() }
         .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5_000), null)
 
-    fun archive(reason: ArchiveReason, on: LocalDate) = item.value?.let { viewModelScope.launch { repo.archive(it.item, reason, on) } }
-    fun delete(onDone: () -> Unit) = item.value?.let { viewModelScope.launch { repo.delete(it.item); onDone() } }
-    fun addProof(proof: ProofEntity) = viewModelScope.launch { repo.addProof(proof) }
-    fun removeProof(proof: ProofEntity) = viewModelScope.launch {
+    // These run in the app scope: the screen closes right after, and the write must still land.
+    fun archive(reason: ArchiveReason, on: LocalDate) = item.value?.let { appScope.launch { repo.archive(it.item, reason, on) } }
+    fun unarchive() = item.value?.let { appScope.launch { repo.unarchive(it.item) } }
+    fun delete(onDone: () -> Unit) = item.value?.let { appScope.launch { repo.delete(it.item); onDone() } }
+    fun addProof(proof: ProofEntity) = appScope.launch { repo.addProof(proof) }
+    fun removeProof(proof: ProofEntity) = appScope.launch {
         repo.removeProof(proof)
         java.io.File(proof.filePath).delete()
     }
-    fun logRepair(repair: RepairEntity, countService: Boolean) = viewModelScope.launch {
+    fun logRepair(repair: RepairEntity, countService: Boolean) = appScope.launch {
         val free = item.value?.details?.coverages?.firstOrNull { it.servicesTotal != null && it.servicesUsed < it.servicesTotal }
         repo.logRepair(repair.copy(itemId = id), if (countService) free else null)
     }
-    fun dismissReminder() = item.value?.details?.coverages?.forEach { viewModelScope.launch { repo.updateCoverage(it.copy(reminderDismissed = true)) } }
+    fun dismissReminder() = item.value?.details?.coverages?.forEach { appScope.launch { repo.updateCoverage(it.copy(reminderDismissed = true)) } }
 }

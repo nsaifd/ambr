@@ -110,7 +110,7 @@ fun ItemDetailScreen(
                         CircleIconButton(R.drawable.ic_menu_dots, "More: share, mark as sold, delete", { menu = true })
                         DropdownMenu(menu, { menu = false }, containerColor = AmbrColors.Card) {
                             DropdownMenuItem({ Text("Share receipt") }, { menu = false; share(context, current) }, leadingIcon = { MenuIcon(R.drawable.ic_share) })
-                            DropdownMenuItem({ Text("Mark as sold or given away") }, { menu = false; sellSheet = true }, leadingIcon = { MenuIcon(R.drawable.ic_archive) })
+                            if (current.item.archivedReason == null) DropdownMenuItem({ Text("Mark as sold or given away") }, { menu = false; sellSheet = true }, leadingIcon = { MenuIcon(R.drawable.ic_archive) })
                             DropdownMenuItem({ Text("Delete", color = AmbrColors.Danger) }, { menu = false; confirmDelete = true }, leadingIcon = { MenuIcon(R.drawable.ic_trash, AmbrColors.Danger) })
                         }
                     }
@@ -132,6 +132,20 @@ fun ItemDetailScreen(
         item { StatusCard(current, onClaim, Modifier.padding(horizontal = 16.dp).offset(y = (-32).dp)) }
         item {
             Column(Modifier.padding(horizontal = 16.dp).offset(y = (-18).dp), verticalArrangement = Arrangement.spacedBy(18.dp)) {
+                current.item.archivedReason?.let { reason ->
+                    Row(
+                        Modifier.fillMaxWidth().clip(CardShape).background(AmbrColors.ExpiredTint).padding(16.dp),
+                        verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(12.dp),
+                    ) {
+                        Icon(painterResource(R.drawable.ic_archive), null, tint = AmbrColors.TextSecondary, modifier = Modifier.size(18.dp))
+                        Text(
+                            "${if (reason == ArchiveReason.Sold) "Sold" else "Given away"}${current.item.archivedOn?.let { " on ${Format.date(it)}" } ?: ""}. Kept in Archive.",
+                            style = MaterialTheme.typography.bodyMedium, color = AmbrColors.TextPrimary, modifier = Modifier.weight(1f),
+                        )
+                        Text("Restore", style = MaterialTheme.typography.titleSmall, color = AmbrColors.HoneyInk,
+                            modifier = Modifier.clip(RoundedCornerShape(16.dp)).background(AmbrColors.HoneyTint).clickable { vm.unarchive() }.padding(horizontal = 12.dp, vertical = 8.dp))
+                    }
+                }
                 CheckUpBanner(current, onAllGood = { vm.dismissReminder() })
                 QuickActions(current, onLogRepair)
                 ProofSection(current.details.proofs, onAddProof, onOpenProof)

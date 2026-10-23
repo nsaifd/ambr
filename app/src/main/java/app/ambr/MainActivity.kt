@@ -2,7 +2,6 @@ package app.ambr
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.WindowManager
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.runtime.mutableStateOf
@@ -20,8 +19,6 @@ class MainActivity : FragmentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         enableEdgeToEdge()
         super.onCreate(savedInstanceState)
-        // Keep receipts out of the recent-apps preview when app lock is on.
-        if (container.lock.enabled) window.setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE)
         if (savedInstanceState == null) readIntent(intent)
         setContent {
             AmbrTheme {
@@ -38,6 +35,18 @@ class MainActivity : FragmentActivity() {
     override fun onStop() {
         super.onStop()
         if (!isChangingConfigurations) container.lock.onBackground()
+    }
+
+    // Our own trips out (camera roll, share sheet, dialer) shouldn't lock the app on return.
+    @Deprecated("Deprecated in Java")
+    override fun startActivityForResult(intent: Intent, requestCode: Int, options: Bundle?) {
+        container.lock.leavingForResult()
+        super.startActivityForResult(intent, requestCode, options)
+    }
+
+    override fun startActivity(intent: Intent, options: Bundle?) {
+        container.lock.leavingForResult()
+        super.startActivity(intent, options)
     }
 
     override fun onNewIntent(intent: Intent) {

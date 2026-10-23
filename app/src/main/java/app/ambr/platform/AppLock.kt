@@ -12,13 +12,21 @@ class AppLock(private val settings: Settings) {
     private val _locked = MutableStateFlow(settings.appLock.value && settings.pinHash != null)
     val locked: StateFlow<Boolean> = _locked.asStateFlow()
     private var backgroundAt = 0L
+    private var ownTrip = false
 
     val enabled get() = settings.appLock.value && settings.pinHash != null
+
+    /** The app is opening a picker, share sheet or dialer itself; coming back from it doesn't lock. */
+    fun leavingForResult() { ownTrip = true }
 
     fun onBackground() { backgroundAt = SystemClock.elapsedRealtime() }
 
     fun onForeground() {
+        val trip = ownTrip
+        ownTrip = false
         if (!enabled || backgroundAt == 0L) return
+        // Still lock after a long trip away, even one the app started.
+        if (trip && SystemClock.elapsedRealtime() - backgroundAt < 10 * 60_000L) return
         if (SystemClock.elapsedRealtime() - backgroundAt >= settings.lockDelaySeconds * 1000L) _locked.value = true
     }
 

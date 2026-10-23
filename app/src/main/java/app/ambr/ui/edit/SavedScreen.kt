@@ -75,7 +75,7 @@ fun SavedScreen(vm: ItemViewModel, firstReminderDays: Int, onAddAnother: () -> U
             Box(Modifier.scale(pop.value).size(84.dp).clip(CircleShape).background(AmbrColors.CoveredFill), contentAlignment = Alignment.Center) {
                 Icon(painterResource(R.drawable.ic_check), null, tint = AmbrColors.Card, modifier = Modifier.size(30.dp))
             }
-            Text("${i.name.split(' ').lastOrNull()?.replaceFirstChar { it.uppercase() } ?: "Item"} saved", style = MaterialTheme.typography.headlineLarge, color = AmbrColors.TextPrimary)
+            Text(if (i.name.length <= 22) "${i.name} saved" else "Item saved", style = MaterialTheme.typography.headlineLarge, color = AmbrColors.TextPrimary)
             val until = s.until
             if ((s.kind == StatusKind.Covered || s.kind == StatusKind.EndsSoon) && until != null) {
                 Text(buildAnnotatedString {

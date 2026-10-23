@@ -63,6 +63,8 @@ fun YouScreen(
     val lastBackup by settings.lastBackup.collectAsStateWithLifecycle()
     val first by settings.firstReminderDays.collectAsStateWithLifecycle()
     val lock by settings.appLock.collectAsStateWithLifecycle()
+    val backupError by settings.backupError.collectAsStateWithLifecycle()
+    val backupOk = backupOn && backupError == null
 
     val groups = listOf(
         "Settings" to listOf(
@@ -93,14 +95,16 @@ fun YouScreen(
                 Modifier.fillMaxWidth().clip(CardShape).background(AmbrColors.Card).border(1.dp, AmbrColors.Ring, CardShape).clickable(onClick = onBackup).padding(16.dp),
                 verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(14.dp),
             ) {
-                Box(Modifier.size(52.dp).clip(RoundedCornerShape(16.dp)).background(if (backupOn) AmbrColors.CoveredTint else AmbrColors.HoneyTint), contentAlignment = Alignment.Center) {
-                    Icon(painterResource(R.drawable.ic_cloud_upload_alt), null, tint = if (backupOn) AmbrColors.CoveredInk else AmbrColors.HoneyInk, modifier = Modifier.size(24.dp))
+                Box(Modifier.size(52.dp).clip(RoundedCornerShape(16.dp)).background(if (backupOk) AmbrColors.CoveredTint else AmbrColors.HoneyTint), contentAlignment = Alignment.Center) {
+                    Icon(painterResource(R.drawable.ic_cloud_upload_alt), null, tint = if (backupOk) AmbrColors.CoveredInk else AmbrColors.HoneyInk, modifier = Modifier.size(24.dp))
                 }
                 Column(Modifier.weight(1f)) {
-                    Text(if (backupOn) "Your data is backed up" else "Back up to Google Drive", style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.Bold, color = AmbrColors.TextPrimary)
+                    Text(when { backupOk -> "Your data is backed up"; backupOn -> "Backup needs attention"; else -> "Back up to Google Drive" }, style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.Bold, color = AmbrColors.TextPrimary)
                     Text(
                         when {
                             !backupOn -> "If you lose this phone, your receipts go with it"
+                            backupError == "quota" -> "Your Google Drive is full"
+                            backupError != null -> "Last backup didn't finish. Tap to fix"
                             lastBackup == 0L -> "Google Drive · waiting for the first backup"
                             else -> "Google Drive · " + DateFormat.getDateTimeInstance(DateFormat.MEDIUM, DateFormat.SHORT).format(Date(lastBackup))
                         },

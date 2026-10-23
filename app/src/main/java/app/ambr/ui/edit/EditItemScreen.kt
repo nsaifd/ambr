@@ -190,7 +190,7 @@ fun EditItemScreen(
                     }
                     LabeledField("Service center", d.serviceName, { v -> vm.edit { it.copy(serviceName = v) } }, placeholder = d.hint?.serviceName ?: "Name")
                     Row(horizontalArrangement = Arrangement.spacedBy(10.dp)) {
-                        LabeledField("Phone", d.servicePhone, { v -> vm.edit { it.copy(servicePhone = v) } }, Modifier.weight(1f), numeric = true)
+                        LabeledField("Phone", d.servicePhone, { v -> vm.edit { it.copy(servicePhone = v) } }, Modifier.weight(1f), phone = true)
                         LabeledField("Area", d.serviceAddress, { v -> vm.edit { it.copy(serviceAddress = v) } }, Modifier.weight(1f))
                     }
                     Column(verticalArrangement = Arrangement.spacedBy(6.dp)) {

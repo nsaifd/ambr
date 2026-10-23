@@ -77,7 +77,7 @@ fun HomeScreen(
         contentPadding = PaddingValues(start = 16.dp, end = 16.dp, top = 12.dp, bottom = 132.dp),
         verticalArrangement = Arrangement.spacedBy(16.dp),
     ) {
-        item { Header(alerts = overview.endingSoon.size, onNotifications = onNotifications) }
+        item { Header(onNotifications) }
         if (!overview.loaded) return@LazyColumn
         if (overview.items.isEmpty()) {
             item { EmptyHome(onAdd = onAdd, onSamples = if (BuildConfig.DEBUG) ({ vm.loadSamples(); Unit }) else null) }
@@ -102,30 +102,18 @@ fun HomeScreen(
 }
 
 @Composable
-private fun Header(alerts: Int, onNotifications: () -> Unit) {
+private fun Header(onNotifications: () -> Unit) {
     Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
         Row(
-            modifier = Modifier.height(44.dp).clip(RoundedCornerShape(22.dp)).background(AmbrColors.Card)
-                .border(1.dp, AmbrColors.Ring, RoundedCornerShape(22.dp)).padding(horizontal = 14.dp)
+            modifier = Modifier.height(40.dp).clip(RoundedCornerShape(20.dp)).background(AmbrColors.Card)
+                .border(1.dp, AmbrColors.Ring, RoundedCornerShape(20.dp)).padding(horizontal = 12.dp)
                 .semantics { contentDescription = "Ambr" },
             verticalAlignment = Alignment.CenterVertically,
         ) {
             Icon(painterResource(R.drawable.ic_ambr_lockup), contentDescription = null, tint = Color.Unspecified, modifier = Modifier.height(20.dp).width(82.dp))
         }
         Spacer(Modifier.weight(1f))
-        Box {
-            CircleIconButton(
-                if (alerts > 0) R.drawable.ic_bell_ring else R.drawable.ic_bell,
-                if (alerts > 0) "Notifications, $alerts new" else "Notifications",
-                onNotifications,
-            )
-            if (alerts > 0) Box(
-                Modifier.align(Alignment.TopEnd).size(18.dp).clip(CircleShape).background(AmbrColors.Honey).border(2.dp, AmbrColors.Ground, CircleShape),
-                contentAlignment = Alignment.Center,
-            ) {
-                Text(if (alerts > 9) "9+" else "$alerts", fontSize = 9.sp, fontWeight = FontWeight.Bold, color = AmbrColors.TextPrimary)
-            }
-        }
+        CircleIconButton(R.drawable.ic_bell, "Notifications", onNotifications)
     }
 }
 

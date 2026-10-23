@@ -72,6 +72,7 @@ class EditorViewModel(private val repo: ItemRepository, private val settings: Se
     private val _draft = MutableStateFlow(pending ?: Draft())
     val draft: StateFlow<Draft> = _draft.asStateFlow()
     val isNew get() = id == 0L
+    private var savedCoverages: List<CoverageEntity> = emptyList()
 
     init {
         if (id == 0L && _draft.value.coverages.isEmpty()) setMainMonths(12)
@@ -84,6 +85,7 @@ class EditorViewModel(private val repo: ItemRepository, private val settings: Se
                 notes = i.notes.orEmpty(), serviceName = i.serviceName.orEmpty(), servicePhone = i.servicePhone.orEmpty(),
                 serviceAddress = i.serviceAddress.orEmpty(), photoPath = i.photoPath, coverages = d.coverages, createdAt = i.createdAt,
             )
+            savedCoverages = d.coverages
         }
     }
 
@@ -121,7 +123,12 @@ class EditorViewModel(private val repo: ItemRepository, private val settings: Se
             notes = d.notes.trim().ifBlank { null }, serviceName = d.serviceName.trim().ifBlank { hint?.serviceName },
             servicePhone = d.servicePhone.trim().ifBlank { null }, serviceAddress = d.serviceAddress.trim().ifBlank { null }, createdAt = d.createdAt,
         )
-        val saved = repo.save(item, d.coverages, d.newProofs)
+        // A coverage whose end date moved gets its reminders back, so a longer warranty is still announced.
+        val coverages = d.coverages.map { c ->
+            val before = savedCoverages.firstOrNull { it.id == c.id && c.id != 0L }
+            if (before != null && app.ambr.domain.Warranty.end(before) == app.ambr.domain.Warranty.end(c)) c else c.copy(remindersSent = 0, reminderDismissed = false)
+        }
+        val saved = repo.save(item, coverages, d.newProofs)
         onResult(SaveResult.Saved(saved))
     }
 

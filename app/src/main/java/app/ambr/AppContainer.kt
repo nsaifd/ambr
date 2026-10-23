@@ -15,6 +15,9 @@ class AppContainer(context: Context) {
     val database: AmbrDatabase = AmbrDatabase.create(context)
     val items = ItemRepository(database.items())
     val settings = Settings(context)
+
+    /** For saves that must finish even if the screen that started them closes. */
+    val scope = kotlinx.coroutines.CoroutineScope(kotlinx.coroutines.SupervisorJob() + kotlinx.coroutines.Dispatchers.Main)
     val lock = AppLock(settings)
     val billing = Billing(context.applicationContext, settings)
     val files = java.io.File(context.filesDir, "proofs").apply { mkdirs() }

@@ -97,11 +97,12 @@ class Backup(private val context: Context, private val repo: ItemRepository, pri
             }
         }
         val meta = JSONObject().put("name", NAME).put("appProperties", JSONObject().put("items", all.size.toString()).put("photos", photos.toString()))
+        // Upload the new copy first and only then remove the old one, so there is always a backup.
         val existing = find(token)
-        if (existing == null) meta.put("parents", JSONArray().put("appDataFolder"))
-        val url = if (existing == null) "$UPLOAD/files?uploadType=multipart" else "$UPLOAD/files/${existing.id}?uploadType=multipart"
-        multipart(if (existing == null) "POST" else "PATCH", url, token, meta, zip)
+        meta.put("parents", JSONArray().put("appDataFolder"))
+        multipart("POST", "$UPLOAD/files?uploadType=multipart", token, meta, zip)
         zip.delete()
+        existing?.let { runCatching { open("DELETE", "$API/files/${it.id}", token).responseCode } }
         settings.setLastBackup(System.currentTimeMillis())
     }
 
@@ -122,8 +123,11 @@ class Backup(private val context: Context, private val repo: ItemRepository, pri
         }
         zip.delete()
         val items = json?.getJSONArray("items") ?: return@withContext
+        // Restoring twice must not duplicate: an item is the same if it was created at the same moment with the same name.
+        val here = (repo.activeOnce() + repo.archivedOnce()).map { it.item.createdAt to it.item.name }.toSet()
         for (i in 0 until items.length()) {
-            fromJson(items.getJSONObject(i))
+            val o = items.getJSONObject(i)
+            if ((o.long("createdAt") to o.getString("name")) !in here) fromJson(o)
             onProgress(i + 1, items.length())
         }
     }
@@ -189,7 +193,7 @@ class Backup(private val context: Context, private val repo: ItemRepository, pri
 
     private fun open(method: String, url: String, token: String): HttpURLConnection =
         (URL(url).openConnection() as HttpURLConnection).apply {
-            if (method == "PATCH") { requestMethod = "POST"; setRequestProperty("X-HTTP-Method-Override", "PATCH") } else requestMethod = method
+            requestMethod = method
             setRequestProperty("Authorization", "Bearer $token")
             connectTimeout = 20_000
             readTimeout = 60_000
