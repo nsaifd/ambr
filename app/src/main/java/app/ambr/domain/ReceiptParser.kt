@@ -180,6 +180,17 @@ object ReceiptParser {
         return Math.round(days / 30.4f).takeIf { it > 0 }
     }
 
+    private fun nameOptions(rows: List<String>, store: String?): List<String> {
+        val itemLike = rows.filter { r ->
+            val clean = cleanName(r)
+            clean.count(Char::isLetter) >= 4 && clean != store && !noise.containsMatchIn(clean) && !strongTotal.containsMatchIn(r) &&
+                !hasDate(r) && !phone.containsMatchIn(r) && !storeLabel.containsMatchIn(r) && !addressRow.containsMatchIn(r) && clean.length <= 60
+        }
+        // Rows that also carry an amount are most likely the bought items.
+        val withAmount = itemLike.filter { amounts(it).isNotEmpty() && !extraRow.containsMatchIn(it) }
+        return (withAmount + itemLike).map(::cleanName).distinct().take(6)
+    }
+
     // --- price ---
 
     private fun fixDigits(s: String) = s.replace(Regex("""(?<=\d)[Oo](?=[\d,.])|(?<=[\d,])[Oo]\b|(?<=\d)[Il](?=\d)""")) { if (it.value in "Oo") "0" else "1" }
