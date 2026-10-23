@@ -155,7 +155,7 @@ private fun ValueCard(o: Overview) {
         }
         Row(verticalAlignment = Alignment.Bottom) {
             Text(Format.taka(o.totalValue), style = MaterialTheme.typography.displayLarge, color = AmbrColors.Card, modifier = Modifier.weight(1f))
-            Text("${o.items.size} items", style = MaterialTheme.typography.bodyMedium, color = AmbrColors.OnDarkMuted)
+            Text(if (o.items.size == 1) "1 item" else "${o.items.size} items", style = MaterialTheme.typography.bodyMedium, color = AmbrColors.OnDarkMuted)
         }
         Canvas(Modifier.fillMaxWidth().height(10.dp).semantics { contentDescription = "${o.covered} covered, ${o.endingSoon.size} ending soon, ${o.expired} expired" }) {
             val gap = 4.dp.toPx()
@@ -187,9 +187,10 @@ private fun Legend(text: String, color: Color) {
 @Composable
 private fun ActionTiles(onSomethingBroke: () -> Unit) {
     Column(
-        modifier = Modifier.fillMaxWidth().heightIn(min = 120.dp).clip(CardShape).background(AmbrColors.Honey)
-            .clickable(onClick = onSomethingBroke).padding(16.dp),
-        verticalArrangement = Arrangement.spacedBy(18.dp),
+        // Sized by its content and centred, so there is no empty band under the text.
+        modifier = Modifier.fillMaxWidth().clip(CardShape).background(AmbrColors.Honey)
+            .clickable(onClick = onSomethingBroke).padding(horizontal = 16.dp, vertical = 18.dp),
+        verticalArrangement = Arrangement.Center,
     ) {
         Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(14.dp)) {
             Box(Modifier.size(48.dp).clip(CircleShape).background(AmbrColors.Navy), contentAlignment = Alignment.Center) {

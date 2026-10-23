@@ -13,8 +13,9 @@ android {
         applicationId = "app.ambr"
         minSdk = 26
         targetSdk = 35
-        versionCode = 1
-        versionName = "1.0"
+        // CI sets these so every Play upload gets a higher version code.
+        versionCode = System.getenv("VERSION_CODE")?.toIntOrNull() ?: 1
+        versionName = System.getenv("VERSION_NAME") ?: "1.0"
     }
 
     // A fixed debug key so the SHA-1 registered for Google Drive sign-in stays the same on every CI build.
@@ -25,12 +26,21 @@ android {
             keyAlias = "androiddebugkey"
             keyPassword = "android"
         }
+        // The Play upload key comes from GitHub secrets; it never lives in the repo.
+        create("release") {
+            System.getenv("UPLOAD_KEYSTORE_PATH")?.let { storeFile = file(it) }
+            storePassword = System.getenv("UPLOAD_KEYSTORE_PASSWORD")
+            keyAlias = System.getenv("UPLOAD_KEY_ALIAS")
+            keyPassword = System.getenv("UPLOAD_KEY_PASSWORD")
+        }
     }
 
     buildTypes {
         release {
-            isMinifyEnabled = true
-            isShrinkResources = true
+            // Shrinking stays off for the first release: nothing gets stripped that ML Kit or Room look up at runtime.
+            isMinifyEnabled = false
+            isShrinkResources = false
+            if (System.getenv("UPLOAD_KEYSTORE_PATH") != null) signingConfig = signingConfigs.getByName("release")
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
     }

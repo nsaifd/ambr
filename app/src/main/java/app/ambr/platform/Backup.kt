@@ -62,7 +62,19 @@ class Backup(private val context: Context, private val repo: ItemRepository, pri
             result.accessToken != null -> DriveAccess.Token(result.accessToken!!)
             else -> DriveAccess.Failed("Google didn't give access")
         }
-    }.getOrElse { DriveAccess.Failed(it.message ?: "Couldn't reach Google") }
+    }.getOrElse { e -> DriveAccess.Failed(friendly(e)) }
+
+    /** Google's errors are codes like "10: " – turn the common ones into words a person can act on. */
+    private fun friendly(e: Throwable): String {
+        val code = (e as? com.google.android.gms.common.api.ApiException)?.statusCode
+            ?: Regex("""^(\d+):""").find(e.message.orEmpty())?.groupValues?.get(1)?.toIntOrNull()
+        return when (code) {
+            10 -> "Google sign-in isn't set up for this version of Ambr yet (error 10). The app's developer needs to register it in Google Cloud."
+            7 -> "No internet connection. Connect and try again."
+            12501, 16 -> "Sign-in was cancelled."
+            else -> "Couldn't connect to Google${code?.let { " (error $it)" } ?: ""}. Try again in a moment."
+        }
+    }
 
     /** Called with the data returned from the consent screen. */
     fun tokenFrom(data: android.content.Intent?): String? =
