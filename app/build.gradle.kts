@@ -37,9 +37,9 @@ android {
 
     buildTypes {
         release {
-            // Shrinking stays off for the first release: nothing gets stripped that ML Kit or Room look up at runtime.
-            isMinifyEnabled = false
-            isShrinkResources = false
+            // R8 shrinks and optimises the code, as Play asks; library keep rules come with each dependency.
+            isMinifyEnabled = true
+            isShrinkResources = true
             if (System.getenv("UPLOAD_KEYSTORE_PATH") != null) signingConfig = signingConfigs.getByName("release")
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
